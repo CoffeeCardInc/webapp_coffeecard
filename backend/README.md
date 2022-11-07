@@ -1,5 +1,6 @@
-# API Strapi Delivroo clone
-
+# API Strapi Restaurant WebApp clone
+- I used a webapp clone for the structure of this webapp:
+- https://github.com/strapi/community-content/tree/master/tutorials/code/next-react-hooks-strapi-food-delivery
 
 ### Install dependencies
 ```bash
