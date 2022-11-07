@@ -1,0 +1,44 @@
+{
+  "connection": "default",
+  "collectionName": "drinks",
+  "info": {
+    "name": "drink",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": [
+      "created_at",
+      "updated_at"
+    ],
+    "comment": ""
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "restaurant": {
+      "model": "restaurant",
+      "via": "drinks"
+    },
+    "size": {
+      "enum": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "type": "enumeration"
+    }
+  }
+}

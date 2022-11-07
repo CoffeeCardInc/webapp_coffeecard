@@ -1,0 +1,43 @@
+{
+  "connection": "default",
+  "collectionName": "orders",
+  "info": {
+    "name": "order",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": [
+      "created_at",
+      "updated_at"
+    ],
+    "comment": ""
+  },
+  "attributes": {
+    "address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "drinks": {
+      "type": "json",
+      "required": true
+    },
+    "amount": {
+      "type": "integer"
+    },
+    "token": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "charge_id": {
+      "type": "string"
+    },
+    "user": {
+      "type": "string"
+    }
+  }
+}
