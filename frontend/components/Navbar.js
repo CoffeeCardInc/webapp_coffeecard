@@ -19,7 +19,7 @@ const Navibar = () => {
   const user = true
 
   return (
-    <Navbar expand='sm' className='bg-dark'>
+    <Navbar expand='sm' color='dark' light>
       <style jsx>
         {`
           h5 {
