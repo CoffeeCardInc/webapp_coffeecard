@@ -20,7 +20,7 @@
     "city": {
       "type": "string"
     },
-    "drinks": {
+    "dishes": {
       "type": "json",
       "required": true
     },

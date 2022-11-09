@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 /**
  * Order.js controller
  *
  * @description: A set of functions called "actions" for managing `Order`.
  */
 // note that this needs to be a "private" key from STRIPE
-const stripe = require('stripe')(
-  'sk_test_51LrpVXLNmCdVbnyV2LkjPXP7BcBYjnuLaZeBpK0HzQBgTS5OgalIxfndkD9EucCBvCUC3AVhHcliFRfMbervK9G800bfTH9pwN'
+const stripe = require("stripe")(
+  "sk_test_51HaLhVGgpfLkdZwmmtP4YP0CYjzHEgzhNehfIm8m7cvzKnmek68toarKoYXMsutgu4pkbegopWRG6v9NaCkq65em00Elwbb2Wi"
 );
 module.exports = {
   /**
@@ -24,7 +24,7 @@ module.exports = {
     const charge = await stripe.charges.create({
       // Transform cents to dollars.
       amount: stripeAmount,
-      currency: 'usd',
+      currency: "usd",
       description: `Order ${new Date()} by ${ctx.state.user._id}`,
       source: token,
     });
