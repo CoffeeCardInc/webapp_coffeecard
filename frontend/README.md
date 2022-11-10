@@ -44,3 +44,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 npm packages:
 
 - npm install --save react-social-login-buttons
+- npm install react-icons --save

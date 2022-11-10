@@ -2,6 +2,7 @@
 import { Container } from 'reactstrap'
 import Navibar from './Navbar'
 import Meta from './Meta'
+import Footer from './Footer'
 const Layout = (props) => {
   return (
     <>
@@ -10,8 +11,6 @@ const Layout = (props) => {
         {`
           .bg {
             background: #fffdf1;
-          }
-          body {
             height: 100vh;
           }
         `}
@@ -20,6 +19,7 @@ const Layout = (props) => {
       <div className='bg'>
         <Container>{props.children}</Container>
       </div>
+      <Footer></Footer>
     </>
   )
 }
