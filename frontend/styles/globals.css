@@ -14,3 +14,19 @@ a {
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --color-primary: #000000;
+  --color-secondary: #40312e;
+  --color-white: #ffffff;
+  --color-lightbrown: #fffdf1;
+  --box-shadow-1: 0 3px 15px rgba(0, 0, 0, 0.2);
+  --background-image-1: linear-gradient(
+    to bottom,
+    #fffdf1,
+    #f9f6e2,
+    #fef7cf,
+    #d8d1a5,
+    #c6bc82
+  );
+}

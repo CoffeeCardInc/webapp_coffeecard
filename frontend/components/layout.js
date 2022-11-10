@@ -11,6 +11,9 @@ const Layout = (props) => {
           .bg {
             background: #fffdf1;
           }
+          body {
+            height: 100vh;
+          }
         `}
       </style>
       <Navibar />
