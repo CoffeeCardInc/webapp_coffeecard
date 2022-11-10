@@ -106,14 +106,19 @@ const Register = () => {
                     />
                   </FormGroup>
                   <FormGroup>
-                    <span>
+                    {/* <span>
                       <a href=''>
                         <small>Forgot Password?</small>
                       </a>
-                    </span>
+                    </span> */}
                     <Button
-                      style={{ float: 'right', width: 120 }}
-                      color='primary'
+                      style={{
+                        // float: 'middle',
+                        // width: 180,
+                        backgroundColor: '#40312e',
+                      }}
+                      className='col-sm-12'
+                      // color='primary'
                       disabled={false}
                       onClick={() => {
                         setLoading(true)
