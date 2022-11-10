@@ -43,3 +43,11 @@
   padding-bottom: 15px;
   margin-bottom: 0;
 }
+.footerbasic .footermenu {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-secondary);
+  padding-bottom: 15px;
+  margin-bottom: 0;
+}
