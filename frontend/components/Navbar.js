@@ -19,7 +19,7 @@ const Navibar = () => {
   const user = true
 
   return (
-    <Navbar expand='sm' color='dark' light>
+    <Navbar expand='sm' light style={{ backgroundColor: 'inherit' }}>
       <style jsx>
         {`
           h5 {

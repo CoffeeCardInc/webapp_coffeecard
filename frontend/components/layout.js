@@ -6,8 +6,15 @@ const Layout = (props) => {
   return (
     <>
       <Meta />
+      <style jsx>
+        {`
+          .bg {
+            background: #fffdf1;
+          }
+        `}
+      </style>
       <Navibar />
-      <div>
+      <div className='bg'>
         <Container>{props.children}</Container>
       </div>
     </>
