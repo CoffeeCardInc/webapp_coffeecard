@@ -19,7 +19,7 @@ const Navibar = () => {
   const user = true
 
   return (
-    <Navbar expand='sm' color='dark' light>
+    <Navbar expand='sm' light style={{ backgroundColor: '#fffdf1' }}>
       <style jsx>
         {`
           h5 {
@@ -39,39 +39,29 @@ const Navibar = () => {
       <Collapse isOpen={isOpen} navbar>
         <Nav className='container-fluid justify-content-end' navbar>
           <NavItem>
-            <NavLink href='/' style={{ color: 'white' }}>
-              Home
-            </NavLink>
+            <NavLink href='/'>Home</NavLink>
           </NavItem>
           <NavItem>
             {user ? (
-              <h5 className='m-auto'>{user.username}</h5>
+              // <h5 className='m-auto'>{user.username}</h5>
+              ''
             ) : (
-              <NavLink
-                href='/register'
-                className='inactive'
-                style={{ color: 'white' }}
-              >
+              <NavLink href='/register' className='inactive'>
                 Sign up
               </NavLink>
             )}
           </NavItem>
           <NavItem>
             {user ? (
-              <NavLink href='/cart' style={{ color: 'white' }}>
-                Cart
-              </NavLink>
+              <NavLink href='/cart'>Cart</NavLink>
             ) : (
-              <NavLink href='/login' style={{ color: 'white' }}>
-                Sign In
-              </NavLink>
+              <NavLink href='/login'>Sign In</NavLink>
             )}
           </NavItem>
           <NavItem>
             {user ? (
               <NavLink
                 href='/'
-                style={{ color: 'white' }}
                 onClick={() => {
                   logout()
                   setUser(null)
