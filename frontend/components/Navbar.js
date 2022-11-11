@@ -36,7 +36,7 @@ const Navibar = () => {
         />
       </NavbarBrand>
       <NavbarToggler onClick={toggle} />
-      <Collapse isOpen={isOpen} navbar>
+      <Collapse isOpen={isOpen} navbar fixed>
         <Nav className='container-fluid justify-content-end' navbar>
           <NavItem>
             <NavLink href='/'>Home</NavLink>

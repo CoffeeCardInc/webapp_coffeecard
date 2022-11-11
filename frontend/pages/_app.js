@@ -106,7 +106,7 @@ function MyApp(props) {
         />
       </Head>
 
-      <Layout>
+      <Layout className='container m-0 p-0'>
         <Component {...pageProps} />
       </Layout>
     </AppContext.Provider>

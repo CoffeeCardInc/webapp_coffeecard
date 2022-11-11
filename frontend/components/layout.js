@@ -11,7 +11,6 @@ const Layout = (props) => {
         {`
           .bg {
             background: #fffdf1;
-            height: 100vh;
           }
         `}
       </style>

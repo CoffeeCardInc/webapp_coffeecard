@@ -40,7 +40,7 @@ function Login(props) {
   return (
     <Container>
       <Row>
-        <Col sm='12' md={{ size: 5, offset: 3 }}>
+        <Col sm='12' md={{ size: 6, offset: 3 }}>
           <div className='paper'>
             <Header title={'Welcome back'} />
             <section className='wrapper'>

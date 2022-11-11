@@ -3,6 +3,7 @@
 .footerbasic {
   color: var(--color-secondary);
   background-color: var(--color-lightbrown);
+  padding: 20px 0;
 }
 
 .footerbasic ul a {

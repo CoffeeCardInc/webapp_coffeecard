@@ -8,6 +8,7 @@ import {
 } from '@apollo/client'
 import RestaurantList from '../components/restaurantList'
 import { Alert, InputGroup, InputGroupAddon, Input } from 'reactstrap'
+import Landing from '../components/Landing'
 
 function Home() {
   const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337'
@@ -20,7 +21,7 @@ function Home() {
   return (
     <ApolloProvider client={client}>
       <div>
-        <Alert color='primary'>
+        {/* <Alert color='primary'>
           Hi! This project is currently under construction
         </Alert>
       </div>
@@ -32,10 +33,11 @@ function Home() {
             onChange={(e) => setQuery(e.target.value.toLocaleLowerCase())}
             value={query}
           />
-        </InputGroup>
+        </InputGroup> */}
+        <Landing />
         <br></br>
       </div>
-      <RestaurantList search={query} />
+      {/* <RestaurantList search={query} /> */}
     </ApolloProvider>
   )
 }
