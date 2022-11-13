@@ -62,7 +62,6 @@ const Landing = () => {
               }
               .profile-card .card-up {
                 height: 120px;
-                overflow: hidden;
                 border-top-left-radius: 0.25rem;
                 border-top-right-radius: 0.25rem;
                 border-bottom-left-radius: 0.25rem;
@@ -74,6 +73,11 @@ const Landing = () => {
                 overflow: hidden;
                 border: 3px solid #fff;
                 border-radius: 50%;
+              }
+              .copyright {
+                text-align: center;
+                font-size: 13px;
+                color: #aaa;
               }
             `}</style>
             <div className='row d-flex justify-content-center mt-5 1'>
@@ -98,18 +102,18 @@ const Landing = () => {
                     className='avatar mx-auto bg-white bg-img '
                     style={{ width: '104px', height: '104px' }}
                   ></div>
-                  <div className='card-body '>
-                    <h4 className='mb-2'>Name Here</h4>
-                    {/* <hr />
-                    <p className='dark-grey-text mt-4 '>
-                      There are no active Subscriptions!
-                    </p> */}
+                  <div className='card-body p-2'>
+                    <h4>Steve S.</h4>
+
+                    <p className='dark-grey-text mb-0 copyright'>
+                      Active member
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </section>
-          <h1>Your Subscriptions:</h1>
+          <h3>Your Subscriptions:</h3>
           <Cards />
         </>
       )

@@ -9,8 +9,11 @@ const Cards = () => {
         <div className='row justify-content-center'>
           <div className='col-md-4 col-lg-4'>
             <div className='card user-card'>
-              <div className='card-header row justify-content-between'>
-                <h5>Your Subscription</h5>
+              <div
+                className='card-header row justify-content-between p-0 m-0 '
+                style={{ backgroundColor: '#fff' }}
+              >
+                <h5>Espresso Pass</h5>
                 <button className='btn'>Redeem</button>
               </div>
               <div className='card-block'>
@@ -21,7 +24,7 @@ const Cards = () => {
                     alt='User-Profile-Image'
                   /> */}
                 </div>
-                <h6 className='f-w-600 m-t-25 m-b-10'>Alessa Robert</h6>
+                <h6 className='f-w-600 m-t-25 m-b-10'>Froth</h6>
 
                 <hr />
                 <p className='text-muted m-t-15'>Coffee Available: 5</p>
