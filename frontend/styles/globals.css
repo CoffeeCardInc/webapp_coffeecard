@@ -36,6 +36,7 @@ a {
   background-image: url('https://images.unsplash.com/photo-1506619216599-9d16d0903dfd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80');
   background-size: cover;
   background-position: center;
+  box-shadow: var(--box-shadow-1);
 }
 
 /* LANDING */
@@ -48,8 +49,18 @@ a {
   align-items: center;
 }
 
-/*NAVBAR*/
+/*main*/
 
-.zindex {
-  z-index: 99999;
+/* .testimonial-card .card-up {
+  height: 120px;
+  overflow: hidden;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
 }
+.testimonial-card .avatar {
+  width: 110px;
+  margin-top: -60px;
+  overflow: hidden;
+  border: 3px solid #fff;
+  border-radius: 50%;
+} */

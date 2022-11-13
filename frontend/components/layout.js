@@ -5,7 +5,7 @@ import Meta from './Meta'
 import Footer from './Footer'
 const Layout = (props) => {
   return (
-    <>
+    <div style={{ height: '100vh' }}>
       <Meta />
       <style jsx>
         {`
@@ -19,7 +19,7 @@ const Layout = (props) => {
         <Container>{props.children}</Container>
       </div>
       <Footer></Footer>
-    </>
+    </div>
   )
 }
 
