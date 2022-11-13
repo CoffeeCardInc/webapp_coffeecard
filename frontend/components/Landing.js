@@ -1,9 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
-import Cup from './Cup'
+import Cards from './Card'
 
 const Landing = () => {
-  const loggedIn = false
+  const loggedIn = true
+  const cups = [1, 2, 3, 4, 5]
 
   switch (loggedIn) {
     case false:
@@ -52,7 +53,11 @@ const Landing = () => {
       )
 
     default:
-      return <Cup />
+      return (
+        <>
+          <Cards />
+        </>
+      )
   }
 }
 

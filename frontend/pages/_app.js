@@ -106,7 +106,7 @@ function MyApp(props) {
         />
       </Head>
 
-      <Layout className='container m-0 p-0'>
+      <Layout className='container m-0 p-0' style={{ height: '100vh' }}>
         <Component {...pageProps} />
       </Layout>
     </AppContext.Provider>

@@ -51,7 +51,7 @@ const Navibar = () => {
                 <NavLink href='#'>Orders</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href='#'>Contact Us</NavLink>
+                <NavLink href='/contactus'>Contact</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href='#'>Orders</NavLink>
