@@ -81,7 +81,7 @@ const Landing = () => {
               }
             `}</style>
             <div className='row d-flex justify-content-center mt-5 1'>
-              <div className='col-md-10 col-xl-8 text-center mt-5'>
+              <div className='col-md-10 col-xl-8 text-center mt-4'>
                 {/* <h3 className='my-5'>profiles</h3> */}
                 {/* <p className='mb-4 pb-2 mb-md-5 pb-md-0'>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit,
@@ -113,8 +113,19 @@ const Landing = () => {
               </div>
             </div>
           </section>
-          <h3>Your Subscriptions:</h3>
-          <Cards />
+          <h5 className='d-lg-flex flex-column align-items-center justify-content-around '>
+            Your Subscriptions:
+          </h5>
+          <Cards
+            type={'Espresso'}
+            store={'Froth'}
+            imageSrc={'https://coffeecard.nyc/images/froth_logo.jpg'}
+          />
+          <Cards
+            type={'Cappuchino'}
+            store={'The Bean'}
+            imageSrc={'https://coffeecard.nyc/images/bean_logo.jpg'}
+          />
         </>
       )
   }

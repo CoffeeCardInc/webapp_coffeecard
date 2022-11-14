@@ -19,6 +19,7 @@ a {
 :root {
   --color-primary: #000000;
   --color-secondary: #40312e;
+  --color-coffee: #6a513b;
   --color-white: #ffffff;
   --color-lightbrown: #fffdf1;
   --box-shadow-1: 0 3px 15px rgba(0, 0, 0, 0.2);
@@ -33,7 +34,7 @@ a {
 }
 
 .bg-img {
-  background-image: url('https://images.unsplash.com/photo-1506619216599-9d16d0903dfd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80');
+  background-image: url('../public/cup2.jpg');
   background-size: cover;
   background-position: center;
   box-shadow: var(--box-shadow-1);
