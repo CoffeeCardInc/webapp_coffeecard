@@ -1,5 +1,6 @@
 import React from 'react'
-
+import myImg from '../public/cup.png'
+import Image from 'next/image'
 const Cup = () => {
   return (
     <>
@@ -14,11 +15,13 @@ const Cup = () => {
               </div>
               <div className='card-block'>
                 <div className='user-image'>
-                  <img
-                    src=''
-                    className='img-radius '
-                    alt='User-Profile-Image'
-                  />
+                  <picture>
+                    <img
+                      src='../public/cup.png'
+                      className='img-radius '
+                      alt='User-Profile-Image'
+                    />
+                  </picture>
                 </div>
                 <hr />
                 <p className='text-muted m-t-15'>MM/DD/YY TT:TT</p>

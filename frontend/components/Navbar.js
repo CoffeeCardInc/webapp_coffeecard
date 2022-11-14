@@ -39,7 +39,7 @@ const Navibar = () => {
                 <NavLink href='#'>Account</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href='#'>About CoffeeCard</NavLink>
+                <NavLink href='#'>About</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href='#'>Shops</NavLink>

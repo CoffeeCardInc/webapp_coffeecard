@@ -103,7 +103,7 @@ const Landing = () => {
                     style={{ width: '104px', height: '104px' }}
                   ></div>
                   <div className='card-body p-2'>
-                    <h4>Steve S.</h4>
+                    <h4>Isabelle</h4>
 
                     <p className='dark-grey-text mb-0 copyright'>
                       Active member
@@ -113,7 +113,7 @@ const Landing = () => {
               </div>
             </div>
           </section>
-          <h5 className='d-lg-flex flex-column align-items-center justify-content-around '>
+          <h5 className='d-md-flex flex-column align-items-center justify-content-around '>
             Your Subscriptions:
           </h5>
           <Cards
