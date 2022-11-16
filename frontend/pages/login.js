@@ -37,6 +37,8 @@ function Login(props) {
     updateData({ ...data, [event.target.name]: event.target.value })
   }
 
+  console.log(appContext.isAuthenticated)
+
   return (
     <Container>
       <Row>

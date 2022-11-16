@@ -57,7 +57,7 @@ const Cards = ({ type, store, imageSrc }) => {
                             height: '50px',
                             border: '0.5px solid gray',
                             borderRadius: '8px',
-                            backgroundColor: '#fffdf1',
+                            backgroundColor: '#fff',
                           }}
                         />
                       </Link>
