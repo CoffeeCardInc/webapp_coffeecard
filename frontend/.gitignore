@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 
-.next 
-node_modules
-=======
 frontend/.next 
 frontend/node_modules
->>>>>>> ae9f206e (version update)
+
