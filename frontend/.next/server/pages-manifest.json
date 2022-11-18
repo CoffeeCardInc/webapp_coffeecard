@@ -3,6 +3,7 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/cup": "pages/cup.js",
   "/": "pages/index.js",
   "/contactus": "pages/contactus.js"
@@ -10,4 +11,10 @@
   "/": "pages/index.js",
   "/cup": "pages/cup.js"
 >>>>>>> af17da30 (gitignore)
+=======
+  "/cup": "pages/cup.js",
+  "/": "pages/index.js",
+  "/login": "pages/login.js",
+  "/register": "pages/register.js"
+>>>>>>> 19d086ef (version update)
 }
