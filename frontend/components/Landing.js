@@ -4,7 +4,7 @@ import Cards from './Card'
 import ProfileHeader from './ProfileHeader'
 
 const Landing = () => {
-  const loggedIn = true
+  const loggedIn = false
   const subs = [
     {
       type: 'Espresso',
