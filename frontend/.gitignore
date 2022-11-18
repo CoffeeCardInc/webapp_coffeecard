@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-frontend/.next 
-frontend/node_modules
-=======
+
 .next 
 node_modules
->>>>>>> af17da30 (gitignore)
