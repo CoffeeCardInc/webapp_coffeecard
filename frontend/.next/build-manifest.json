@@ -30,11 +30,14 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+<<<<<<< HEAD
     "/contactus": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/contactus.js"
     ],
+=======
+>>>>>>> af17da30 (gitignore)
     "/cup": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
