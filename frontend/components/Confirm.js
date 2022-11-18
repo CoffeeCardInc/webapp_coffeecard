@@ -4,15 +4,17 @@ import Link from 'next/link'
 
 const Confirm = () => {
   const [modal, setModal] = useState(false)
-
   const toggle = () => setModal(!modal)
 
   return (
-    <div>
+    <div
+      className='row justify-content-center mx-auto'
+      style={{ paddingTop: '120px' }}
+    >
       <Button
         onClick={toggle}
-        className='btn '
-        style={{ backgroundColor: '#6a513b', color: 'white' }}
+        className='btn col-10'
+        style={{ backgroundColor: '#fff', color: '#40312e' }}
       >
         Redeem
       </Button>
@@ -27,13 +29,12 @@ const Confirm = () => {
         <ModalFooter>
           <Link href='/cup' className='col-sm-6 p-1 m-0 col-lg-6 '>
             <Button
-              color='primary'
               onClick={toggle}
               className='col-sm-6 col-lg-11 '
               style={{ backgroundColor: '#6a513b', color: 'white' }}
             >
               Confirm
-            </Button>{' '}
+            </Button>
           </Link>
 
           <Link href='/' className='col-sm-6 p-1 m-0 col-lg-6'>
@@ -43,7 +44,7 @@ const Confirm = () => {
               style={{ backgroundColor: '#6a513b', color: 'white' }}
             >
               Cancel
-            </Button>{' '}
+            </Button>
           </Link>
         </ModalFooter>
       </Modal>

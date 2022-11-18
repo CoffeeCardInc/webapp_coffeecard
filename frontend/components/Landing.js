@@ -9,12 +9,14 @@ const Landing = () => {
     {
       type: 'Espresso',
       store: 'Froth',
-      imageSrc: 'https://coffeecard.nyc/images/froth_logo.jpg',
+      // imageSrc: 'https://coffeecard.nyc/images/froth_logo.jpg',
+      bgColor: ' #6a513b',
     },
     {
       type: 'Cappuchino',
       store: 'Bean',
-      imageSrc: 'https://coffeecard.nyc/images/bean_logo.jpg',
+      // imageSrc: 'https://coffeecard.nyc/images/bean_logo.jpg',
+      bgColor: '#40312e',
     },
   ]
 
