@@ -65,3 +65,24 @@ a {
   border: 3px solid #fff;
   border-radius: 50%;
 } */
+
+/*BUTTON STYLE*/
+.btn-style {
+  background-color: '#6a513b';
+  color: 'white';
+}
+
+/*Spinner*/
+
+.spinner {
+  animation: spinner 6s linear infinite;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

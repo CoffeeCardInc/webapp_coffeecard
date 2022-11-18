@@ -33,6 +33,8 @@ function Login(props) {
     }
   }, [])
 
+  const loginSet = () => {}
+
   function onChange(event) {
     updateData({ ...data, [event.target.name]: event.target.value })
   }

@@ -1,10 +1,22 @@
 import React from 'react'
 import Link from 'next/link'
 import Cards from './Card'
+import ProfileHeader from './ProfileHeader'
 
 const Landing = () => {
   const loggedIn = true
-  const cups = [1, 2, 3, 4, 5]
+  const subs = [
+    {
+      type: 'Espresso',
+      store: 'Froth',
+      imageSrc: 'https://coffeecard.nyc/images/froth_logo.jpg',
+    },
+    {
+      type: 'Cappuchino',
+      store: 'Bean',
+      imageSrc: 'https://coffeecard.nyc/images/bean_logo.jpg',
+    },
+  ]
 
   switch (loggedIn) {
     case false:
@@ -56,76 +68,14 @@ const Landing = () => {
       return (
         <>
           <section>
-            <style jsx>{`
-              .bg-img {
-                background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
-              }
-              .profile-card .card-up {
-                height: 120px;
-                border-top-left-radius: 0.25rem;
-                border-top-right-radius: 0.25rem;
-                border-bottom-left-radius: 0.25rem;
-                border-bottom-right-radius: 0.25rem;
-              }
-              .profile-card .avatar {
-                width: 110px;
-                margin-top: -110px;
-                overflow: hidden;
-                border: 3px solid #fff;
-                border-radius: 50%;
-              }
-              .copyright {
-                text-align: center;
-                font-size: 13px;
-                color: #aaa;
-              }
-            `}</style>
-            <div className='row d-flex justify-content-center mt-5 1'>
-              <div className='col-md-10 col-xl-8 text-center mt-4'>
-                {/* <h3 className='my-5'>profiles</h3> */}
-                {/* <p className='mb-4 pb-2 mb-md-5 pb-md-0'>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit,
-              error amet numquam iure provident voluptate esse quasi, veritatis
-              totam voluptas nostrum quisquam eum porro a pariatur veniam.
-            </p> */}
-              </div>
-            </div>
-
-            <div className='row text-center d-flex align-items-center justify-content-center'>
-              <div className=' col-md-6 mb-5 mb-md-0 d-flex align-items-center'>
-                <div className='card profile-card col-sm-12 p-0 '>
-                  <div
-                    className='card-up '
-                    style={{ backgroundColor: '#40312e' }}
-                  ></div>
-                  <div
-                    className='avatar mx-auto bg-white bg-img '
-                    style={{ width: '104px', height: '104px' }}
-                  ></div>
-                  <div className='card-body p-2'>
-                    <h4>Isabelle</h4>
-
-                    <p className='dark-grey-text mb-0 copyright'>
-                      Active member
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ProfileHeader />
           </section>
           <h5 className='d-md-flex flex-column align-items-center justify-content-around '>
             Your Subscriptions:
           </h5>
-          <Cards
-            type={'Espresso'}
-            store={'Froth'}
-            imageSrc={'https://coffeecard.nyc/images/froth_logo.jpg'}
-          />
-          <Cards
-            type={'Cappuchino'}
-            store={'The Bean'}
-            imageSrc={'https://coffeecard.nyc/images/bean_logo.jpg'}
-          />
+          {subs.map((sub, index) => {
+            return <Cards key={index} sub={sub} />
+          })}
         </>
       )
   }
