@@ -78,7 +78,7 @@ a {
   border: none;
 }
 
-/*CUP page*/
+/*FILL EFFECTS*/
 
 .box {
   position: relative;
@@ -120,14 +120,21 @@ a {
   }
 }
 
-/*CARDS*/
-
+/*CARD EFFECTS*/
 .cards {
+  z-index: 1;
 }
-
 .cardMe {
+  transition: 0.5s;
 }
 
 .cardMe:not(:first-child) {
   margin-top: -8rem;
+}
+
+.cardMe:hover {
+  transform: translateX(0.2rem);
+}
+.cardMe:hover ~ .cardMe {
+  transform: translateY(12rem);
 }

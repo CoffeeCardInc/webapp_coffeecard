@@ -3,14 +3,29 @@
 }
 
 .zindex {
+  display: flex;
   z-index: 99999;
   overflow: hidden;
   position: fixed;
   top: 0;
   width: 100%;
   background-color: var(--color-lightbrown);
+  flex-direction: row-reverse;
 }
 
 .navbar-toggler-icon {
   background-color: red;
+}
+
+@media (min-width: 576px) {
+  .zindex {
+    display: flex;
+    z-index: 99999;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--color-lightbrown);
+    flex-direction: row;
+  }
 }

@@ -22,6 +22,13 @@ const Navibar = () => {
     case true:
       return (
         <Navbar expand='sm' light className={navStyle.zindex}>
+          <style jsx>
+            {`
+              .navbar {
+                justify-content: space-around;
+              }
+            `}
+          </style>
           <NavbarBrand href='/'>
             <img
               src='https://coffeecard.nyc/images/logo.png'
