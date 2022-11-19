@@ -23,13 +23,12 @@ const Navibar = () => {
       return (
         <Navbar expand='sm' light className={navStyle.zindex}>
           <NavbarBrand href='/'>
-            {' '}
             <img
               src='https://coffeecard.nyc/images/logo.png'
               style={{ width: '30px' }}
             />
           </NavbarBrand>
-          <NavbarToggler onClick={toggle} />
+          <NavbarToggler onClick={toggle} className={navStyle.border} />
           <Collapse isOpen={isOpen} navbar fixed>
             <Nav className='container-fluid justify-content-end' navbar>
               <NavItem>

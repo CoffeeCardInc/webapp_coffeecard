@@ -10,3 +10,7 @@
   width: 100%;
   background-color: var(--color-lightbrown);
 }
+
+.navbar-toggler-icon {
+  background-color: red;
+}
