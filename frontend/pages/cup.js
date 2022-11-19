@@ -5,55 +5,56 @@ import Image from 'next/image'
 import ProfileHeader from '../components/ProfileHeader'
 
 const cup = () => {
+  const imageSrc = 'https://coffeecard.nyc/images/froth_logo.jpg'
   return (
     <>
       <section>
         <style jsx>{`
-          .bg-img {
-            background-image: url('https://media.istockphoto.com/id/1214428300/vector/default-profile-picture-avatar-photo-placeholder-vector-illustration.jpg?s=612x612&w=0&k=20&c=vftMdLhldDx9houN4V-g3C9k0xl6YeBcoB_Rk6Trce0=');
-          }
-          .bg-img2 {
-            background-image: url('https://coffeecard.nyc/images/froth_logo.jpg');
-            background-size: cover;
+          .bg-imgCard {
+            background-image: url(${imageSrc});
+            background-size: contain;
             background-position: center;
+            background-repeat: no-repeat;
+            box-shadow: var(--box-shadow-1);
           }
 
-          .redeem-card {
-            border: 3px solid #aaa;
-            border-radius: 8px;
+          .date {
+            font-size: 13px;
+            margin: 0;
+            color: #40312e;
+          }
+          h6 {
+            color: #40312e;
           }
         `}</style>
-
         <ProfileHeader />
-        <div
-          className='redeem-card d-flex flex-column align-items-center mt-2'
-          style={{ height: '300px' }}
-        >
-          <div
-            className='bg-img2'
-            style={{ height: '50px', width: '150px' }}
-          ></div>
-          <h4>Espresso Pass</h4>
-          <Image
-            src={myImg}
-            className='spinner'
-            style={{ height: '150px', width: '150px' }}
-          />
-          <h6>MM/DD/YY TT:TT</h6>
-          <h6>Timer 10 min cooldown</h6>
-        </div>
-        <div className='mt-5 '>
-          <h4 className='text-center mb-4 '>Tip your barista</h4>
-          <div className='card-block'>
-            <div className='row counter-block justify-content-around'>
-              <div className='col-2'>$1.00</div>
-              <div className='col-2'>$2.00</div>
-              <div className='col-2'>$3.00</div>
-              <div className='col-2'>$4.00</div>
-            </div>
-            <div className='row counter-block justify-content-center '>
-              <div className='col-4 text-center'>Custom Tips</div>
-              <div className='col-4 text-center'>No Tip</div>
+        <div className='container-fluid mt-3'>
+          <div className='row justify-content-center'>
+            <div className='col-md-6 col-lg-4 p-0 mx-0 px-0'>
+              <div
+                className='card '
+                // style={{ color: '#6a513b' }}
+              >
+                <div className='card-header row justify-content-between p-0 m-0 '>
+                  <h6 className='pl-1 my-1'>Espresso Pass</h6>
+                  <h6 className='pr-1 my-1'> 2 cups</h6>
+                </div>
+                <div className='card-block box' style={{ height: '200px' }}>
+                  <p
+                    style={{
+                      paddingTop: '80px',
+                      paddingBottom: '40px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    1 Cup Activated
+                  </p>
+
+                  <div className='row justify-content-between m-0 px-2'>
+                    <p className='m-0 py-3 date'> MM/DD/YY - MM/DD/YY</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

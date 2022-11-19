@@ -28,9 +28,9 @@ const Cards = ({ sub }) => {
           color: #fff;
         }
       `}</style>
-      <div className='container-fluid mt-3'>
+      <div className='cardMe container-fluid '>
         <div className='row justify-content-center'>
-          <div className='col-md-6 col-lg-4 p-0 mx-0 px-0'>
+          <div className='col-md-6 col-lg-12 p-0 mx-0 px-0'>
             <div
               className='card user-card bg-imgCard'
               style={{ backgroundColor: `${bgColor}`, color: '#6a513b' }}
@@ -40,10 +40,9 @@ const Cards = ({ sub }) => {
                 <h6 className='pr-1 my-1'> 5 cups</h6>
               </div>
               <div className='card-block' style={{ height: '200px' }}>
-                {/* <hr className='m-1' /> */}
                 <Confirm />
                 <div className='row justify-content-between m-0 px-2'>
-                  <p className='m-0 pt-4 date'> MM/DD/YY - MM/DD/YY</p>
+                  <p className='m-0 py-3 date'> MM/DD/YY - MM/DD/YY</p>
                 </div>
               </div>
             </div>

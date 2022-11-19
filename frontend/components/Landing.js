@@ -4,7 +4,7 @@ import Cards from './Card'
 import ProfileHeader from './ProfileHeader'
 
 const Landing = () => {
-  const loggedIn = false
+  const loggedIn = true
   const subs = [
     {
       type: 'Espresso',
@@ -17,6 +17,12 @@ const Landing = () => {
       store: 'Bean',
       // imageSrc: 'https://coffeecard.nyc/images/bean_logo.jpg',
       bgColor: '#40312e',
+    },
+    {
+      type: 'Cappuchino',
+      store: 'Bean',
+      // imageSrc: 'https://coffeecard.nyc/images/bean_logo.jpg',
+      bgColor: '#5e5e5e',
     },
   ]
 
@@ -78,9 +84,11 @@ const Landing = () => {
           <h5 className='d-md-flex flex-column align-items-center justify-content-around '>
             Your Subscriptions:
           </h5>
-          {subs.map((sub, index) => {
-            return <Cards key={index} sub={sub} />
-          })}
+          <div className='col-lg-4 p-0 cards'>
+            {subs.map((sub, index) => {
+              return <Cards key={index} sub={sub} />
+            })}
+          </div>
         </>
       )
   }

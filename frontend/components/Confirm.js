@@ -9,7 +9,7 @@ const Confirm = () => {
   return (
     <div
       className='row justify-content-center mx-auto'
-      style={{ paddingTop: '120px' }}
+      style={{ paddingTop: '80px', paddingBottom: '40px' }}
     >
       <Button
         onClick={toggle}
