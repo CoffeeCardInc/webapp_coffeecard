@@ -11,11 +11,7 @@ self["webpackHotUpdate_N_E"]("webpack",{},
 /******/ function(__webpack_require__) { // webpackRuntimeModules
 /******/ /* webpack/runtime/getFullHash */
 /******/ !function() {
-<<<<<<< HEAD
-/******/ 	__webpack_require__.h = function() { return "6551f0dd93d0723f"; }
-=======
-/******/ 	__webpack_require__.h = function() { return "e247fdeba99fd98d"; }
->>>>>>> d1919a7c (version change)
+/******/ 	__webpack_require__.h = function() { return "acb6d34ca884f16c"; }
 /******/ }();
 /******/ 
 /******/ /* webpack/runtime/compat */

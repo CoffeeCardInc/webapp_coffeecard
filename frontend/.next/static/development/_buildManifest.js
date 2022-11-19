@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 self.__BUILD_MANIFEST = {__rewrites:{beforeFiles:[],afterFiles:[],fallback:[]},"/":["static\u002Fchunks\u002Fpages\u002Findex.js"],"/_error":["static\u002Fchunks\u002Fpages\u002F_error.js"],sortedPages:["\u002F","\u002F_app","\u002F_error"]};self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
-=======
-self.__BUILD_MANIFEST = {__rewrites:{beforeFiles:[],afterFiles:[],fallback:[]},"/":["static\u002Fchunks\u002Fpages\u002Findex.js"],"/_error":["static\u002Fchunks\u002Fpages\u002F_error.js"],"/contactus":["static\u002Fchunks\u002Fpages\u002Fcontactus.js"],"/cup":["static\u002Fchunks\u002Fpages\u002Fcup.js"],sortedPages:["\u002F","\u002F_app","\u002F_error","\u002Fcontactus","\u002Fcup"]};self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
->>>>>>> d1919a7c (version change)

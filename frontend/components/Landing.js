@@ -42,17 +42,20 @@ const Landing = () => {
                     customers into reoccuring subscribers.
                   </p>
                   <div className='d-sm-flex flex-column align-items-center justify-content-around'>
-                    <Link href='/login' className='nav-item nav-link'>
+                    <Link href='/login' className='nav-item nav-link col-lg-12'>
                       <button
-                        className='btn col-md-12 col-lg-3 mt-4'
+                        className='btn col-md-12 col-lg-4 mt-4'
                         style={{ backgroundColor: '#40312e', color: 'white' }}
                       >
                         Log In
                       </button>
                     </Link>
-                    <Link href='/register' className='nav-item nav-link'>
+                    <Link
+                      href='/register'
+                      className='nav-item nav-link col-lg-12'
+                    >
                       <button
-                        className='btn col-md-12 col-lg-3 mt-4'
+                        className='btn col-md-12 col-lg-4 mt-4'
                         style={{ backgroundColor: '#40312e', color: 'white' }}
                       >
                         Join
