@@ -9,20 +9,21 @@ const Landing = () => {
     {
       type: 'Espresso',
       store: 'Froth',
-      // imageSrc: 'https://coffeecard.nyc/images/froth_logo.jpg',
+
       bgColor: ' #6a513b',
+      isSubscribed: true,
     },
     {
       type: 'Cappuchino',
       store: 'Bean',
-      // imageSrc: 'https://coffeecard.nyc/images/bean_logo.jpg',
       bgColor: '#40312e',
+      isSubscribed: true,
     },
     {
       type: 'Cappuchino',
       store: 'Bean',
-      // imageSrc: 'https://coffeecard.nyc/images/bean_logo.jpg',
       bgColor: '#5e5e5e',
+      isSubscribed: false,
     },
   ]
 
@@ -85,9 +86,23 @@ const Landing = () => {
             Your Subscriptions:
           </h5>
           <div className='col-lg-4 p-0 cards'>
-            {subs.map((sub, index) => {
-              return <Cards key={index} sub={sub} />
-            })}
+            {subs[0] ? (
+              subs.map((sub, index) => {
+                return <Cards key={index} sub={sub} />
+              })
+            ) : (
+              <>
+                <p className='mt-5'>
+                  You currently do not have any subscription.
+                </p>
+                <button
+                  className='btn col-md-12 col-lg-4 mt-4'
+                  style={{ backgroundColor: '#40312e', color: 'white' }}
+                >
+                  Subscribe
+                </button>
+              </>
+            )}
           </div>
         </>
       )
