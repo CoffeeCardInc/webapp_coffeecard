@@ -11,6 +11,8 @@ import {
   NavLink,
 } from 'reactstrap'
 import AppContext from './context'
+import newLogo from '../public/Logo2.png'
+import Image from 'next/image'
 
 const Navibar = () => {
   // const { user } = useContext(AppContext)
@@ -30,10 +32,7 @@ const Navibar = () => {
             `}
           </style>
           <NavbarBrand href='/'>
-            <img
-              src='https://coffeecard.nyc/images/logo.png'
-              style={{ width: '30px' }}
-            />
+            <Image src={newLogo} style={{ width: '30px', height: '30px' }} />
           </NavbarBrand>
           <NavbarToggler onClick={toggle} className={navStyle.border} />
           <Collapse isOpen={isOpen} navbar fixed>
@@ -73,6 +72,7 @@ const Navibar = () => {
                   Logout
                 </NavLink>
               </NavItem>
+              <div className={navStyle.navEnd} onClick={toggle}></div>
             </Nav>
           </Collapse>
         </Navbar>

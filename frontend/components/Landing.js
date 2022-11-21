@@ -9,7 +9,6 @@ const Landing = () => {
     {
       type: 'Espresso',
       store: 'Froth',
-
       bgColor: ' #6a513b',
       isSubscribed: true,
     },

@@ -13,8 +13,14 @@
   flex-direction: row-reverse;
 }
 
-.navbar-toggler-icon {
-  background-color: red;
+.navEnd {
+  width: 85px;
+  height: 6px;
+  margin-bottom: 6px;
+  margin-top: 10px;
+  border-radius: 8px;
+  background-color: var(--color-coffeelight);
+  align-self: center;
 }
 
 @media (min-width: 576px) {
@@ -25,7 +31,7 @@
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: var(--color-lightbrown);
+    background-color: var(--color-coffee);
     flex-direction: row;
   }
 }
