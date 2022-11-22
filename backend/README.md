@@ -1,4 +1,4 @@
-# API Strapi Delivroo clone
+# API Strapi-CoffeeCard App
 
 
 ### Install dependencies
