@@ -31,6 +31,13 @@ const Meta = ({ title, keywords, description }) => {
         integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm'
         crossOrigin='anonymous'
       />
+      <link
+        rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css'
+        integrity='sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=='
+        crossorigin='anonymous'
+        referrerpolicy='no-referrer'
+      />
 
       <script src='https://js.stripe.com/v3' />
       <title>{title}</title>

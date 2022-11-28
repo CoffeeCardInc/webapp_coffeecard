@@ -140,3 +140,5 @@ a {
 .cardMe:hover ~ .cardMe {
   transform: translateY(12rem);
 }
+
+/*searchbar*/
