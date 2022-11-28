@@ -1,10 +1,13 @@
 import React from 'react'
-import RestaurantList from '../components/restaurantList'
+import Shop from '../components/Shop'
+import RestaurantList from '../components/Shop'
 
 const shops = () => {
   return (
     <div>
-      <RestaurantList />
+      <Shop />
+      <Shop />
+      <Shop />
     </div>
   )
 }
