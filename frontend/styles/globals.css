@@ -140,3 +140,27 @@ a {
 .cardMe:hover ~ .cardMe {
   transform: translateY(12rem);
 }
+
+/*Profile*/
+/* .logo {
+  font-size: 20px;
+  position: absolute;
+  transform: translateY(-150px);
+  cursor: pointer;
+} */
+
+.logo-div {
+  width: 25px;
+  height: 25px;
+  background-color: #efefef;
+  transform: translateY(-150px);
+  display: flex;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.brdr {
+  border: 110px bold red;
+}
