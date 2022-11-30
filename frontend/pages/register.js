@@ -31,7 +31,7 @@ const Register = () => {
         <Col sm='12' md={{ size: 5, offset: 3 }}>
           <div className='paper'>
             <Header />
-            <section className='wrapper'>
+            <section className='p-3'>
               {Object.entries(error).length !== 0 &&
                 error.constructor === Object &&
                 error.message.map((error) => {

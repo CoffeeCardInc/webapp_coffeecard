@@ -20,7 +20,7 @@ const ProfileHeader = () => {
           background-position: center;
         }
         .profile-card {
-          padding: 80px 0 0 0;
+          padding: 10px 0 0 0;
         }
         .profile-card .avatar {
           overflow: hidden;

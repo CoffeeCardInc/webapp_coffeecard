@@ -25,7 +25,7 @@ const contactus = () => {
   }
   return (
     <>
-      <section style={{ paddingTop: '100px' }}>
+      <section>
         <h2 className='h1-responsive font-weight-bold text-center my-4'>
           Contact us
         </h2>

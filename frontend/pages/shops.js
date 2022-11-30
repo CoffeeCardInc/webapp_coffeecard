@@ -43,7 +43,7 @@ const shops = () => {
           border: none;
         }
       `}</style>
-      <div className='row height d-flex justify-content-center align-items-center pt-5 my-5'>
+      <div className='row height d-flex justify-content-center align-items-center pt-5 mb-5'>
         <div className='col-md-6'>
           <div className='form'>
             {/* <i className='fa fa-search'></i> */}
