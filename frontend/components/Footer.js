@@ -9,7 +9,7 @@ const Footer = () => {
     <div className={footerStyles.footerbasic}>
       <footer>
         <Link href='/'>
-          <p className={footerStyles.footermenu}>Become a Partner</p>
+          <p className={footerStyles.footermenu}>Download the App</p>
         </Link>
         <div className={footerStyles.social}>
           <a href='#'>

@@ -11,6 +11,8 @@ import {
   NavLink,
 } from 'reactstrap'
 import AppContext from './context'
+import newLogo from '../public/Logo2.png'
+import Image from 'next/image'
 
 const Navibar = () => {
   // const { user } = useContext(AppContext)
@@ -30,10 +32,7 @@ const Navibar = () => {
             `}
           </style>
           <NavbarBrand href='/'>
-            <img
-              src='https://coffeecard.nyc/images/logo.png'
-              style={{ width: '30px' }}
-            />
+            <Image src={newLogo} style={{ width: '25px', height: '30px' }} />
           </NavbarBrand>
           <NavbarToggler onClick={toggle} className={navStyle.border} />
           <Collapse isOpen={isOpen} navbar fixed>
@@ -42,26 +41,18 @@ const Navibar = () => {
                 <NavLink href='/'>Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href='#'>Account</NavLink>
+                <NavLink href='/profile'>Account</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href='#'>About</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href='#'>Shops</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href='#'>Subscription</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href='#'>Orders</NavLink>
+                <NavLink href='/shops'>Shops</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href='/contactus'>Contact</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink href='#'>Orders</NavLink>
-              </NavItem>
+
               <NavItem>
                 <NavLink
                   href='/'
@@ -83,10 +74,7 @@ const Navibar = () => {
         <Navbar expand='sm' light className={navStyle.zindex}>
           <NavbarBrand href='/'>
             {' '}
-            <img
-              src='https://coffeecard.nyc/images/logo.png'
-              style={{ width: '30px' }}
-            />
+            <Image src={newLogo} style={{ width: '25px', height: '30px' }} />
           </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar fixed>

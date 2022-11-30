@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  min-height: 100vh;
 }
 
 a {
@@ -87,6 +88,7 @@ a {
   overflow: hidden;
   /* border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px; */
+  border-radius: 8px;
   color: var(--color-white);
 }
 
@@ -137,4 +139,24 @@ a {
 }
 .cardMe:hover ~ .cardMe {
   transform: translateY(12rem);
+}
+
+/*Profile*/
+/* .logo {
+  font-size: 20px;
+  position: absolute;
+  transform: translateY(-150px);
+  cursor: pointer;
+} */
+
+.logo-div {
+  width: 25px;
+  height: 25px;
+  background-color: #efefef;
+  transform: translateY(-150px);
+  display: flex;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }

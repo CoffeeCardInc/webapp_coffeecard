@@ -4,25 +4,25 @@ import Cards from './Card'
 import ProfileHeader from './ProfileHeader'
 
 const Landing = () => {
-  const loggedIn = true
+  const loggedIn = false
   const subs = [
     {
       type: 'Espresso',
       store: 'Froth',
-      // imageSrc: 'https://coffeecard.nyc/images/froth_logo.jpg',
       bgColor: ' #6a513b',
+      isSubscribed: true,
     },
     {
       type: 'Cappuchino',
       store: 'Bean',
-      // imageSrc: 'https://coffeecard.nyc/images/bean_logo.jpg',
       bgColor: '#40312e',
+      isSubscribed: true,
     },
     {
       type: 'Cappuchino',
       store: 'Bean',
-      // imageSrc: 'https://coffeecard.nyc/images/bean_logo.jpg',
       bgColor: '#5e5e5e',
+      isSubscribed: false,
     },
   ]
 
@@ -32,44 +32,46 @@ const Landing = () => {
         <section>
           <div>
             <div className='row align-items-center'>
-              <div
+              {/* <div
                 className='col-md-12 p-0 bg-img shadow-lg rounded'
                 style={{ height: '450px' }}
-              ></div>
+              ></div> */}
               <div
-                className='col text-col mt-5'
-                style={{ fontSize: '18px', letterSpacing: '.1rem' }}
+                className='col text-col col-md-12 p-2 bg-img shadow-lg rounded'
+                style={{
+                  fontSize: '18px',
+                  letterSpacing: '.1rem',
+                  height: '450px',
+                  color: '#fff',
+                }}
               >
                 <h2>Your most refined ritual yet.</h2>
                 <br />
-                <div>
-                  <p className='about-text-2'>
+                <div style={{ marginTop: '240px' }}>
+                  <p className='about-text-2 '>
                     CoffeeCard empowers local coffee shops to turn their
                     customers into reoccuring subscribers.
                   </p>
-                  <div className='d-sm-flex flex-column align-items-center justify-content-around'>
-                    <Link href='/login' className='nav-item nav-link col-lg-12'>
-                      <button
-                        className='btn col-md-12 col-lg-4 mt-4'
-                        style={{ backgroundColor: '#40312e', color: 'white' }}
-                      >
-                        Log In
-                      </button>
-                    </Link>
-                    <Link
-                      href='/register'
-                      className='nav-item nav-link col-lg-12'
-                    >
-                      <button
-                        className='btn col-md-12 col-lg-4 mt-4'
-                        style={{ backgroundColor: '#40312e', color: 'white' }}
-                      >
-                        Join
-                      </button>
-                    </Link>
-                  </div>
                 </div>
               </div>
+            </div>
+            <div className='d-sm-flex flex-column align-items-center justify-content-around'>
+              <Link href='/login' className='nav-item nav-link col-lg-12'>
+                <button
+                  className='btn col-md-12 col-lg-4 mt-4'
+                  style={{ backgroundColor: '#40312e', color: 'white' }}
+                >
+                  Log In
+                </button>
+              </Link>
+              <Link href='/register' className='nav-item nav-link col-lg-12'>
+                <button
+                  className='btn col-md-12 col-lg-4 mt-1'
+                  style={{ backgroundColor: '#40312e', color: 'white' }}
+                >
+                  Join
+                </button>
+              </Link>
             </div>
           </div>
         </section>
@@ -85,9 +87,23 @@ const Landing = () => {
             Your Subscriptions:
           </h5>
           <div className='col-lg-4 p-0 cards'>
-            {subs.map((sub, index) => {
-              return <Cards key={index} sub={sub} />
-            })}
+            {subs[0] ? (
+              subs.map((sub, index) => {
+                return <Cards key={index} sub={sub} />
+              })
+            ) : (
+              <>
+                <p className='mt-5'>
+                  You currently do not have any subscription.
+                </p>
+                <button
+                  className='btn col-md-12 col-lg-4 mt-4'
+                  style={{ backgroundColor: '#40312e', color: 'white' }}
+                >
+                  Subscribe
+                </button>
+              </>
+            )}
           </div>
         </>
       )

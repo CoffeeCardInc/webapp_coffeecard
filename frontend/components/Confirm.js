@@ -27,16 +27,6 @@ const Confirm = () => {
           activated it will be available for use for the next 10 minutes.
         </ModalBody>
         <ModalFooter>
-          <Link href='/cup' className='col-sm-6 p-1 m-0 col-lg-6 '>
-            <Button
-              onClick={toggle}
-              className='col-sm-6 col-lg-11 '
-              style={{ backgroundColor: '#6a513b', color: 'white' }}
-            >
-              Confirm
-            </Button>
-          </Link>
-
           <Link href='/' className='col-sm-6 p-1 m-0 col-lg-6'>
             <Button
               onClick={toggle}
@@ -44,6 +34,15 @@ const Confirm = () => {
               style={{ backgroundColor: '#6a513b', color: 'white' }}
             >
               Cancel
+            </Button>
+          </Link>
+          <Link href='/cup' className='col-sm-6 p-1 m-0 col-lg-6 '>
+            <Button
+              onClick={toggle}
+              className='col-sm-6 col-lg-11 '
+              style={{ backgroundColor: '#6a513b', color: 'white' }}
+            >
+              Confirm
             </Button>
           </Link>
         </ModalFooter>
