@@ -34,7 +34,7 @@ const shops = () => {
 
         .form-input {
           height: 55px;
-          text-indent: 33px;
+          // text-indent: 33px;
           border-radius: 10px;
         }
 
@@ -50,7 +50,7 @@ const shops = () => {
             <input
               type='text'
               className='form-control form-input'
-              placeholder='Search anything...'
+              placeholder='Search shops...'
             />
             <span className='left-pan'>
               <i className='fa fa-search'></i>

@@ -1,5 +1,2 @@
 
-frontend/.next 
-frontend/node_modules
-
-.next/static
+.next

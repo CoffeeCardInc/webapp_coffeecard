@@ -50,10 +50,6 @@ const Navibar = () => {
                 <NavLink href='/shops'>Shops</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href='#'>Subscription</NavLink>
-              </NavItem>
-
-              <NavItem>
                 <NavLink href='/contactus'>Contact</NavLink>
               </NavItem>
 
