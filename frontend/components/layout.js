@@ -15,7 +15,7 @@ const Layout = (props) => {
         `}
       </style>
       <Navibar />
-      <div className='bg' style={{ paddingTop: '80px' }}>
+      <div className='bg' style={{ paddingTop: '60px' }}>
         <Container>{props.children}</Container>
       </div>
       <Footer></Footer>
