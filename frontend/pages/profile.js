@@ -32,7 +32,7 @@ const profile = () => {
           color: #aaa;
         }
       `}</style>
-      <div className='container border rounded bg-light'>
+      <div className='container border rounded bg-white'>
         <div className='row '>
           <div className='col-md-3 col-lg-12'>
             <div className='d-flex flex-column  p-3 py-5'>
