@@ -13,14 +13,16 @@ import {
 import AppContext from './context'
 import newLogo from '../public/Logo2.png'
 import Image from 'next/image'
+import { useUser, useUpdateUser } from '../components/context'
 
 const Navibar = () => {
   // const { user } = useContext(AppContext)
   const [isOpen, setIsOpen] = useState(false)
   const toggle = () => setIsOpen(!isOpen)
-  const user = true
+  const loggedIn = useUser()
+  const toggleLogIn = useUpdateUser()
 
-  switch (user) {
+  switch (loggedIn) {
     case true:
       return (
         <Navbar expand='sm' light className={navStyle.zindex}>
@@ -57,8 +59,9 @@ const Navibar = () => {
                 <NavLink
                   href='/'
                   onClick={() => {
-                    logout()
-                    setUser(null)
+                    toggleLogIn
+                    // logout()
+                    // setUser(null)
                   }}
                 >
                   Logout

@@ -14,6 +14,8 @@ import {
 } from 'reactstrap'
 import { login } from '../components/auth'
 import AppContext from '../components/context'
+import { useUser, useUpdateUser } from '../components/context'
+
 import { FacebookLoginButton } from 'react-social-login-buttons'
 import { GoogleLoginButton } from 'react-social-login-buttons'
 import { AppleLoginButton } from 'react-social-login-buttons'
@@ -26,20 +28,20 @@ function Login(props) {
   const [error, setError] = useState(false)
   const router = useRouter()
   const appContext = useContext(AppContext)
+  const loggedIn = useUser()
+  const toggleLogIn = useUpdateUser()
 
-  useEffect(() => {
-    if (appContext.isAuthenticated) {
-      router.push('/') // redirect if you're already logged in
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (appContext.isAuthenticated) {
+  //     router.push('/') // redirect if you're already logged in
+  //   }
+  // }, [])
 
   const loginSet = () => {}
 
   function onChange(event) {
     updateData({ ...data, [event.target.name]: event.target.value })
   }
-
-  console.log(appContext.isAuthenticated)
 
   return (
     <Container>
@@ -72,8 +74,6 @@ function Login(props) {
               ></GoogleLoginButton>
               <AppleLoginButton
                 onClick={() => alert('Hello')}
-                // style={{ color: 'white', background: 'black' }}
-                className={registerStyle.icons}
               ></AppleLoginButton>
               <div className={registerStyle.or}>or</div>
               <Form>
@@ -107,19 +107,22 @@ function Login(props) {
                     <Button
                       style={{ backgroundColor: '#40312e' }}
                       className='col-sm-12'
-                      onClick={() => {
-                        setLoading(true)
-                        login(data.identifier, data.password)
-                          .then((res) => {
-                            setLoading(false)
-                            // set authed User in global context to update header/app state
-                            appContext.setUser(res.data.user)
-                          })
-                          .catch((error) => {
-                            //setError(error.response.data);
-                            setLoading(false)
-                          })
-                      }}
+                      onClick={toggleLogIn}
+                      // onClick={() => {
+                      //   // setLoading(true)
+
+                      //   login(data.identifier, data.password)
+                      //     .then((res) => {
+                      //       setLoading(false)
+
+                      //       // set authed User in global context to update header/app state
+                      //       appContext.setUser(res.data.user)
+                      //     })
+                      //     .catch((error) => {
+                      //       //setError(error.response.data);
+                      //       setLoading(false)
+                      //     })
+                      // }}
                     >
                       {loading ? 'Loading... ' : 'Submit'}
                     </Button>
