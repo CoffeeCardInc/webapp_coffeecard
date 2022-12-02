@@ -22,7 +22,7 @@ const Navibar = () => {
   const loggedIn = useUser()
   const toggleLogIn = useUpdateUser()
 
-  switch (loggedIn) {
+  switch (true) {
     case true:
       return (
         <Navbar expand='sm' light className={navStyle.zindex}>
