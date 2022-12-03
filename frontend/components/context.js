@@ -24,7 +24,7 @@ export function useUpdateUser() {
 }
 
 export function UserProvider({ children }) {
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState()
 
   const toggleUser = () => {
     setLoggedIn(!loggedIn)

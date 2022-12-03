@@ -64,7 +64,7 @@ const Navibar = () => {
                     // setUser(null)
                   }}
                 >
-                  Logout
+                  Log out
                 </NavLink>
               </NavItem>
             </Nav>
