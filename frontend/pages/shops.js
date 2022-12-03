@@ -1,13 +1,9 @@
 import React from 'react'
 import Shop from '../components/Shop'
 import RestaurantList from '../components/Shop'
+import { useState } from 'react'
 
 const shops = () => {
-  // shopDetails = [
-  //   {
-  //     image: '',
-  //   },
-  // ]
   const shops = [
     {
       id: 1,
@@ -28,6 +24,11 @@ const shops = () => {
       storeImage: 'https://coffeecard.nyc/images/royal_leaf_tea_logo.png',
     },
   ]
+  const [search, setSearch] = useState('')
+
+  const searchResult = shops.filter((shop) => {
+    return shop.store.toLowerCase().includes(search.toLowerCase())
+  })
 
   return (
     <>
@@ -70,6 +71,7 @@ const shops = () => {
               type='text'
               className='form-control form-input'
               placeholder='Search shops...'
+              onChange={(e) => setSearch(e.target.value)}
             />
             <span className='left-pan'>
               <i className='fa fa-search'></i>
@@ -78,7 +80,7 @@ const shops = () => {
         </div>
       </div>
       <div>
-        {shops.map((shop) => {
+        {searchResult.map((shop) => {
           return <Shop shop={shop} key={shop.id} />
         })}
       </div>
