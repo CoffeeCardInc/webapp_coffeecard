@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import '../styles/globals.css'
-import Head from 'next/head'
+
 import AppContext from '../components/context'
 import Home from './index'
 import Layout from '../components/layout'
@@ -91,21 +91,10 @@ function MyApp(props) {
         addItem: addItem,
         removeItem: removeItem,
         isAuthenticated: false,
-        user: null,
+        user: false,
         setUser: () => {},
       }}
     >
-      <Head>
-        {' '}
-        <>{/* CDN for reactstrap*/}</>
-        <link
-          rel='stylesheet'
-          href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'
-          integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm'
-          crossOrigin='anonymous'
-        />
-      </Head>
-
       <Layout className='container m-0 p-0' style={{ height: '100vh' }}>
         <Component {...pageProps} />
       </Layout>

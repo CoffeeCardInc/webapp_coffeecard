@@ -2,9 +2,13 @@ import React from 'react'
 import Link from 'next/link'
 import Cards from './Card'
 import ProfileHeader from './ProfileHeader'
+import AppContext from './context'
+import { useContext } from 'react'
+import { useUser, useUpdateUser } from '../components/context'
 
 const Landing = () => {
-  const loggedIn = false
+  const loggedIn = useUser()
+  const toggleLogIn = useUpdateUser()
   const subs = [
     {
       type: 'Espresso',
@@ -25,6 +29,8 @@ const Landing = () => {
       isSubscribed: false,
     },
   ]
+
+  // console.log('loggedin', loggedIn.isAuthenticated)
 
   switch (loggedIn) {
     case false:
