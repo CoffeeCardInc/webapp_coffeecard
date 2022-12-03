@@ -1,7 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 
-const Shop = () => {
+const Shop = ({ shop }) => {
+  const { type, store, storeImage } = shop
   return (
     <section className='p-2 p-md-5 text-center text-lg-start shadow-1-strong rounded'>
       <div className='row d-flex justify-content-center'>
@@ -11,7 +12,7 @@ const Shop = () => {
               <div className='row'>
                 <div className='col-lg-4 d-flex justify-content-center align-items-center mb-1 mb-lg-0'>
                   <img
-                    src='https://coffeecard.nyc/images/froth_logo.jpg'
+                    src={storeImage}
                     className='img-fluid shadow-1'
                     alt='coffeeshop avatar'
                     width='200'
@@ -20,7 +21,7 @@ const Shop = () => {
                 </div>
                 <div className='col-lg-8'>
                   <p className='fw-bold lead mb-2'>
-                    <strong>Froth</strong>
+                    <strong>{store}</strong>
                   </p>
                   <p className='fw-bold text-muted mb-4'>New York</p>
                   <p className='text-muted fw-light mb-0'>
