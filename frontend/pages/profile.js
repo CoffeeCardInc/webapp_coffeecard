@@ -49,15 +49,15 @@ const profile = () => {
               <div className='col-12 d-flex justify-content-between p-0'>
                 <div className='d-flex flex-column col-6'>
                   <span className='font-weight-bold text-center'>
-                    Loyalty Points
+                    Loyalty points
                   </span>
-                  <span className='text-center point'>o</span>
+                  <span className='text-center point'>0</span>
                 </div>
                 <div className='d-flex flex-column col-6  '>
                   <span className='font-weight-bold text-center'>
-                    Subscriptions
+                    Subscription
                   </span>
-                  <span className='text-center point'>o</span>
+                  <span className='text-center point'>0</span>
                 </div>
               </div>
 
@@ -88,7 +88,7 @@ const profile = () => {
                   <div>
                     <ModalHeader toggle={toggle} className=' text-center'>
                       <div className='d-flex justify-content-between align-items-center mb-3'>
-                        <h4 className='text-right m-0'>Profile Settings</h4>
+                        <h4 className='text-right m-0'>Profile settings</h4>
                       </div>
                     </ModalHeader>
                     <div className='row mt-2'>
@@ -97,17 +97,8 @@ const profile = () => {
                         <input
                           type='text'
                           className='form-control'
-                          placeholder='first name'
+                          placeholder='name'
                           // value=''
-                        />
-                      </div>
-                      <div className='col-md-6 col-lg-12'>
-                        <label className='labels'>Surname</label>
-                        <input
-                          type='text'
-                          className='form-control'
-                          // value=''
-                          placeholder='surname'
                         />
                       </div>
                     </div>
@@ -117,7 +108,7 @@ const profile = () => {
                         <input
                           type='text'
                           className='form-control'
-                          placeholder='update phone number'
+                          placeholder='phone number'
                           // value=''
                         />
                       </div>
@@ -126,7 +117,7 @@ const profile = () => {
                         <input
                           type='email'
                           className='form-control'
-                          placeholder='update email'
+                          placeholder='email'
                           // value=''
                         />
                       </div>
@@ -134,13 +125,13 @@ const profile = () => {
                       <div className='col-md-12'>
                         <label className='labels'>Password</label>
                         <input
-                          type='email'
+                          type='password'
                           className='form-control'
-                          placeholder='update password'
+                          placeholder='password'
                           // value=''
                         />
                       </div>
-                      <p className='copyright mx-auto'>Delete Account</p>
+                      <p className='copyright mx-auto'>Delete account</p>
                     </div>
                   </div>
                 </div>
@@ -174,9 +165,9 @@ const profile = () => {
           className='btn col-sm-3 col-lg-6 mx-auto'
           style={{ backgroundColor: '#40312e', color: 'white' }}
         >
-          Logout
+          Log out
         </button>
-        <p className='copyright pb-3'> Manage Subscriptions</p>
+        <p className='copyright pb-3'> Manage subscriptions</p>
       </div>
     </>
   )

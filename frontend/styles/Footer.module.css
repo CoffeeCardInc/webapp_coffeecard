@@ -22,9 +22,9 @@
 
 .footerbasic .social > a {
   font-size: 34px;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
+  /* width: 40px; */
+  /* height: 40px; */
+  /* line-height: 34px; */
   display: inline-block;
   text-align: center;
   margin: 0 8px;

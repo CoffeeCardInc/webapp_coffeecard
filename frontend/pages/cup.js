@@ -69,7 +69,7 @@ const cup = () => {
                     <div className='col-3'>$4.00</div>
                   </div>
                   <div className='row counter-block justify-content-center '>
-                    <div className='col-4 '>Custom Tips</div>
+                    <div className='col-4 '>Custom Tip</div>
                     <div className='col-4'>No Tip</div>
                   </div>
                 </div>

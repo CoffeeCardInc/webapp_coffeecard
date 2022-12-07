@@ -46,7 +46,7 @@ const Navibar = () => {
                 <NavLink href='/profile'>Account</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href='#'>About</NavLink>
+                <NavLink href='/about'>About</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href='/shops'>Shops</NavLink>
