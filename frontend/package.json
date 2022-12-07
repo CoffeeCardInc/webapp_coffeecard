@@ -1,5 +1,5 @@
 {
-  "name": "restaurant-app",
+  "name": "coffeecard-webapp",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@apollo/client": "^3.2.4",
+
     "@emailjs/browser": "^3.9.1",
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.10.0",
@@ -25,8 +25,8 @@
     "react-social-login-buttons": "^3.6.1",
     "reactstrap": "^8.6.0"
   },
-  "description": "Exercise05 is full Shopping Cart with Stripe Billing",
+  "description": "CoffeeCard enables customers to subscribe to their facorite cafes",
   "main": "index.js",
-  "author": "mjcillo22@gmail.com",
+  "author": "mjcillo22 && andor",
   "license": "MIT"
 }
