@@ -1,6 +1,5 @@
 # webapp_coffeecard
-
-### Install dependencies
-> cd backend 
+> This project is under construction.
+## Install dependencies
 > npm install
 > npm run develop
