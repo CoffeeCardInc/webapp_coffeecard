@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Tier from './Tier'
 
 const Shop = ({ shop }) => {
   const { type, store, storeImage } = shop
@@ -23,33 +24,15 @@ const Shop = ({ shop }) => {
                   <p className='fw-bold lead mb-2'>
                     <strong>{store}</strong>
                   </p>
-                  <p className='fw-bold text-muted'>shop adress</p>
-                  <p className='fw-bold text-muted'>shop hours</p>
+                  <p className='fw-bold text-muted mb-0'>
+                    90 Rivington St, New York, NY 10002
+                  </p>
+                  <p className='fw-bold text-muted'>8:00 am - 5:00 pm</p>
                   {/* <p className='text-muted fw-light mb-0'>
                     Sample description about the coffeeshop.
                   </p> */}
-                  <hr />
-                  <div className='row justify-content-around'>
-                    <p className='my-auto'>Tier 1</p>
-                    <button
-                      className='btn'
-                      style={{ backgroundColor: '#40312e', color: 'white' }}
-                    >
-                      {' '}
-                      Subscribe
-                    </button>
-                  </div>
-                  <hr />
-                  <div className='row justify-content-around'>
-                    <p className='my-auto'>Tier 2</p>
-                    <button
-                      className='btn'
-                      style={{ backgroundColor: '#40312e', color: 'white' }}
-                    >
-                      {' '}
-                      Subscribe
-                    </button>
-                  </div>
+                  <Tier />
+                  <Tier />
                 </div>
               </div>
             </div>
