@@ -3,9 +3,11 @@ import Link from 'next/link'
 import myImg from '../public/coffeebean.png'
 import Image from 'next/image'
 import ProfileHeader from '../components/ProfileHeader'
+import { useSelectedCoffee } from '../components/context'
 
 const cup = () => {
   const imageSrc = 'https://coffeecard.nyc/images/froth_logo.jpg'
+  const selectedCoffee = useSelectedCoffee()
   return (
     <>
       <section>
@@ -37,17 +39,17 @@ const cup = () => {
                   <h6 className='pr-1 my-1'> 2 cups</h6>
                 </div>
                 <div className='card-block box' style={{ height: '200px' }}>
-                  <p
+                  <h4
                     style={{
                       paddingTop: '80px',
                       paddingBottom: '40px',
                       textAlign: 'center',
                     }}
                   >
-                    1 Cup Activated
-                  </p>
+                    1 {selectedCoffee} Activated
+                  </h4>
                   <div className='row justify-content-between m-0 px-2'>
-                    <p className='m-0 py-3 date'> MM/DD/YY - MM/DD/YY</p>
+                    {/* <p className='m-0 py-3 date'> MM/DD/YY - MM/DD/YY</p> */}
                   </div>
                 </div>
               </div>

@@ -15,6 +15,8 @@ const AppContext = React.createContext({
 })
 const UserContext = React.createContext()
 const UserContextUpdate = React.createContext()
+const SelectedCoffee = React.createContext()
+const SetSelectedCoffee = React.createContext()
 
 export function useUser() {
   return useContext(UserContext)
@@ -22,9 +24,16 @@ export function useUser() {
 export function useUpdateUser() {
   return useContext(UserContextUpdate)
 }
+export function useSelectedCoffee() {
+  return useContext(SelectedCoffee)
+}
+export function useSetSelectedCoffee() {
+  return useContext(SetSelectedCoffee)
+}
 
 export function UserProvider({ children }) {
   const [loggedIn, setLoggedIn] = useState(true)
+  const [selectedCoffee, setSelectedCoffee] = useState()
 
   const toggleUser = () => {
     setLoggedIn(!loggedIn)
@@ -33,7 +42,11 @@ export function UserProvider({ children }) {
   return (
     <UserContext.Provider value={loggedIn}>
       <UserContextUpdate.Provider value={toggleUser}>
-        {children}
+        <SelectedCoffee.Provider value={selectedCoffee}>
+          <SetSelectedCoffee.Provider value={setSelectedCoffee}>
+            {children}
+          </SetSelectedCoffee.Provider>
+        </SelectedCoffee.Provider>
       </UserContextUpdate.Provider>
     </UserContext.Provider>
   )

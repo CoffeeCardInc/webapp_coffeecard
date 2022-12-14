@@ -2,10 +2,16 @@
 import React, { useState } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import Link from 'next/link'
+import confirmStyles from '../styles/Confirm.module.css'
+import { useSelectedCoffee, useSetSelectedCoffee } from './context'
 
 const Confirm = () => {
   const [modal, setModal] = useState(false)
   const toggle = () => setModal(!modal)
+  const selectedCoffee = useSelectedCoffee()
+  const setSelectedCoffee = useSetSelectedCoffee()
+
+  // const [selectedCoffee, setSelectedCoffee] = useState()
 
   return (
     <>
@@ -27,23 +33,47 @@ const Confirm = () => {
           <ModalBody>
             Are your sure you want to redeem this cup now? Once your order is
             activated it will be available for use for the next 10 minutes.
-            <form class='form'>
-              <h5 class>Select an option</h5>
-              <div class='inputGroup'>
-                <input id='radio1' name='radio' type='radio' />
-                <label for='radio1'>Latte</label>
+            <form className='form'>
+              <h5>Select an option</h5>
+
+              <div className={confirmStyles.inputGroup}>
+                <input
+                  id='radio1'
+                  name='radio'
+                  type='radio'
+                  checked={selectedCoffee === 'Latte'}
+                  value='Latte'
+                  onChange={(e) => {
+                    setSelectedCoffee(e.target.value)
+                  }}
+                />
+                <label htmlFor='radio1'>Latte</label>
               </div>
-              <div class='inputGroup'>
-                <input id='radio2' name='radio' type='radio' />
-                <label for='radio2'>Cappuchino</label>
+              <div className={confirmStyles.inputGroup}>
+                <input
+                  id='radio2'
+                  name='radio'
+                  type='radio'
+                  checked={selectedCoffee === 'Cappuchino'}
+                  value='Cappuchino'
+                  onChange={(e) => {
+                    setSelectedCoffee(e.target.value)
+                  }}
+                />
+                <label htmlFor='radio2'>Cappuchino</label>
               </div>
-              <div class='inputGroup'>
-                <input id='radio3' name='radio' type='radio' />
-                <label for='radio3'>Espresso</label>
-              </div>
-              <div class='inputGroup'>
-                <input id='radio4' name='radio' type='radio' />
-                <label for='radio4'>Mocha</label>
+              <div className={confirmStyles.inputGroup}>
+                <input
+                  id='radio3'
+                  name='radio'
+                  type='radio'
+                  checked={selectedCoffee === 'Espresso'}
+                  value='Espresso'
+                  onChange={(e) => {
+                    setSelectedCoffee(e.target.value)
+                  }}
+                />
+                <label htmlFor='radio3'>Espresso</label>
               </div>
             </form>
           </ModalBody>
