@@ -12,6 +12,7 @@ const Tier = () => {
     <>
       <hr />
       <div className='row justify-content-around'>
+        <span></span>
         <p className='my-auto' onClick={handleCollapse}>
           Tier 1
         </p>
