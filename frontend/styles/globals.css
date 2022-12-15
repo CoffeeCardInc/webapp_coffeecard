@@ -161,7 +161,20 @@ a {
   cursor: pointer;
 }
 
-/* svg {
-  height: 33px;
-  width: 33px;
+.btn-active:active {
+  background-color: var(--color-secondary);
+}
+
+/* input[type='file'] {
+  display: none;
+}
+
+.custom-file-upload {
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+  background-image: url('../public/upload2.jpg');
+  background-size: cover;
+  background-position: center;
+  margin: 0 auto 0 auto;
 } */

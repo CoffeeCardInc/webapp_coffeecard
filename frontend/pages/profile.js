@@ -11,6 +11,8 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 const profile = () => {
   const [modal, setModal] = useState(false)
   const toggle = () => setModal(!modal)
+  const [modalSecondary, setModalSecondary] = useState(false)
+  const toggleSecondary = () => setModalSecondary(!modalSecondary)
 
   return (
     <>
@@ -23,6 +25,7 @@ const profile = () => {
           margin: 1em 0;
           padding: 0;
         }
+
         .copyright {
           margin-top: 15px;
           text-align: center;
@@ -47,14 +50,21 @@ const profile = () => {
                 src='https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1214428300?k=20&m=1214428300&s=612x612&w=0&h=MOvSM2M1l_beQ4UzfSU2pfv4sRjm0zkpeBtIV-P71JE='
               />
 
-              <UncontrolledDropdown group>
+              <UncontrolledDropdown group color='light'>
                 <DropdownToggle tag='span' className='logo-div'>
                   <i className='fa-solid fa-gear '></i>
                 </DropdownToggle>
                 <DropdownMenu>
-                  <DropdownItem onClick={toggle}>Edit profile</DropdownItem>
+                  <DropdownItem onClick={toggle} className='btn-active'>
+                    Edit profile
+                  </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>Edit profile photo</DropdownItem>
+                  <DropdownItem
+                    onClick={toggleSecondary}
+                    className='btn-active'
+                  >
+                    Edit profile photo
+                  </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
               <span className='font-weight-bold mx-auto mb-3'>Edogaru</span>
@@ -171,6 +181,38 @@ const profile = () => {
                   Save
                 </Button>
               </ModalFooter>
+            </Modal>
+          </div>
+          <div
+            className='card-block'
+            // style={{ height: '200px', marginTop: '150px' }}
+          >
+            <Modal
+              isOpen={modalSecondary}
+              toggle={toggleSecondary}
+              centered
+              style={{ marginTop: '40px' }}
+            >
+              <ModalBody>
+                <div className='col-md-6  col-lg-12'>
+                  <div>
+                    <ModalHeader
+                      toggle={toggleSecondary}
+                      className=' text-center'
+                    >
+                      <div className='d-flex justify-content-between align-items-center mb-3'>
+                        <h4 className='text-right m-0'>Upload Photo</h4>
+                      </div>
+                    </ModalHeader>
+                    <div className='row mt-2'>
+                      <label className='custom-file-upload'>
+                        <input type='file' />
+                      </label>
+                    </div>
+                    <p>file size less then 5Mb</p>
+                  </div>
+                </div>
+              </ModalBody>
             </Modal>
           </div>
         </div>
