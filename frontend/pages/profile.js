@@ -1,6 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
-
+import {
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
 const profile = () => {
@@ -41,9 +46,17 @@ const profile = () => {
                 width='150px'
                 src='https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1214428300?k=20&m=1214428300&s=612x612&w=0&h=MOvSM2M1l_beQ4UzfSU2pfv4sRjm0zkpeBtIV-P71JE='
               />
-              <div className='logo-div' onClick={toggle}>
-                <i className='fa-solid fa-gear logo'></i>
-              </div>
+
+              <UncontrolledDropdown group>
+                <DropdownToggle tag='span' className='logo-div'>
+                  <i className='fa-solid fa-gear '></i>
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem onClick={toggle}>Edit profile</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>Edit profile photo</DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
               <span className='font-weight-bold mx-auto mb-3'>Edogaru</span>
               <hr />
               <div className='col-12 d-flex justify-content-between p-0'>
