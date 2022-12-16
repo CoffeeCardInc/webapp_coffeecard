@@ -29,13 +29,23 @@ const cup = () => {
           input[type='radio'] {
             display: none;
           }
-          .tip-choice {
+          .btn {
+            border: 2px solid var(--color-secondary);
+            border-radius: 15px;
+            background-color: var(--color-lightbrown);
+            color: var(--color-secondary);
+            padding: 7px 14px;
+            font-size: 14px;
+            cursor: pointer;
+          }
+          .success {
             border-color: var(--color-secondary);
             color: var(--color-secondary);
-            border-radius: 35%;
           }
-          .tip-choice:after {
+
+          .success:hover {
             background-color: var(--color-secondary);
+            color: white;
           }
         `}</style>
         <ProfileHeader />
@@ -72,80 +82,67 @@ const cup = () => {
                 <div className=' text-center'>
                   <h5>Tip Your Barista</h5>
                 </div>
-                {/* <div className='card-block'>
-                  <div className='row counter-block justify-content-space-between'>
-                    <div className='col-3 '>$1.00</div>
-                    <div className='col-3 '>$2.00</div>
-                    <div className='col-3 '>$3.00</div>
-                    <div className='col-3'>$4.00</div>
-                  </div>
-                  <div className='row counter-block justify-content-center '>
-                    <div className='col-4 '>Custom Tip</div>
-                    <div className='col-4'>No Tip</div>
-                  </div>
-                </div> */}
                 <htmlForm action='selectTip'>
-                  <input
-                    type='radio'
-                    className='btn-check'
-                    name='options-outlined'
-                    id='success-outlined'
-                    autocomplete='off'
-                    checked
-                  />
-                  <label
-                    className='btn btn-outline-success tip-choice'
-                    htmlFor='success-outlined'
-                    // style={{
-                    //   color: 'red',
-
-                    //   borderColor: 'red',
-                    // }}
-                  >
-                    $1.00
-                  </label>
-                  <input
-                    type='radio'
-                    className='btn-check'
-                    name='options-outlined'
-                    id='success-outlined'
-                    autocomplete='off'
-                    checked
-                  />
-                  <label
-                    className='btn btn-outline-success'
-                    htmlFor='success-outlined'
-                  >
-                    $2.00
-                  </label>
-                  <input
-                    type='radio'
-                    className='btn-check'
-                    name='options-outlined'
-                    id='success-outlined'
-                    autocomplete='off'
-                    checked
-                  />
-                  <label
-                    className='btn btn-outline-success'
-                    htmlFor='success-outlined'
-                  >
-                    $3.00
-                  </label>
-
-                  <input
-                    type='radio'
-                    className='btn-check'
-                    name='options-outlined'
-                    id='danger-outlined'
-                    autocomplete='off'
-                  />
-                  <label
-                    className='btn btn-outline-success'
-                    htmlFor='danger-outlined'
-                  >
-                    $4.00
-                  </label>
+                  <div className='row justify-content-around'>
+                    <input
+                      type='radio'
+                      className='btn-check'
+                      name='options-outlined'
+                      id='success-outlined'
+                      autocomplete='off'
+                      checked
+                    />
+                    <label className='btn success' htmlFor='success-outlined'>
+                      $1.00
+                    </label>
+                    <input
+                      type='radio'
+                      className='btn-check'
+                      name='options-outlined'
+                      id='success-outlined'
+                      autocomplete='off'
+                      checked
+                    />
+                    <label
+                      className='btn success tip-choice'
+                      htmlFor='success-outlined'
+                    >
+                      $2.00
+                    </label>
+                    <input
+                      type='radio'
+                      className='btn-check'
+                      name='options-outlined'
+                      id='success-outlined'
+                      autocomplete='off'
+                      checked
+                    />
+                    <label
+                      className='btn success tip-choice'
+                      htmlFor='success-outlined'
+                    >
+                      $3.00
+                    </label>
+                    <input
+                      type='radio'
+                      className='btn-check'
+                      name='options-outlined'
+                      id='success-outlined'
+                      autocomplete='off'
+                      checked
+                    />
+                    <label
+                      className='btn success tip-choice'
+                      htmlFor='success-outlined'
+                    >
+                      $4.00
+                    </label>
+                  </div>
+                  <div>
+                    <button>custom tip</button>
+                    <p>tip amount</p>
+                  </div>
+                  <input type='submit' className='btn col-12' />
                 </htmlForm>
               </div>
             </div>

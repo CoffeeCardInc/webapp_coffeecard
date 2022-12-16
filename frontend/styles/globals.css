@@ -142,12 +142,6 @@ a {
 }
 
 /*Profile*/
-/* .logo {
-  font-size: 20px;
-  position: absolute;
-  transform: translateY(-150px);
-  cursor: pointer;
-} */
 
 .logo-div {
   width: 25px;
@@ -164,17 +158,3 @@ a {
 .btn-active:active {
   background-color: var(--color-secondary);
 }
-
-/* input[type='file'] {
-  display: none;
-}
-
-.custom-file-upload {
-  width: 120px;
-  height: 120px;
-  cursor: pointer;
-  background-image: url('../public/upload2.jpg');
-  background-size: cover;
-  background-position: center;
-  margin: 0 auto 0 auto;
-} */
