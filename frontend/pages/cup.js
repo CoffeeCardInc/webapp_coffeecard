@@ -1,7 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
-import myImg from '../public/coffeebean.png'
-import Image from 'next/image'
 import ProfileHeader from '../components/ProfileHeader'
 import { useSelectedCoffee } from '../components/context'
 
@@ -27,6 +24,18 @@ const cup = () => {
           }
           h6 {
             color: #fff;
+          }
+
+          input[type='radio'] {
+            display: none;
+          }
+          .tip-choice {
+            border-color: var(--color-secondary);
+            color: var(--color-secondary);
+            border-radius: 35%;
+          }
+          .tip-choice:after {
+            background-color: var(--color-secondary);
           }
         `}</style>
         <ProfileHeader />
@@ -59,11 +68,11 @@ const cup = () => {
         <div className='container-fluid mt-5 pb-5'>
           <div className='row justify-content-center'>
             <div className='col-md-4 col-lg-4'>
-              <div className=''>
+              <div>
                 <div className=' text-center'>
                   <h5>Tip Your Barista</h5>
                 </div>
-                <div className='card-block'>
+                {/* <div className='card-block'>
                   <div className='row counter-block justify-content-space-between'>
                     <div className='col-3 '>$1.00</div>
                     <div className='col-3 '>$2.00</div>
@@ -74,7 +83,70 @@ const cup = () => {
                     <div className='col-4 '>Custom Tip</div>
                     <div className='col-4'>No Tip</div>
                   </div>
-                </div>
+                </div> */}
+                <htmlForm action='selectTip'>
+                  <input
+                    type='radio'
+                    className='btn-check'
+                    name='options-outlined'
+                    id='success-outlined'
+                    autocomplete='off'
+                    checked
+                  />
+                  <label
+                    className='btn btn-outline-success tip-choice'
+                    htmlFor='success-outlined'
+                    // style={{
+                    //   color: 'red',
+
+                    //   borderColor: 'red',
+                    // }}
+                  >
+                    $1.00
+                  </label>
+                  <input
+                    type='radio'
+                    className='btn-check'
+                    name='options-outlined'
+                    id='success-outlined'
+                    autocomplete='off'
+                    checked
+                  />
+                  <label
+                    className='btn btn-outline-success'
+                    htmlFor='success-outlined'
+                  >
+                    $2.00
+                  </label>
+                  <input
+                    type='radio'
+                    className='btn-check'
+                    name='options-outlined'
+                    id='success-outlined'
+                    autocomplete='off'
+                    checked
+                  />
+                  <label
+                    className='btn btn-outline-success'
+                    htmlFor='success-outlined'
+                  >
+                    $3.00
+                  </label>
+
+                  <input
+                    type='radio'
+                    className='btn-check'
+                    name='options-outlined'
+                    id='danger-outlined'
+                    autocomplete='off'
+                  />
+                  <label
+                    className='btn btn-outline-success'
+                    htmlFor='danger-outlined'
+                  >
+                    $4.00
+                  </label>
+                </htmlForm>
               </div>
             </div>
           </div>
