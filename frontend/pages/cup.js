@@ -1,10 +1,18 @@
 import React from 'react'
 import ProfileHeader from '../components/ProfileHeader'
 import { useSelectedCoffee } from '../components/context'
+import CustomTip from '../components/CustomTip'
+import { useState } from 'react'
 
 const cup = () => {
   const imageSrc = 'https://coffeecard.nyc/images/froth_logo.jpg'
   const selectedCoffee = useSelectedCoffee()
+  const [selectedTip, setSelectedTip] = useState()
+  const [collapse, setCollapse] = useState(false)
+
+  const handleCollapse = () => {
+    setCollapse(!collapse)
+  }
   return (
     <>
       <section>
@@ -30,7 +38,7 @@ const cup = () => {
             display: none;
           }
           .btn {
-            border: 2px solid var(--color-secondary);
+            // border: 2px solid var(--color-secondary);
             border-radius: 15px;
             background-color: var(--color-lightbrown);
             color: var(--color-secondary);
@@ -139,10 +147,17 @@ const cup = () => {
                     </label>
                   </div>
                   <div>
-                    <button>custom tip</button>
-                    <p>tip amount</p>
+                    <p onClick={handleCollapse}>Custom tip</p>
+                    {collapse ? (
+                      <CustomTip handleCollapse={handleCollapse} />
+                    ) : null}
                   </div>
-                  <input type='submit' className='btn col-12' />
+                  <input
+                    type='submit'
+                    className='btn col-12'
+                    disabled
+                    style={{ backgroundColor: '#40312e', color: 'white' }}
+                  />
                 </htmlForm>
               </div>
             </div>

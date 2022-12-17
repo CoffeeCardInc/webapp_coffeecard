@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Cart from '../components/cart'
 import {
   ApolloProvider,
@@ -17,6 +17,8 @@ function Home() {
   const link = new HttpLink({ uri: `${API_URL}/graphql` })
   const cache = new InMemoryCache()
   const client = new ApolloClient({ link, cache })
+
+  const [data, setData] = useState([])
 
   return (
     <ApolloProvider client={client}>

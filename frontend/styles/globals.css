@@ -155,6 +155,6 @@ a {
   cursor: pointer;
 }
 
-.btn-active:active {
+/* .btn-active:active {
   background-color: var(--color-secondary);
-}
+} */

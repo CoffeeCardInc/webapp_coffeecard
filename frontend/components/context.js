@@ -1,7 +1,7 @@
 /* /context/AppContext.js */
 
 import React, { useContext } from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 // create auth context with default value
 
 // set backup default for isAuthenticated if none is provided in Provider
@@ -34,10 +34,27 @@ export function useSetSelectedCoffee() {
 export function UserProvider({ children }) {
   const [loggedIn, setLoggedIn] = useState(true)
   const [selectedCoffee, setSelectedCoffee] = useState()
+  const [data, setData] = useState([])
 
   const toggleUser = () => {
     setLoggedIn(!loggedIn)
   }
+
+  useEffect(() => {
+    const fetchUrl = async () => {
+      const request = await fetch(`https://data.whop.com/api/v2/memberships`, {
+        method: 'GET',
+        headers: {
+          WhopCompany: 'biz_tYbEGaWmYllltU',
+          Authorization: 'Bearer deH0AJrOoNNIE5U6FaWi6OMfmzBxrwvjyr1AuqCkdvM',
+        },
+      })
+      const response = request.json()
+      console.log('res', response)
+      setData(response)
+    }
+    fetchUrl()
+  }, [])
 
   return (
     <UserContext.Provider value={loggedIn}>
