@@ -11,19 +11,19 @@ const Landing = () => {
   const toggleLogIn = useUpdateUser()
   const subs = [
     {
-      type: 'Espresso',
+      type: 'Tier 1',
       store: 'Froth',
       bgColor: ' #6a513b',
       isSubscribed: true,
     },
     {
-      type: 'Cappuchino',
+      type: 'Tier 2',
       store: 'Bean',
       bgColor: '#40312e',
       isSubscribed: true,
     },
     {
-      type: 'Cappuchino',
+      type: 'Tier 3',
       store: 'Bean',
       bgColor: '#5e5e5e',
       isSubscribed: false,
