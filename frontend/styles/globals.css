@@ -142,12 +142,6 @@ a {
 }
 
 /*Profile*/
-/* .logo {
-  font-size: 20px;
-  position: absolute;
-  transform: translateY(-150px);
-  cursor: pointer;
-} */
 
 .logo-div {
   width: 25px;
@@ -160,3 +154,7 @@ a {
   align-items: center;
   cursor: pointer;
 }
+
+/* .btn-active:active {
+  background-color: var(--color-secondary);
+} */

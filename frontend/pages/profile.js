@@ -1,11 +1,18 @@
 import React from 'react'
 import { useState } from 'react'
-
+import {
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
 const profile = () => {
   const [modal, setModal] = useState(false)
   const toggle = () => setModal(!modal)
+  const [modalSecondary, setModalSecondary] = useState(false)
+  const toggleSecondary = () => setModalSecondary(!modalSecondary)
 
   return (
     <>
@@ -18,6 +25,7 @@ const profile = () => {
           margin: 1em 0;
           padding: 0;
         }
+
         .copyright {
           margin-top: 15px;
           text-align: center;
@@ -41,23 +49,38 @@ const profile = () => {
                 width='150px'
                 src='https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1214428300?k=20&m=1214428300&s=612x612&w=0&h=MOvSM2M1l_beQ4UzfSU2pfv4sRjm0zkpeBtIV-P71JE='
               />
-              <div className='logo-div' onClick={toggle}>
-                <i className='fa-solid fa-gear logo'></i>
-              </div>
+
+              <UncontrolledDropdown group color='light'>
+                <DropdownToggle tag='span' className='logo-div'>
+                  <i className='fa-solid fa-gear '></i>
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem onClick={toggle} className='btn-active'>
+                    Edit profile
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem
+                    onClick={toggleSecondary}
+                    className='btn-active'
+                  >
+                    Edit profile photo
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
               <span className='font-weight-bold mx-auto mb-3'>Edogaru</span>
               <hr />
               <div className='col-12 d-flex justify-content-between p-0'>
                 <div className='d-flex flex-column col-6'>
                   <span className='font-weight-bold text-center'>
-                    Loyalty Points
+                    Loyalty points
                   </span>
-                  <span className='text-center point'>o</span>
+                  <span className='text-center point'>0</span>
                 </div>
                 <div className='d-flex flex-column col-6  '>
                   <span className='font-weight-bold text-center'>
-                    Subscriptions
+                    Subscription
                   </span>
-                  <span className='text-center point'>o</span>
+                  <span className='text-center point'>0</span>
                 </div>
               </div>
 
@@ -88,7 +111,7 @@ const profile = () => {
                   <div>
                     <ModalHeader toggle={toggle} className=' text-center'>
                       <div className='d-flex justify-content-between align-items-center mb-3'>
-                        <h4 className='text-right m-0'>Profile Settings</h4>
+                        <h4 className='text-right m-0'>Profile settings</h4>
                       </div>
                     </ModalHeader>
                     <div className='row mt-2'>
@@ -97,17 +120,8 @@ const profile = () => {
                         <input
                           type='text'
                           className='form-control'
-                          placeholder='first name'
+                          placeholder='name'
                           // value=''
-                        />
-                      </div>
-                      <div className='col-md-6 col-lg-12'>
-                        <label className='labels'>Surname</label>
-                        <input
-                          type='text'
-                          className='form-control'
-                          // value=''
-                          placeholder='surname'
                         />
                       </div>
                     </div>
@@ -117,7 +131,7 @@ const profile = () => {
                         <input
                           type='text'
                           className='form-control'
-                          placeholder='update phone number'
+                          placeholder='phone number'
                           // value=''
                         />
                       </div>
@@ -126,7 +140,7 @@ const profile = () => {
                         <input
                           type='email'
                           className='form-control'
-                          placeholder='update email'
+                          placeholder='email'
                           // value=''
                         />
                       </div>
@@ -134,13 +148,13 @@ const profile = () => {
                       <div className='col-md-12'>
                         <label className='labels'>Password</label>
                         <input
-                          type='email'
+                          type='password'
                           className='form-control'
-                          placeholder='update password'
+                          placeholder='password'
                           // value=''
                         />
                       </div>
-                      <p className='copyright mx-auto'>Delete Account</p>
+                      <p className='copyright mx-auto'>Delete account</p>
                     </div>
                   </div>
                 </div>
@@ -169,14 +183,46 @@ const profile = () => {
               </ModalFooter>
             </Modal>
           </div>
+          <div
+            className='card-block'
+            // style={{ height: '200px', marginTop: '150px' }}
+          >
+            <Modal
+              isOpen={modalSecondary}
+              toggle={toggleSecondary}
+              centered
+              style={{ marginTop: '40px' }}
+            >
+              <ModalBody>
+                <div className='col-md-6  col-lg-12'>
+                  <div>
+                    <ModalHeader
+                      toggle={toggleSecondary}
+                      className=' text-center'
+                    >
+                      <div className='d-flex justify-content-between align-items-center mb-3'>
+                        <h4 className='text-right m-0'>Upload Photo</h4>
+                      </div>
+                    </ModalHeader>
+                    <div className='row mt-2'>
+                      <label className='custom-file-upload'>
+                        <input type='file' />
+                      </label>
+                    </div>
+                    <p>file size less then 5Mb</p>
+                  </div>
+                </div>
+              </ModalBody>
+            </Modal>
+          </div>
         </div>
         <button
           className='btn col-sm-3 col-lg-6 mx-auto'
           style={{ backgroundColor: '#40312e', color: 'white' }}
         >
-          Logout
+          Log out
         </button>
-        <p className='copyright pb-3'> Manage Subscriptions</p>
+        <p className='copyright pb-3'> Manage subscriptions</p>
       </div>
     </>
   )

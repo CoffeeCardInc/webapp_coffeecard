@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import myImage from '../public/cup.png'
 import { useState } from 'react'
-import Confirm from './Confirm'
+import Confirm from './Confirm_Popup'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
 const Cards = ({ sub }) => {

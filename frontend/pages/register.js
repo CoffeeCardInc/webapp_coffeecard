@@ -60,11 +60,7 @@ const Register = () => {
               </GoogleLoginButton>
               <AppleLoginButton
                 onClick={() => alert('Hello')}
-                // style={{ color: 'white', background: 'black' }}
-                className={registerStyle.icons}
-              >
-                <span>Sign up with Apple</span>
-              </AppleLoginButton>
+              ></AppleLoginButton>
               <div className={registerStyle.or}>or</div>
               <Form>
                 <fieldset disabled={loading}>

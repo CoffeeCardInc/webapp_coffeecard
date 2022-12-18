@@ -1,13 +1,34 @@
 import React from 'react'
 import Shop from '../components/Shop'
 import RestaurantList from '../components/Shop'
+import { useState } from 'react'
 
 const shops = () => {
-  // shopDetails = [
-  //   {
-  //     image: '',
-  //   },
-  // ]
+  const shops = [
+    {
+      id: 1,
+      type: 'Espresso',
+      store: 'Froth',
+      storeImage: 'https://coffeecard.nyc/images/froth_logo.jpg',
+    },
+    {
+      id: 2,
+      type: 'Cappuchino',
+      store: 'Bean',
+      storeImage: 'https://coffeecard.nyc/images/bean_logo.jpg',
+    },
+    {
+      id: 3,
+      type: 'Cappuchino',
+      store: 'Royal Leaf',
+      storeImage: 'https://coffeecard.nyc/images/royal_leaf_tea_logo.png',
+    },
+  ]
+  const [search, setSearch] = useState('')
+
+  const searchResult = shops.filter((shop) => {
+    return shop.store.toLowerCase().includes(search.toLowerCase())
+  })
 
   return (
     <>
@@ -46,11 +67,11 @@ const shops = () => {
       <div className='row height d-flex justify-content-center align-items-center pt-5 mb-5'>
         <div className='col-md-6'>
           <div className='form'>
-            {/* <i className='fa fa-search'></i> */}
             <input
               type='text'
               className='form-control form-input'
               placeholder='Search shops...'
+              onChange={(e) => setSearch(e.target.value)}
             />
             <span className='left-pan'>
               <i className='fa fa-search'></i>
@@ -59,9 +80,9 @@ const shops = () => {
         </div>
       </div>
       <div>
-        <Shop />
-        <Shop />
-        <Shop />
+        {searchResult.map((shop) => {
+          return <Shop shop={shop} key={shop.id} />
+        })}
       </div>
     </>
   )

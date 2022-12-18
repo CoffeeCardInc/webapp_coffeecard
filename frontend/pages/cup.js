@@ -1,11 +1,18 @@
 import React from 'react'
-import Link from 'next/link'
-import myImg from '../public/coffeebean.png'
-import Image from 'next/image'
 import ProfileHeader from '../components/ProfileHeader'
+import { useSelectedCoffee } from '../components/context'
+import CustomTip from '../components/CustomTip'
+import { useState } from 'react'
 
 const cup = () => {
   const imageSrc = 'https://coffeecard.nyc/images/froth_logo.jpg'
+  const selectedCoffee = useSelectedCoffee()
+  const [selectedTip, setSelectedTip] = useState()
+  const [collapse, setCollapse] = useState(false)
+
+  const handleCollapse = () => {
+    setCollapse(!collapse)
+  }
   return (
     <>
       <section>
@@ -26,6 +33,28 @@ const cup = () => {
           h6 {
             color: #fff;
           }
+
+          input[type='radio'] {
+            display: none;
+          }
+          .btn {
+            // border: 2px solid var(--color-secondary);
+            border-radius: 15px;
+            background-color: var(--color-lightbrown);
+            color: var(--color-secondary);
+            padding: 7px 14px;
+            font-size: 14px;
+            cursor: pointer;
+          }
+          .success {
+            border-color: var(--color-secondary);
+            color: var(--color-secondary);
+          }
+
+          .success:hover {
+            background-color: var(--color-secondary);
+            color: white;
+          }
         `}</style>
         <ProfileHeader />
         <div className='container-fluid mt-3'>
@@ -37,17 +66,17 @@ const cup = () => {
                   <h6 className='pr-1 my-1'> 2 cups</h6>
                 </div>
                 <div className='card-block box' style={{ height: '200px' }}>
-                  <p
+                  <h4
                     style={{
                       paddingTop: '80px',
                       paddingBottom: '40px',
                       textAlign: 'center',
                     }}
                   >
-                    1 Cup Activated
-                  </p>
+                    1 {selectedCoffee} Activated
+                  </h4>
                   <div className='row justify-content-between m-0 px-2'>
-                    <p className='m-0 py-3 date'> MM/DD/YY - MM/DD/YY</p>
+                    {/* <p className='m-0 py-3 date'> MM/DD/YY - MM/DD/YY</p> */}
                   </div>
                 </div>
               </div>
@@ -57,22 +86,79 @@ const cup = () => {
         <div className='container-fluid mt-5 pb-5'>
           <div className='row justify-content-center'>
             <div className='col-md-4 col-lg-4'>
-              <div className=''>
+              <div>
                 <div className=' text-center'>
                   <h5>Tip Your Barista</h5>
                 </div>
-                <div className='card-block'>
-                  <div className='row counter-block justify-content-space-between'>
-                    <div className='col-3 '>$1.00</div>
-                    <div className='col-3 '>$2.00</div>
-                    <div className='col-3 '>$3.00</div>
-                    <div className='col-3'>$4.00</div>
+                <htmlForm action='selectTip'>
+                  <div className='row justify-content-around'>
+                    <input
+                      type='radio'
+                      className='btn-check'
+                      name='options-outlined'
+                      id='success-outlined'
+                      autocomplete='off'
+                      checked
+                    />
+                    <label className='btn success' htmlFor='success-outlined'>
+                      $1.00
+                    </label>
+                    <input
+                      type='radio'
+                      className='btn-check'
+                      name='options-outlined'
+                      id='success-outlined'
+                      autocomplete='off'
+                      checked
+                    />
+                    <label
+                      className='btn success tip-choice'
+                      htmlFor='success-outlined'
+                    >
+                      $2.00
+                    </label>
+                    <input
+                      type='radio'
+                      className='btn-check'
+                      name='options-outlined'
+                      id='success-outlined'
+                      autocomplete='off'
+                      checked
+                    />
+                    <label
+                      className='btn success tip-choice'
+                      htmlFor='success-outlined'
+                    >
+                      $3.00
+                    </label>
+                    <input
+                      type='radio'
+                      className='btn-check'
+                      name='options-outlined'
+                      id='success-outlined'
+                      autocomplete='off'
+                      checked
+                    />
+                    <label
+                      className='btn success tip-choice'
+                      htmlFor='success-outlined'
+                    >
+                      $4.00
+                    </label>
                   </div>
-                  <div className='row counter-block justify-content-center '>
-                    <div className='col-4 '>Custom Tips</div>
-                    <div className='col-4'>No Tip</div>
+                  <div>
+                    <p onClick={handleCollapse}>Custom tip</p>
+                    {collapse ? (
+                      <CustomTip handleCollapse={handleCollapse} />
+                    ) : null}
                   </div>
-                </div>
+                  <input
+                    type='submit'
+                    className='btn col-12'
+                    disabled
+                    style={{ backgroundColor: '#40312e', color: 'white' }}
+                  />
+                </htmlForm>
               </div>
             </div>
           </div>

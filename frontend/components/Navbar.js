@@ -37,7 +37,7 @@ const Navibar = () => {
             <Image src={newLogo} style={{ width: '25px', height: '30px' }} />
           </NavbarBrand>
           <NavbarToggler onClick={toggle} className={navStyle.border} />
-          <Collapse isOpen={isOpen} navbar fixed>
+          <Collapse isOpen={isOpen} navbar>
             <Nav className='container-fluid justify-content-end' navbar>
               <NavItem>
                 <NavLink href='/'>Home</NavLink>
@@ -46,7 +46,7 @@ const Navibar = () => {
                 <NavLink href='/profile'>Account</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href='#'>About</NavLink>
+                <NavLink href='/about'>About</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href='/shops'>Shops</NavLink>
