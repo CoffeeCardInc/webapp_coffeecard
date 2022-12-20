@@ -378,6 +378,11 @@
     "picocolors" "^1.0.0"
     "source-map-js" "^1.0.2"
 
+"postgres@^3.3.2":
+  "integrity" "sha512-NaPqFpUC6C7aCQkJXLvuO/3RKNKL4en8opY53YrcXK3//xXra6CZ2qX6290lxuQ1dW1LbRGYCmsawRlCxSBonQ=="
+  "resolved" "https://registry.npmjs.org/postgres/-/postgres-3.3.2.tgz"
+  "version" "3.3.2"
+
 "prop-types-extra@^1.1.0":
   "integrity" "sha512-59+AHNnHYCdiC+vMwY52WmvP5dM3QLeoumYuEyceQDi9aEhtwN9zIQ2ZNo25sMyXnbh32h+P1ezDsUpUH3JAew=="
   "resolved" "https://registry.npmjs.org/prop-types-extra/-/prop-types-extra-1.1.1.tgz"
