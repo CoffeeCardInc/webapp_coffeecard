@@ -40,21 +40,21 @@ export function UserProvider({ children }) {
     setLoggedIn(!loggedIn)
   }
 
-  useEffect(() => {
-    const fetchUrl = async () => {
-      const request = await fetch(`https://data.whop.com/api/v2/memberships`, {
-        method: 'GET',
-        headers: {
-          WhopCompany: 'biz_tYbEGaWmYllltU',
-          Authorization: 'Bearer deH0AJrOoNNIE5U6FaWi6OMfmzBxrwvjyr1AuqCkdvM',
-        },
-      })
-      const response = request.json()
-      console.log('res', response)
-      setData(response)
-    }
-    fetchUrl()
-  }, [])
+  // useEffect(() => {
+  //   const fetchUrl = async () => {
+  //     const request = await fetch(`https://data.whop.com/api/v2/memberships`, {
+  //       method: 'GET',
+  //       headers: {
+  //         WhopCompany: 'biz_tYbEGaWmYllltU',
+  //         Authorization: 'Bearer deH0AJrOoNNIE5U6FaWi6OMfmzBxrwvjyr1AuqCkdvM',
+  //       },
+  //     })
+  //     const response = request.json()
+  //     console.log('res', response)
+  //     setData(response)
+  //   }
+  //   fetchUrl()
+  // }, [])
 
   return (
     <UserContext.Provider value={loggedIn}>
