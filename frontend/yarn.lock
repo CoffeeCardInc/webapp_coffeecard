@@ -42,6 +42,18 @@
   "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.11.6.tgz"
   "version" "2.11.6"
 
+"@prisma/client@^4.8.0":
+  "integrity" "sha512-Y1riB0p2W52kh3zgssP/YAhln3RjBFcJy3uwEiyjmU+TQYh6QTZDRFBo3JtBWuq2FyMOl1Rye8jxzUP+n0l5Cg=="
+  "resolved" "https://registry.npmjs.org/@prisma/client/-/client-4.8.0.tgz"
+  "version" "4.8.0"
+  dependencies:
+    "@prisma/engines-version" "4.8.0-61.d6e67a83f971b175a593ccc12e15c4a757f93ffe"
+
+"@prisma/engines-version@4.8.0-61.d6e67a83f971b175a593ccc12e15c4a757f93ffe":
+  "integrity" "sha512-MHSOSexomRMom8QN4t7bu87wPPD+pa+hW9+71JnVcF3DqyyO/ycCLhRL1we3EojRpZxKvuyGho2REQsMCvxcJw=="
+  "resolved" "https://registry.npmjs.org/@prisma/engines-version/-/engines-version-4.8.0-61.d6e67a83f971b175a593ccc12e15c4a757f93ffe.tgz"
+  "version" "4.8.0-61.d6e67a83f971b175a593ccc12e15c4a757f93ffe"
+
 "@react-aria/ssr@^3.2.0":
   "integrity" "sha512-NmhoilMDyIfQiOSdQgxpVH2tC2u85Y0mVijtBNbI9kcDYLEiW/r6vKYVKtkyU+C4qobXhGMPfZ70PTc0lysSVA=="
   "resolved" "https://registry.npmjs.org/@react-aria/ssr/-/ssr-3.4.1.tgz"

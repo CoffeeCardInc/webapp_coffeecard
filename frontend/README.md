@@ -45,3 +45,14 @@ npm packages:
 
 - npm install --save react-social-login-buttons
 - npm install react-icons --save
+
+**_Prisma:_**
+
+setup .env file with database connection with postgres (user, password, host, port, dbname) (ensure the env file is in gitignore)
+
+- npm install @prisma/client
+- prisma generate
+
+_ones prisma environment setup_
+
+- npx prisma db pull

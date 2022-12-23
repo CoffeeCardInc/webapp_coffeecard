@@ -8,8 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
-
     "@emailjs/browser": "^3.9.1",
+    "@prisma/client": "^4.8.0",
     "axios": "^0.21.0",
     "bootstrap": "^5.2.2",
     "graphql": "^15.3.0",
