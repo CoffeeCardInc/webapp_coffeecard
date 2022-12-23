@@ -39,3 +39,5 @@ next-env.d.ts
 frontend/.next
 .next/static
 .next
+.env
+.next.config.js
