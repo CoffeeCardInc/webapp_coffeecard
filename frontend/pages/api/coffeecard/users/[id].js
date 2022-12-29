@@ -6,7 +6,6 @@ export default async function handle(req, res) {
     const { id } = req.query
     const post = await prisma.user.update({
       where: { id: Number(id) },
-      data: { completed: true },
     })
     return res.json(post)
   } else if (req.method == 'DELETE') {

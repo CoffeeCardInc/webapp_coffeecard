@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Shop from '../components/Shop'
 import RestaurantList from '../components/Shop'
 import { useState } from 'react'
+import server from '../lib/server.js'
 
 const shops = () => {
+  const [coffeeShops, setCoffeeShops] = useState([])
+
   const shops = [
     {
       id: 1,
@@ -25,6 +28,17 @@ const shops = () => {
     },
   ]
   const [search, setSearch] = useState('')
+
+  const fetchCoffeeShops = async () => {
+    const req = await fetch(`/api/coffeecard/shops`)
+    const res = await req.json()
+    setCoffeeShops(res)
+    console.log('shops', res)
+  }
+
+  useEffect(() => {
+    fetchCoffeeShops()
+  }, [])
 
   const searchResult = shops.filter((shop) => {
     return shop.store.toLowerCase().includes(search.toLowerCase())

@@ -121,28 +121,27 @@ model pass {
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 model shop {
-  shop_id           Int
-  shop_name         String?
+  shop_id           Int       @id @default(autoincrement())
+  shop_name         String?   @db.VarChar(100)
   shop_description  String?
   shop_address      String?
-  shop_phone_number String?   @db.VarChar(15)
+  shop_phone_number String?   @db.VarChar(20)
   shop_email        String?   @db.VarChar(255)
-  shop_owner_name   String?   @db.VarChar(255)
+  shop_owner_name   String?   @db.VarChar(100)
   created_on        DateTime  @default(now()) @db.Timestamptz(6)
   last_modified     DateTime? @db.Timestamptz(6)
-  availability_1    Float[]
-  availability_2    Float[]
-  availability_3    Float[]
-  availability_4    Float[]
-  availability_5    Float[]
-  availability_6    Float[]
-  availability_7    Float[]
-  active            Int       @default(0) @db.SmallInt
+  availability_1    Int[]
+  availability_2    Int[]
+  availability_3    Int[]
+  availability_4    Int[]
+  availability_5    Int[]
+  availability_6    Int[]
+  availability_7    Int[]
+  active            Int?      @db.SmallInt
   shop_fee          Float?
   shop_pay_frquency Int?
   shop_pay_date     DateTime? @db.Timestamptz(6)
 
-  @@ignore
 }
 
 model user {
