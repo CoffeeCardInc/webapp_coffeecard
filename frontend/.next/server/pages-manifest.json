@@ -2,6 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/shops": "pages/shops.js",
-  "/api/coffeecard/shops": "pages/api/coffeecard/shops.js"
+  "/api/coffeecard/customers": "pages/api/coffeecard/customers.js"
 }
