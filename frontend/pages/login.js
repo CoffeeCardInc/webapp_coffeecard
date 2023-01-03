@@ -21,26 +21,47 @@ import { GoogleLoginButton } from 'react-social-login-buttons'
 import { AppleLoginButton } from 'react-social-login-buttons'
 import registerStyle from '../styles/Register.module.css'
 import Header from '../components/Header'
+// Firebase
+import { initFirebase } from '../firebase/firebaseApp'
+// Google Provider - Pop Up Object
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+// Firebase React Hooks
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 function Login(props) {
   const [data, updateData] = useState({ identifier: '', password: '' }) //identifier is the username or email
-  const [loading, setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   const router = useRouter()
   const appContext = useContext(AppContext)
   const loggedIn = useUser()
   const toggleLogIn = useUpdateUser()
 
-  // useEffect(() => {
-  //   if (appContext.isAuthenticated) {
-  //     router.push('/') // redirect if you're already logged in
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (appContext.isAuthenticated) {
+      router.push('/') // redirect if you're already logged in
+    }
+  }, [])
 
   const loginSet = () => {}
 
   function onChange(event) {
     updateData({ ...data, [event.target.name]: event.target.value })
+  }
+
+  // initialize firebase for auth
+  initFirebase();
+  const provider = new GoogleAuthProvider();
+  const auth = getAuth();
+  const [user, loading] = useAuthState(auth); // user hook to check if user is logged in and therefore rerooute to landing page 
+
+  const signInWithGoogle = async () => {
+    const result = await signInWithPopup(auth, provider); // (firebase client, google)
+    console.log(result.user);
+    appContext.isAuthenticated = true;
+    // re-route to shops page once logged in
+    router.push('/shops');
+
   }
 
   return (
@@ -108,21 +129,6 @@ function Login(props) {
                       style={{ backgroundColor: '#40312e' }}
                       className='col-sm-12'
                       onClick={toggleLogIn}
-                      // onClick={() => {
-                      //   // setLoading(true)
-
-                      //   login(data.identifier, data.password)
-                      //     .then((res) => {
-                      //       setLoading(false)
-
-                      //       // set authed User in global context to update header/app state
-                      //       appContext.setUser(res.data.user)
-                      //     })
-                      //     .catch((error) => {
-                      //       //setError(error.response.data);
-                      //       setLoading(false)
-                      //     })
-                      // }}
                     >
                       {loading ? 'Loading... ' : 'Submit'}
                     </Button>
