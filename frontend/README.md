@@ -56,3 +56,7 @@ setup .env file with database connection with postgres (user, password, host, po
 _ones prisma environment setup_
 
 - npx prisma db pull
+
+to run prisma:
+
+- npx prisma studio

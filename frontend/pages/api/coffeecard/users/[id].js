@@ -2,15 +2,14 @@ import prisma from '../../../lib/prisma'
 
 export default async function handle(req, res) {
   if (req.method == 'PUT') {
-    // update a todo.
+    // update a customer detail.
     const { id } = req.query
     const post = await prisma.user.update({
       where: { id: Number(id) },
-      data: { completed: true },
     })
     return res.json(post)
   } else if (req.method == 'DELETE') {
-    // delete a todo.
+    // delete a customer / account.
     const { id } = req.query
     const post = await prisma.user.delete({
       where: {
