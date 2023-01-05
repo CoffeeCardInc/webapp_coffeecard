@@ -4,6 +4,7 @@
 frontend/node_modules
 /.pnp
 .pnp.js
+node_modules
 
 # testing
 /coverage
@@ -39,3 +40,5 @@ next-env.d.ts
 frontend/.next
 .next/static
 .next
+.env
+.next.config.js
