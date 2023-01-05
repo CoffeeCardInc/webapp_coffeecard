@@ -117,6 +117,7 @@ model pass {
   requirement_7             Int?      @db.SmallInt
   requirement_8             Int?      @db.SmallInt
   requirement_9             Int?      @db.SmallInt
+  shop                      shop?     @relation(fields: [shop_id], references: [shop_id])
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
@@ -141,7 +142,7 @@ model shop {
   shop_fee          Float?
   shop_pay_frquency Int?
   shop_pay_date     DateTime? @db.Timestamptz(6)
-
+  pass              pass[]
 }
 
 model user {
