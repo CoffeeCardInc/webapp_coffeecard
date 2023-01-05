@@ -155,5 +155,5 @@ model user {
   password        String
   is_shop         Int           @default(0) @db.SmallInt
   customer        customer?
-  membership      membership[]
+  membership      membership[]  
 }
