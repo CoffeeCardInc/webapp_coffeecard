@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #Next-React Frontend for CoffeeCard App
 Exercise03 is full rendering
 <img src = 'restaurants.png'>
@@ -60,3 +61,10 @@ _ones prisma environment setup_
 to run prisma:
 
 - npx prisma studio
+=======
+# webapp_coffeecard
+> This project is under construction.
+## Install dependencies
+> npm install
+> npm run develop
+>>>>>>> main

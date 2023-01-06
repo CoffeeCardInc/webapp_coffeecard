@@ -1,0 +1,37 @@
+.navLink {
+  color: white;
+}
+
+.zindex {
+  display: flex;
+  z-index: 99999;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: var(--color-lightbrown);
+  flex-direction: row-reverse;
+}
+
+/* .navEnd {
+  width: 85px;
+  height: 8px;
+  margin-bottom: 6px;
+  margin-top: 10px;
+  border-radius: 8px;
+  background-color: var(--color-coffeelight);
+  align-self: center;
+} */
+
+@media (min-width: 576px) {
+  .zindex {
+    display: flex;
+    z-index: 99999;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--color-lightbrown);
+    flex-direction: row;
+  }
+}
