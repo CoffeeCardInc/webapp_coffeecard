@@ -429,6 +429,11 @@
   "resolved" "https://registry.npmjs.org/@next/env/-/env-13.0.7.tgz"
   "version" "13.0.7"
 
+"@next/swc-darwin-x64@13.0.7":
+  "integrity" "sha512-636AuRQynCPnIPRVzcCk5B7OMq9XjaYam2T0HeWUCE6y7EqEO3kxiuZ4QmN81T7A6Ydb+JnivYrLelHXmgdj6A=="
+  "resolved" "https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-13.0.7.tgz"
+  "version" "13.0.7"
+
 "@next/swc-linux-x64-gnu@13.0.7":
   "integrity" "sha512-/ygUIiMMTYnbKlFs5Ba9J5k/tNxFWy8eI1bBF8UuMTvV8QJHl/aLDiA5dwsei2kk99/cu3eay62JnJXkSk3RSQ=="
   "resolved" "https://registry.npmjs.org/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-13.0.7.tgz"
