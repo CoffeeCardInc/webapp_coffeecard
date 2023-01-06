@@ -41,4 +41,4 @@ frontend/.next
 .next/static
 .next
 .env
-.next.config.js
+next.config.js

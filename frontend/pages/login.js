@@ -24,9 +24,9 @@ import Header from '../components/Header'
 // Firebase
 import { initFirebase } from '../firebase/firebaseApp'
 // Google Provider - Pop Up Object
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 // Firebase React Hooks
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 function Login(props) {
   const [data, updateData] = useState({ identifier: '', password: '' }) //identifier is the username or email
@@ -50,18 +50,17 @@ function Login(props) {
   }
 
   // initialize firebase for auth
-  initFirebase();
-  const provider = new GoogleAuthProvider();
-  const auth = getAuth();
-  const [user, loading] = useAuthState(auth); // user hook to check if user is logged in and therefore rerooute to landing page 
+  initFirebase()
+  const provider = new GoogleAuthProvider()
+  const auth = getAuth()
+  const [user, loading] = useAuthState(auth) // user hook to check if user is logged in and therefore rerooute to landing page
 
   const signInWithGoogle = async () => {
-    const result = await signInWithPopup(auth, provider); // (firebase client, google)
-    console.log(result.user);
-    appContext.isAuthenticated = true;
+    const result = await signInWithPopup(auth, provider) // (firebase client, google)
+    console.log(result.user)
+    appContext.isAuthenticated = true
     // re-route to shops page once logged in
-    router.push('/shops');
-
+    router.push('/shops')
   }
 
   return (
