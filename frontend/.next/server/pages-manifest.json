@@ -21,9 +21,5 @@
   "/register": "pages/register.html",
   "/shops": "pages/shops.html",
   "/_document": "pages/_document.js",
-<<<<<<< HEAD
   "/404": "pages/404.html"
-=======
-  "/": "pages/index.js"
->>>>>>> main
 }
