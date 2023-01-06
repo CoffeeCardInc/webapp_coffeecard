@@ -58,11 +58,11 @@ function Login(props) {
     const result = await signInWithPopup(auth, provider); // (firebase client, google)
     console.log(result.user);
     toggleLogIn();
-    // re-route to landing page once logged in
+    // re-route to landing page once logged in.. test
     router.push('/');
   }
 
-  
+
 
   console.log("loggedIn", loggedIn)
   return (
