@@ -14,6 +14,25 @@ const profile = () => {
   const [modalSecondary, setModalSecondary] = useState(false)
   const toggleSecondary = () => setModalSecondary(!modalSecondary)
 
+  const updateProfileImage = (e) => {
+    e.preventDefault()
+    fetch(`/api/coffeecard/customer/3`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(),
+    })
+      .then((req) => req.json())
+      .then((data) => console.log(data))
+  }
+
+  const handleDeleteAccount = async () => {
+    await fetch(`/api/coffeecard/customer/3`, {
+      method: 'DELETE',
+    })
+  }
+
   return (
     <>
       <style jsx>{`
@@ -122,6 +141,7 @@ const profile = () => {
                           className='form-control'
                           placeholder='name'
                           // value=''
+                          // onChange={}
                         />
                       </div>
                     </div>
@@ -133,6 +153,7 @@ const profile = () => {
                           className='form-control'
                           placeholder='phone number'
                           // value=''
+                          // onChange={}
                         />
                       </div>
                       <div className='col-md-12'>
@@ -142,6 +163,7 @@ const profile = () => {
                           className='form-control'
                           placeholder='email'
                           // value=''
+                          // onChange={}
                         />
                       </div>
 
@@ -152,6 +174,7 @@ const profile = () => {
                           className='form-control'
                           placeholder='password'
                           // value=''
+                          // onChange={}
                         />
                       </div>
                       <p className='copyright mx-auto'>Delete account</p>
