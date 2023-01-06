@@ -19,7 +19,8 @@ model customer {
   created_on        DateTime  @default(now()) @db.Timestamptz(6)
   last_modifier     DateTime? @db.Timestamptz(6)
   last_login        DateTime? @db.Timestamptz(6)
-  user_id           Int?
+  user_id           Int?      @unique
+  user              user?     @relation(fields: [user_id], references: [id])
 }
 
 model member {
@@ -40,6 +41,8 @@ model membership {
   last_modifiered       DateTime? @db.Timestamptz(6)
   membership_id         Int       @id @default(autoincrement())
   pass_id               Int?
+  pass                  pass?     @relation(fields: [pass_id], references: [pass_id])
+  users                 user?     @relation(fields: [user_id], references: [id])
 }
 
 model menu {
@@ -118,6 +121,7 @@ model pass {
   requirement_8             Int?      @db.SmallInt
   requirement_9             Int?      @db.SmallInt
   shop                      shop?     @relation(fields: [shop_id], references: [shop_id])
+  membership                membership[]
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
@@ -146,8 +150,10 @@ model shop {
 }
 
 model user {
-  id       Int    @id @default(autoincrement())
-  email    String @db.VarChar(255)
-  password String
-  is_shop  Int    @default(0) @db.SmallInt
+  id              Int           @id @default(autoincrement())
+  email           String        @db.VarChar(255)
+  password        String
+  is_shop         Int           @default(0) @db.SmallInt
+  customer        customer?
+  membership      membership[]  
 }
