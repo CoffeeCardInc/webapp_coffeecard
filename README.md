@@ -1,15 +1,8 @@
-<<<<<<< HEAD
-#Next-React Frontend for CoffeeCard App
-Exercise03 is full rendering
-<img src = 'restaurants.png'>
+
+#Next-React Web App for CoffeeCard
+<img src = '#'>
 
 ## use yarn and then yarn dev to run the code
-
-Do NOT do a yarn build since we are not going to deploy it yet
-Exercise03 is full rendering
-index3.js (Data is hardcoded)
-index.js (Get data from Strapi using Apollo and GraphQL)
-restaurantList.js is Web Component to render restaurants
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -24,8 +17,6 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
 ## Learn More
 
@@ -61,10 +52,3 @@ _ones prisma environment setup_
 to run prisma:
 
 - npx prisma studio
-=======
-# webapp_coffeecard
-> This project is under construction.
-## Install dependencies
-> npm install
-> npm run develop
->>>>>>> main
