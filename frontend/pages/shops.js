@@ -3,7 +3,7 @@ import Shop from '../components/Shop'
 import RestaurantList from '../components/Shop'
 import { useState } from 'react'
 import { server } from '../lib/server.js'
-
+/* fetching the shops data and populating the shops and Tier components */
 export const getStaticProps = async () => {
   const res = await fetch(`http://localhost:3000/api/coffeecard/shops`)
   const req = await res.json()
@@ -15,45 +15,32 @@ export const getStaticProps = async () => {
   }
 }
 const shops = ({ req }) => {
-  const [coffeeShops, setCoffeeShops] = useState([])
-
-  const shops = [
-    {
-      id: 1,
-      type: 'Espresso',
-      store: 'Froth',
-      storeImage: 'https://coffeecard.nyc/images/froth_logo.jpg',
-    },
-    {
-      id: 2,
-      type: 'Cappuchino',
-      store: 'Bean',
-      storeImage: 'https://coffeecard.nyc/images/bean_logo.jpg',
-    },
-    {
-      id: 3,
-      type: 'Cappuchino',
-      store: 'Royal Leaf',
-      storeImage: 'https://coffeecard.nyc/images/royal_leaf_tea_logo.png',
-    },
-  ]
-  // const [search, setSearch] = useState('')
-
-  // const fetchCoffeeShops = async () => {
-  //   const req = await fetch(`/api/coffeecard/shops`)
-  //   const res = await req.json()
-  //   setCoffeeShops(res)
-  //   console.log('shops', res)
-  // }
-
-  // useEffect(() => {
-  //   fetchCoffeeShops()
-  // }, [])
-
-  // const searchResult = shops.filter((shop) => {
-  //   return shop.store.toLowerCase().includes(search.toLowerCase())
-  // })
-  console.log('test', req)
+  // const shops = [
+  //   {
+  //     id: 1,
+  //     type: 'Espresso',
+  //     store: 'Froth',
+  //     storeImage: 'https://coffeecard.nyc/images/froth_logo.jpg',
+  //   },
+  //   {
+  //     id: 2,
+  //     type: 'Cappuchino',
+  //     store: 'Bean',
+  //     storeImage: 'https://coffeecard.nyc/images/bean_logo.jpg',
+  //   },
+  //   {
+  //     id: 3,
+  //     type: 'Cappuchino',
+  //     store: 'Royal Leaf',
+  //     storeImage: 'https://coffeecard.nyc/images/royal_leaf_tea_logo.png',
+  //   },
+  // ]
+  const [search, setSearch] = useState('')
+  /* SEARCH through shop components*/
+  const searchResult = req.filter((shop) => {
+    return shop.shop_name.toLowerCase().includes(search.toLowerCase())
+  })
+  // console.log('test', req)
   return (
     <>
       <style jsx>{`
@@ -95,6 +82,7 @@ const shops = ({ req }) => {
               type='text'
               className='form-control form-input'
               placeholder='Search shops...'
+              value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
             <span className='left-pan'>
@@ -104,7 +92,7 @@ const shops = ({ req }) => {
         </div>
       </div>
       <div>
-        {req.map((shop) => {
+        {searchResult.map((shop) => {
           return <Shop shop={shop} key={shop.id} />
         })}
       </div>

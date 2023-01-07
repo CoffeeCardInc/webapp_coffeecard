@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 
-const Tier = () => {
+const Tier = ({ tier }) => {
   const [collapse, setCollapse] = useState(false)
-
+  const { pass_description } = tier
   const handleCollapse = () => {
     setCollapse(!collapse)
   }
@@ -14,7 +14,7 @@ const Tier = () => {
       <div className='row justify-content-around'>
         <span></span>
         <p className='my-auto' onClick={handleCollapse}>
-          Tier 1
+          {pass_description}
         </p>
         <button
           className='btn'
