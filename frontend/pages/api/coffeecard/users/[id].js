@@ -16,7 +16,6 @@ export default async function handle(req, res) {
     const post = await prisma.user.delete({
       where: {
         id: Number(id),
-        data: { email, password },
       },
     })
     return res.json(post)

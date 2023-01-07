@@ -2,9 +2,19 @@ import React, { useEffect } from 'react'
 import Shop from '../components/Shop'
 import RestaurantList from '../components/Shop'
 import { useState } from 'react'
-import server from '../lib/server.js'
+import { server } from '../lib/server.js'
 
-const shops = () => {
+export const getStaticProps = async () => {
+  const res = await fetch(`http://localhost:3000/api/coffeecard/shops`)
+  const req = await res.json()
+
+  return {
+    props: {
+      req,
+    },
+  }
+}
+const shops = ({ req }) => {
   const [coffeeShops, setCoffeeShops] = useState([])
 
   const shops = [
@@ -27,23 +37,23 @@ const shops = () => {
       storeImage: 'https://coffeecard.nyc/images/royal_leaf_tea_logo.png',
     },
   ]
-  const [search, setSearch] = useState('')
+  // const [search, setSearch] = useState('')
 
-  const fetchCoffeeShops = async () => {
-    const req = await fetch(`/api/coffeecard/shops`)
-    const res = await req.json()
-    setCoffeeShops(res)
-    console.log('shops', res)
-  }
+  // const fetchCoffeeShops = async () => {
+  //   const req = await fetch(`/api/coffeecard/shops`)
+  //   const res = await req.json()
+  //   setCoffeeShops(res)
+  //   console.log('shops', res)
+  // }
 
-  useEffect(() => {
-    fetchCoffeeShops()
-  }, [])
+  // useEffect(() => {
+  //   fetchCoffeeShops()
+  // }, [])
 
-  const searchResult = shops.filter((shop) => {
-    return shop.store.toLowerCase().includes(search.toLowerCase())
-  })
-
+  // const searchResult = shops.filter((shop) => {
+  //   return shop.store.toLowerCase().includes(search.toLowerCase())
+  // })
+  console.log('test', req)
   return (
     <>
       <style jsx>{`
@@ -94,7 +104,7 @@ const shops = () => {
         </div>
       </div>
       <div>
-        {searchResult.map((shop) => {
+        {req.map((shop) => {
           return <Shop shop={shop} key={shop.id} />
         })}
       </div>

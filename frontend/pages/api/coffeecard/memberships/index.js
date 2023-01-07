@@ -12,7 +12,7 @@ export default async function handler(req, res) {
       remaining_redemptions,
       pass_id,
     } = req.body
-    const result = await prisma.user.create({
+    const result = await prisma.membership.create({
       data: {
         user_id,
         active,

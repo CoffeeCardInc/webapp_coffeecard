@@ -1,25 +1,6 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/about": "pages/about.html",
-  "/api/coffeecard/customers/[id]": "pages/api/coffeecard/customers/[id].js",
-  "/api/coffeecard/customers": "pages/api/coffeecard/customers.js",
-  "/api/coffeecard/member": "pages/api/coffeecard/member.js",
-  "/api/coffeecard/memberships/[id]": "pages/api/coffeecard/memberships/[id].js",
-  "/api/coffeecard/memberships": "pages/api/coffeecard/memberships.js",
-  "/api/coffeecard/pass": "pages/api/coffeecard/pass.js",
-  "/api/coffeecard/shops": "pages/api/coffeecard/shops.js",
-  "/api/coffeecard/users/[id]": "pages/api/coffeecard/users/[id].js",
-  "/api/coffeecard/users": "pages/api/coffeecard/users.js",
-  "/cart": "pages/cart.html",
-  "/checkout": "pages/checkout.html",
-  "/contactus": "pages/contactus.html",
-  "/cup": "pages/cup.html",
-  "/": "pages/index.html",
-  "/login": "pages/login.html",
-  "/profile": "pages/profile.html",
-  "/register": "pages/register.html",
-  "/shops": "pages/shops.html",
   "/_document": "pages/_document.js",
-  "/404": "pages/404.html"
+  "/api/coffeecard/customers": "pages/api/coffeecard/customers.js"
 }
