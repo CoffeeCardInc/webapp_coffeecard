@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-frontend/node_modules
+node_modules
 /.pnp
 .pnp.js
 node_modules
@@ -37,7 +37,6 @@ yarn-error.log*
 next-env.d.ts
 
 # initial gitignore
-frontend/.next
 .next/static
 .next
 .env
