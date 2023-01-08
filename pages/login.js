@@ -26,6 +26,9 @@ import { initFirebase } from '../firebase/firebaseApp'
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 // Firebase React Hooks
 import { useAuthState } from 'react-firebase-hooks/auth';
+// next-auth modules
+// import { signIn, signOut, useSession } from "next-auth/client"
+// useSession() React Hook is the easiest way to check if someone is signed in
 
 function Login(props) {
   const [data, updateData] = useState({ identifier: '', password: '' }) //identifier is the username or email
@@ -42,7 +45,7 @@ function Login(props) {
     }
   }, [])
 
-  function onChange(event) {
+  function onChange(event) { // when input fields are updated
     updateData({ ...data, [event.target.name]: event.target.value })
   }
 
