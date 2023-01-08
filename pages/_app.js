@@ -1,17 +1,14 @@
 import { useContext, useState } from 'react'
 import '../styles/globals.css'
 import { SessionProvider } from "next-auth/react"
-import { session } from 'next-auth'
+import { Session } from 'next-auth'
 
 import Layout from '../components/layout'
 
-export defailt function MyApp(props) {
-  // const [state, setState] = useState({ cart: cart })
-  const { Component, pageProps: {session, ...pageProps } } = props
-
-  // setUser = (user) => {
-  //   setState({ user })
-  // }
+export default function MyApp({
+  Component,
+  pageProps: { session, pageProps}
+}) {
 
   return (
     <SessionProvider session={session}>
