@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { GetServerSideProps } from 'next'
 // import Cart from '../components/cart'
 // import {
 //   ApolloProvider,
@@ -6,9 +7,7 @@ import React, { useState, useEffect } from 'react'
 //   HttpLink,
 //   InMemoryCache,
 // } from '@apollo/client'
-import RestaurantList from '../components/restaurantList'
-import { Alert, InputGroup, InputGroupAddon, Input } from 'reactstrap'
-import Landing from '../components/Landing'
+import Landing from '../components/Landing' // determines which landing page to render
 
 function Home() {
   // const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337'
@@ -21,26 +20,22 @@ function Home() {
   const [data, setData] = useState([])
 
   return (
-    // <ApolloProvider client={client}>
+    // <ApolloProvider client={client}> 
     <div>
-      {/* <Alert color='primary'>
-          Hi! This project is currently under construction
-        </Alert>
-      </div>
-      <div className='search'>
-        <h2> Local Cafés</h2>
-        <InputGroup>
-          <InputGroupAddon addonType='append'> Search </InputGroupAddon>
-          <Input
-            onChange={(e) => setQuery(e.target.value.toLocaleLowerCase())}
-            value={query}
-          />
-        </InputGroup> */}
       <Landing />
       <br></br>
     </div>
 
     // </ApolloProvider>
-  )
+  );
+};
+
+export const getServerSideProps = async (ctx) => {
+  return {
+    props: {
+      session: await getCoffeeCardAuthSession(ctx)
+    }
+  }
 }
+
 export default Home
