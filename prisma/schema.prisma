@@ -73,19 +73,19 @@ model modifier {
 }
 
 model pass {
-  pass_id                   Int       @id @default(autoincrement())
+  pass_id                   Int          @id @default(autoincrement())
   shop_id                   Int
   pass_name                 Int
   pass_description          String?
-  created_on                DateTime  @default(now()) @db.Timestamptz(6)
-  last_modified             DateTime? @db.Timestamptz(6)
-  active                    Int       @default(0) @db.SmallInt
+  created_on                DateTime     @default(now()) @db.Timestamptz(6)
+  last_modified             DateTime?    @db.Timestamptz(6)
+  active                    Int          @default(0) @db.SmallInt
   pass_base_price           Float?
   pass_base_price_frequency Int?
   pass_payment_method       Int?
   pass_additional_pricing   Int?
   pass_other_options        Int?
-  pass_currency             String?   @db.VarChar
+  pass_currency             String?      @db.VarChar
   perk_item_1               Int?
   perk_item_2               Int?
   perk_item_3               Int?
@@ -111,17 +111,17 @@ model pass {
   custom_perk_item_5_price  Float?
   custom_perk_item_6_price  Float?
   visible                   Int?
-  requirement_1             Int?      @db.SmallInt
-  requirement_2             Int?      @db.SmallInt
-  requirement_3             Int?      @db.SmallInt
-  requirement_4             Int?      @db.SmallInt
-  requirement_5             Int?      @db.SmallInt
-  requirement_6             Int?      @db.SmallInt
-  requirement_7             Int?      @db.SmallInt
-  requirement_8             Int?      @db.SmallInt
-  requirement_9             Int?      @db.SmallInt
-  shop                      shop?     @relation(fields: [shop_id], references: [shop_id])
+  requirement_1             Int?         @db.SmallInt
+  requirement_2             Int?         @db.SmallInt
+  requirement_3             Int?         @db.SmallInt
+  requirement_4             Int?         @db.SmallInt
+  requirement_5             Int?         @db.SmallInt
+  requirement_6             Int?         @db.SmallInt
+  requirement_7             Int?         @db.SmallInt
+  requirement_8             Int?         @db.SmallInt
+  requirement_9             Int?         @db.SmallInt
   membership                membership[]
+  shop                      shop         @relation(fields: [shop_id], references: [shop_id])
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
@@ -150,10 +150,10 @@ model shop {
 }
 
 model user {
-  id              Int           @id @default(autoincrement())
-  email           String        @db.VarChar(255)
-  password        String
-  is_shop         Int           @default(0) @db.SmallInt
-  customer        customer?
-  membership      membership[]  
+  id         Int          @id @default(autoincrement())
+  email      String       @db.VarChar(255)
+  password   String
+  is_shop    Int          @default(0) @db.SmallInt
+  customer   customer?
+  membership membership[]
 }
