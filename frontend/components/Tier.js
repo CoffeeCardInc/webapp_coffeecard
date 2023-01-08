@@ -1,3 +1,4 @@
+/*Individual Tier component that takes the shop / pass data and populates the component*/
 import React from 'react'
 import { useState } from 'react'
 
