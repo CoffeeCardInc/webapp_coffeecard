@@ -21,12 +21,13 @@ import {
 import registerStyle from '../styles/Register.module.css'
 import Header from '../components/Header'
 // next-auth modules
-import { getToken } from "next-auth/jwt"
+// import { getToken } from "next-auth/jwt"
 import { signIn, getSession, getCsrfToken } from "next-auth/react"
 // getSession() React Hook is the easiest way to check if someone is signed in
 
-function Login({provider, csrfToken}) {
-  const [data, updateData] = useState({ identifier: '', password: '' }) //identifier is the username or email
+export default function Login({provider, csrfToken}) {
+  
+  const [data, updateData] = useState({ email: '', password: '' }) //identifier is the username or email
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   const router = useRouter()
@@ -39,7 +40,7 @@ function Login({provider, csrfToken}) {
   }
 
   const signInWithGoogle = async () => {
-    signIn("google", { callbackUrl: '/me'}); // redirected to /server-side-example
+    signIn("google", { callbackUrl: '/profile'}); // redirected to /server-side-example
     toggleLogIn();
   }
 
@@ -54,7 +55,7 @@ function Login({provider, csrfToken}) {
   }
   // TODO: add email credential login
   const signInWithEmail = async () => {
-    signIn("email", { callbackUrl: '/'}); // built in with NextAuth
+    signIn("email", {email: data.email}, { callbackUrl: 'http://localhost:3000/profile'}); // built in with NextAuth
     toggleLogIn();
   }
 
@@ -100,7 +101,7 @@ function Login({provider, csrfToken}) {
                     <Label>Email Address:</Label>
                     <Input
                       onChange={(event) => onChange(event)}
-                      name='identifier'
+                      name='email'
                       style={{ height: 50, fontSize: '1.2em' }}
                     />
                   </FormGroup>
@@ -127,7 +128,7 @@ function Login({provider, csrfToken}) {
                       className='col-sm-12'
                       onClick={signInWithEmail}
                     >
-                      {loading ? 'Loading... ' : 'Submit'}
+                      {loading ? 'Loading... ' : 'Sign In With Email'}
                     </Button>
                   </FormGroup>
                 </fieldset>
@@ -177,7 +178,7 @@ Login.getInitialProps = async (context) => {
   const { req, res } = context
   const session = await getSession({ req }) // see if there is a session
   const csrfToken = await getCsrfToken(context) // for email sign in
-  if (session && res && session.accessToken) { // if there is a session, res, and accessToken, redirect to home page
+  if (session && res && session.sessionToken) { // if there is a session, res, and accessToken, redirect to home page
     res.writeHead(302, {
       Location: '/',
     })
@@ -189,5 +190,3 @@ Login.getInitialProps = async (context) => {
     csrfToken: await getCsrfToken(context), // for email sign in
   }
 }
-
-export default Login

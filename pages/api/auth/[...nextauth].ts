@@ -38,13 +38,22 @@ export const authOptions = {
           pass: process.env.EMAIL_SERVER_PASSWORD
         }
       },
-      from: process.env.EMAIL_FROM
-    }),
+      from: process.env.EMAIL_FROM,
+      normalizeIdentifier(identifier): string{
+        // Get the first two elements only,
+        // separated by `@` from user input.
+        let [local, domain] = identifier.toLowerCase().trim().split("@")
+        // The part before "@" can contain a ","
+        // but we remove it on the domain part
+        domain = domain.split(",")[0]
+        return `${local}@${domain}`
+      },  
+      }),
     // ...add more providers here
   ],
-  // session: {
-  //   strategy: 'jwt',
-  // },
+  session: {
+    strategy: 'database',
+  },
   // jwt: {
   //   // The maximum age of the NextAuth.js issued JWT in seconds.
   //   // Defaults to `session.maxAge`.
@@ -58,23 +67,24 @@ export const authOptions = {
     (like access_token and user.id from above) via the jwt() callback, 
     you have to explicitly forward it here to make it available to the client. */
     // Code from: (Docs)[https://next-auth.js.org/configuration/callbacks#session-callback]
-    async session ({ session, token, user }) {
-      // Send properties to the client, like an access_token and user id from a provider.
-        session.accessToken = token.accessToken
-        session.user.id = token.id
-        session.user.name = token.name
-        session.user.email = token.email
-        session.user.image = token.image
-      return session;
-      
-    },
-    async jwt({ token, user, account, profile, isNewUser }) {
-      if (account) {
-        token.accessToken = account.access_token;
-      }
-      return token;
-    },
+    // async session ({ session, token, user }) {
+    //   console.log("SESSION CALLED");
+    //   // Send properties to the client, like an access_token and user id from a provider.
+    //     // session.accessToken = token.accessToken
+    //     session.user.id = token.id
+    //     session.user.name = token.name // custom
+    //     session.user.email = token.email // custom
+    //     session.user.image = token.image // custom
+    //   return Promise.resolve(session)
+    // },
+    // async jwt({ token, user, account, profile, isNewUser }) {
+    //   if (account) {
+    //     token.accessToken = account.access_token;
+    //   }
+    //   return token;
+    // },
     async redirect({ url, baseUrl }) {
+      console.log("REDIRECT CALLED");
       // Allows relative callback URLs
       if (url.startsWith("/")) return `${baseUrl}${url}`
       // Allows callback URLs on the same origin
@@ -82,6 +92,7 @@ export const authOptions = {
       return baseUrl
     },
     async signIn({ user, account, profile, email, credentials }) {
+      console.log("SIGNIN CALLED");
       const isAllowedToSignIn = true
       if (isAllowedToSignIn) {
         return true
@@ -94,9 +105,9 @@ export const authOptions = {
     }
   },
   // pages: {
-  //   signIn: '/signin',
+  //   signIn: '/login',
   // },
   debug: true,
 }
 
-export default NextAuth(authOptions)
+export default NextAuth(authOptions as any)

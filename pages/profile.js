@@ -9,9 +9,10 @@ import {
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 // check if someone is signed in
 import { useSession } from "next-auth/react" 
+import { unstable_getServerSession } from "next-auth/next"
+import { authOptions } from "pages/api/auth/[...nextauth]"
 
-
-const profile = () => {
+export default function profile() {
   const { data: session, status } = useSession()
   const [modal, setModal] = useState(false)
   const toggle = () => setModal(!modal)
@@ -70,8 +71,9 @@ const profile = () => {
               <img
                 className='rounded-circle mb-2 mx-auto'
                 width='150px'
-                src='https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1214428300?k=20&m=1214428300&s=612x612&w=0&h=MOvSM2M1l_beQ4UzfSU2pfv4sRjm0zkpeBtIV-P71JE='
+                src={session.user.image}
               />
+          
 
               <UncontrolledDropdown group color='light'>
                 <DropdownToggle tag='span' className='logo-div'>
@@ -90,7 +92,7 @@ const profile = () => {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              <span className='font-weight-bold mx-auto mb-3'>Edogaru</span>
+              <span className='font-weight-bold mx-auto mb-3'>{session.user.name}</span>
               <hr />
               <div className='col-12 d-flex justify-content-between p-0'>
                 <div className='d-flex flex-column col-6'>
@@ -110,7 +112,7 @@ const profile = () => {
               <hr />
               <div className='mb-3'>
                 <i class='fa-regular fa-envelope'></i>
-                <span className='text-black-50 ml-4'>edogaru@mail.com.my</span>
+                <span className='text-black-50 ml-4'>{session.user.email}</span>
               </div>
               <div>
                 <i class='fa-solid fa-phone'></i>
@@ -255,4 +257,12 @@ const profile = () => {
   )
 }
 
-export default profile
+export async function getServerSideProps(ctx) {
+  return {
+    props: {
+      session: {
+        ...(await unstable_getServerSession(ctx.req, ctx.res, authOptions)),
+      }
+    }
+  }
+}

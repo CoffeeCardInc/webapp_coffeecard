@@ -16,15 +16,19 @@ import Image from 'next/image'
 import { useUser, useUpdateUser } from '../components/context'
 import { signIn, signOut, useSession } from "next-auth/react"
 
-const Navibar = () => {
-  const { data, status } = useSession();
+export default function Navibar() {
+  const { data: session, status } = useSession();
   // const { user } = useContext(AppContext)
   const [isOpen, setIsOpen] = useState(false)
   const toggle = () => setIsOpen(!isOpen)
   const loggedIn = useUser()
   const toggleLogIn = useUpdateUser()
 
-  switch (status === "authenticated") {
+
+  const handleSignOut = async () => {
+    signOut({redirect: false, callbackUrl: '/'})
+  }
+  switch (status) {
     case "authenticated":
       return (
         <Navbar expand='sm' light className={navStyle.zindex}>
@@ -59,10 +63,9 @@ const Navibar = () => {
 
               <NavItem>
                 <NavLink
-                  href='/api/auth/signout'
                   onClick={() => {
                     toggleLogIn;
-                    signOut()
+                    handleSignOut();
                     // setUser(null)
                   }}
                 >
@@ -102,4 +105,12 @@ const Navibar = () => {
   }
 }
 
-export default Navibar
+export async function getServerSideProps(ctx) {
+  return {
+    props: {
+      session: {
+        ...(await unstable_getServerSession(ctx.req, ctx.res, authOptions)),
+      }
+    }
+  }
+}

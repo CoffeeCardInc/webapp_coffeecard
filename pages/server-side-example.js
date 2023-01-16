@@ -3,15 +3,15 @@ import { authOptions } from "./api/auth/[...nextauth]"
 import { useSession } from "next-auth/react"
 
 export default function Page() {
-  const { data, status } = useSession();
+  const { data:session } = useSession();
 
-//   if (typeof window === "undefined") return null
-  console.log("ServerSideExamplePage: Data:", data,"status", status)
-  if (data) {
+  //  if (typeof window === "undefined") return null
+  console.log("ServerSideExamplePage: Data:", session)
+  if (session) {
     return (
       <>
-        <h1>Protected Page</h1>
-        <p>{JSON.stringify(data)}</p>
+        <h1>This is Me:</h1>
+        <p>{JSON.stringify(session)}</p>
       </>
     )
   }

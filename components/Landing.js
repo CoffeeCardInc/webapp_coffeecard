@@ -9,7 +9,7 @@ import { useSession } from 'next-auth/react'
 // session ? login page : landing page
 // useSession Hook is the easiest way to check if someone is signed in.
 // has built in Context through <SessionProvider/> in pages/_app.js
-const Landing = () => {
+export default function Landing() {
   const session = useSession(); // to determine which landing page to show
 
   const subs = [
@@ -34,7 +34,7 @@ const Landing = () => {
   ]
   // TODO: add logic if Landing component is loading
   // add logic to show different landing page if user is logged in
-  if (session === "authenticated") {
+  if (session.status === "authenticated") {
     return (
     <>
       <section>
@@ -113,4 +113,12 @@ const Landing = () => {
   </section>)}
 }
 
-export default Landing
+export async function getServerSideProps(ctx) {
+  return {
+    props: {
+      session: {
+        ...(await unstable_getServerSession(ctx.req, ctx.res, authOptions)),
+      }
+    }
+  }
+}
