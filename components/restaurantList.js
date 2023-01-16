@@ -1,3 +1,5 @@
+// TODO: Make this a List of Cafe's
+
 // import { gql, useQuery } from '@apollo/client'
 // import Dishes from './dishes'
 import { useContext, useState } from 'react'

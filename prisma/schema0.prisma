@@ -1,0 +1,199 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model customer {
+  customer_id       Int       @id @default(autoincrement())
+  full_name         String    @db.VarChar(100)
+  email             String    @db.VarChar(255)
+  passowrd          String    @db.VarChar(255)
+  date_of_birth     String    @db.VarChar(255)
+  language          String?   @db.VarChar(255)
+  city              String?   @db.VarChar(255)
+  membership_status String?   @db.VarChar(255)
+  created_on        DateTime  @default(now()) @db.Timestamptz(6)
+  last_modifier     DateTime? @db.Timestamptz(6)
+  last_login        DateTime? @db.Timestamptz(6)
+  userId            String      @unique
+  user              User?     @relation(fields: [userId], references: [id])
+}
+
+model member {
+  member_id Int  @id @default(autoincrement())
+  userId   String
+  shop_id   Int?
+}
+
+model membership {
+  userId                String
+  creation_on           DateTime  @default(now()) @db.Timestamptz(6)
+  subscribed_on         DateTime  @db.Timestamp(6)
+  active                Int       @default(0) @db.SmallInt
+  total_redemptions     Int
+  remaining_redemptions Int
+  refill_frequency      Int?
+  last_refill           DateTime? @db.Timestamptz(6)
+  last_modifiered       DateTime? @db.Timestamptz(6)
+  membership_id         Int       @id @default(autoincrement())
+  pass_id               Int?
+  pass                  pass?     @relation(fields: [pass_id], references: [pass_id])
+  users                 User?     @relation(fields: [userId], references: [id])
+}
+
+model menu {
+  menu_id       Int       @id @default(autoincrement())
+  shop_id       Int
+  name          String    @db.VarChar(255)
+  description   String?
+  created_on    DateTime  @default(now()) @db.Timestamptz(6)
+  last_modified DateTime? @db.Timestamptz(6)
+  modifier_1    Int?
+  modifier_2    Int?
+  modifier_3    Int?
+  modifier_4    Int?
+  modifier_5    Int?
+}
+
+model modifier {
+  modifier_id     Int       @id @default(autoincrement())
+  shop_id         Int?
+  menu_id         Int?
+  name            String?   @db.VarChar
+  type            String?   @db.VarChar
+  class           String?   @db.VarChar
+  description     String?
+  ingredients     String?
+  created_on      DateTime  @default(now()) @db.Timestamptz(6)
+  last_modified   DateTime? @db.Timestamptz(6)
+}
+
+model pass {
+  pass_id                   Int          @id @default(autoincrement())
+  shop_id                   Int
+  pass_name                 Int
+  pass_description          String?
+  created_on                DateTime     @default(now()) @db.Timestamptz(6)
+  last_modified             DateTime?    @db.Timestamptz(6)
+  active                    Int          @default(0) @db.SmallInt
+  pass_base_price           Float?
+  pass_base_price_frequency Int?
+  pass_payment_method       Int?
+  pass_additional_pricing   Int?
+  pass_other_options        Int?
+  pass_currency             String?      @db.VarChar
+  perk_item_1               Int?
+  perk_item_2               Int?
+  perk_item_3               Int?
+  perk_item_4               Int?
+  perk_item_5               Int?
+  perk_item_6               Int?
+  perk_item_7               Int?
+  perk_item_8               Int?
+  perk_item_9               Int?
+  perk_item_10              Int?
+  perk_item_11              Int?
+  perk_item_12              Int?
+  custom_perk_item_1        Int?
+  custom_perk_item_2        Int?
+  custom_perk_item_3        Int?
+  custom_perk_item_4        Int?
+  custom_perk_item_5        Int?
+  custom_perk_item_6        Int?
+  custom_perk_item_1_price  Float?
+  custom_perk_item_2_price  Float?
+  custom_perk_item_3_price  Float?
+  custom_perk_item_4_price  Float?
+  custom_perk_item_5_price  Float?
+  custom_perk_item_6_price  Float?
+  visible                   Int?
+  requirement_1             Int?         @db.SmallInt
+  requirement_2             Int?         @db.SmallInt
+  requirement_3             Int?         @db.SmallInt
+  requirement_4             Int?         @db.SmallInt
+  requirement_5             Int?         @db.SmallInt
+  requirement_6             Int?         @db.SmallInt
+  requirement_7             Int?         @db.SmallInt
+  requirement_8             Int?         @db.SmallInt
+  requirement_9             Int?         @db.SmallInt
+  membership                membership[]
+  shop                      shop         @relation(fields: [shop_id], references: [shop_id])
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model shop {
+  shop_id            Int       @id @default(autoincrement())
+  shop_name          String?   @db.VarChar(100)
+  shop_description   String?
+  shop_address       String?
+  shop_phone_number  String?   @db.VarChar(20)
+  shop_email         String?   @db.VarChar(255)
+  shop_owner_name    String?   @db.VarChar(100)
+  created_on         DateTime  @default(now()) @db.Timestamptz(6)
+  last_modified      DateTime? @db.Timestamptz(6)
+  availability_1     Int[]
+  availability_2     Int[]
+  availability_3     Int[]
+  availability_4     Int[]
+  availability_5     Int[]
+  availability_6     Int[]
+  availability_7     Int[]
+  active             Int?      @db.SmallInt
+  shop_fee           Float?
+  shop_pay_frequency Int?
+  shop_pay_date      DateTime? @db.Timestamptz(6)
+  pass               pass[]
+}
+
+model Account {
+  id                 String   @id @default(cuid())
+  userId             String   @map("user_id")
+  type               String
+  provider           String
+  providerAccountId  String   @map("provider_account_id")
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id              String    @id @default(cuid())
+  sessionToken    String?   
+  userId          String   @unique
+  expires         DateTime?
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          String?  // New Column: Admin? 
+  accounts      Account[]
+  sessions      Session[]
+  is_shop       Int          @default(0) @db.SmallInt
+  customer      customer?
+  membership    membership[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}

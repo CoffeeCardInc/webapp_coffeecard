@@ -10,20 +10,22 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap'
-import AppContext from './context'
+// import AppContext from './context'
 import newLogo from '../public/Logo2.png'
 import Image from 'next/image'
 import { useUser, useUpdateUser } from '../components/context'
+import { signIn, signOut, useSession } from "next-auth/react"
 
 const Navibar = () => {
+  const { data, status } = useSession();
   // const { user } = useContext(AppContext)
   const [isOpen, setIsOpen] = useState(false)
   const toggle = () => setIsOpen(!isOpen)
   const loggedIn = useUser()
   const toggleLogIn = useUpdateUser()
 
-  switch (true) {
-    case true:
+  switch (status === "authenticated") {
+    case "authenticated":
       return (
         <Navbar expand='sm' light className={navStyle.zindex}>
           <style jsx>
@@ -57,10 +59,10 @@ const Navibar = () => {
 
               <NavItem>
                 <NavLink
-                  href='/'
+                  href='/api/auth/signout'
                   onClick={() => {
-                    toggleLogIn
-                    // logout()
+                    toggleLogIn;
+                    signOut()
                     // setUser(null)
                   }}
                 >
@@ -86,7 +88,7 @@ const Navibar = () => {
                 <NavLink href='/'>Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href='/register' className='inactive'>
+                <NavLink href='/register' className='inactive' disabled>
                   Sign up
                 </NavLink>
               </NavItem>

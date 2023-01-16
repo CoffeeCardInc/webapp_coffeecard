@@ -7,8 +7,12 @@ import {
   DropdownItem,
 } from 'reactstrap'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+// check if someone is signed in
+import { useSession } from "next-auth/react" 
+
 
 const profile = () => {
+  const { data: session, status } = useSession()
   const [modal, setModal] = useState(false)
   const toggle = () => setModal(!modal)
   const [modalSecondary, setModalSecondary] = useState(false)
