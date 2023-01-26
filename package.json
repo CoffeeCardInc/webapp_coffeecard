@@ -36,7 +36,6 @@
   "author": "mjcillo22 && andor",
   "license": "MIT",
   "devDependencies": {
-    "sqlite3": "^5.1.4",
     "typescript": "4.9.4"
   }
 }
