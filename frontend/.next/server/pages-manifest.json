@@ -3,5 +3,7 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/profile": "pages/profile.js"
+  "/contactus": "pages/contactus.js",
+  "/shops": "pages/shops.js",
+  "/api/coffeecard/shops": "pages/api/coffeecard/shops.js"
 }
