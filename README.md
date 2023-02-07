@@ -1,4 +1,3 @@
-
 #Next-React Web App for CoffeeCard
 <img src = '#'>
 
@@ -15,6 +14,8 @@ npm run dev
 # or
 yarn dev
 ```
+
+npm install next react react-dom
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

@@ -1,49 +1,24 @@
-import React, { useEffect } from 'react'
 import Shop from '../components/Shop'
-import RestaurantList from '../components/Shop'
 import { useState } from 'react'
-import server from '../lib/server.js'
+import { loadShops } from '../lib/load-shops'
 
-const shops = () => {
-  const [coffeeShops, setCoffeeShops] = useState([])
+/* fetching the shops data and populating the shops and Tier components */
 
-  const shops = [
-    {
-      id: 1,
-      type: 'Espresso',
-      store: 'Froth',
-      storeImage: 'https://coffeecard.nyc/images/froth_logo.jpg',
+export const getStaticProps = async () => {
+  const shops = await loadShops()
+  return {
+    props: {
+      shops,
     },
-    {
-      id: 2,
-      type: 'Cappuchino',
-      store: 'Bean',
-      storeImage: 'https://coffeecard.nyc/images/bean_logo.jpg',
-    },
-    {
-      id: 3,
-      type: 'Cappuchino',
-      store: 'Royal Leaf',
-      storeImage: 'https://coffeecard.nyc/images/royal_leaf_tea_logo.png',
-    },
-  ]
-  const [search, setSearch] = useState('')
-
-  const fetchCoffeeShops = async () => {
-    const req = await fetch(`/api/coffeecard/shops`)
-    const res = await req.json()
-    setCoffeeShops(res)
-    console.log('shops', res)
   }
-
-  useEffect(() => {
-    fetchCoffeeShops()
-  }, [])
-
+}
+const shops = ({ shops }) => {
+  const [search, setSearch] = useState('')
+  /* SEARCH through shop components*/
   const searchResult = shops.filter((shop) => {
-    return shop.store.toLowerCase().includes(search.toLowerCase())
+    return shop.shop_name.toLowerCase().includes(search.toLowerCase())
   })
-
+  console.log('test', shops)
   return (
     <>
       <style jsx>{`
@@ -85,6 +60,7 @@ const shops = () => {
               type='text'
               className='form-control form-input'
               placeholder='Search shops...'
+              value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
             <span className='left-pan'>

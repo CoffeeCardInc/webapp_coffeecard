@@ -105,11 +105,11 @@ const profile = () => {
 
               <hr />
               <div className='mb-3'>
-                <i class='fa-regular fa-envelope'></i>
+                <i className='fa-regular fa-envelope'></i>
                 <span className='text-black-50 ml-4'>edogaru@mail.com.my</span>
               </div>
               <div>
-                <i class='fa-solid fa-phone'></i>
+                <i className='fa-solid fa-phone'></i>
                 <span className='text-black-50 ml-4'>123-456-7890</span>
               </div>
             </div>

@@ -34,7 +34,11 @@ const Navibar = () => {
             `}
           </style>
           <NavbarBrand href='/'>
-            <Image src={newLogo} style={{ width: '25px', height: '30px' }} />
+            <Image
+              src={newLogo}
+              style={{ width: '25px', height: '30px' }}
+              alt='logo-image'
+            />
           </NavbarBrand>
           <NavbarToggler onClick={toggle} className={navStyle.border} />
           <Collapse isOpen={isOpen} navbar>
