@@ -18,7 +18,7 @@ const shops = ({ shops }) => {
   const searchResult = shops.filter((shop) => {
     return shop.shop_name.toLowerCase().includes(search.toLowerCase())
   })
-  // console.log('test', shops)
+  console.log('test', shops)
   return (
     <>
       <style jsx>{`
