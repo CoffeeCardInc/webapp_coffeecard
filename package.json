@@ -28,5 +28,8 @@
   "description": "CoffeeCard enables customers to subscribe to their facorite cafes",
   "main": "index.js",
   "author": "mjcillo22 && andor",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "4.9.5"
+  }
 }
