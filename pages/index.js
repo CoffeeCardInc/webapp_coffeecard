@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Landing from '../components/Landing' // determines which landing page to render
 import { unstable_getServerSession, useSession } from 'next-auth' // to be used for protected pages (i.e. profile.js or admin.js)
-import { authOptions } from 'next-auth';
+import { authOptions } from 'next-auth'
 
 export default function Home() {
   // Basically contains the landing component which checks whether there is a session or not
@@ -11,8 +11,8 @@ export default function Home() {
       <Landing />
       <br></br>
     </div>
-  );
-};
+  )
+}
 // This function is called on every request
 // It checks if there is a session and if there is, it passes it as a prop to the page
 // This authentication is done on the server side
@@ -24,7 +24,7 @@ export default function Home() {
 //   if (!session) {
 //     return {
 //       redirect: {
-//         destination: '/', 
+//         destination: '/',
 //         permanent: false,
 //       },
 //     }

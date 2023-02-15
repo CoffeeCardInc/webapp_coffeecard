@@ -5,7 +5,8 @@ import { loadShops } from '../lib/load-shops'
 /* fetching the shops data and populating the shops and Tier components */
 
 export const getStaticProps = async () => {
-  const shops = await loadShops()
+  const res = await fetch('http://localhost:3000/api/coffeecard/shops')
+  const shops = await res.json()
   return {
     props: {
       shops,
@@ -15,7 +16,7 @@ export const getStaticProps = async () => {
 const shops = ({ shops }) => {
   const [search, setSearch] = useState('')
   /* SEARCH through shop components*/
-  const searchResult = shops.filter((shop) => {
+  const searchResult = shops?.filter((shop) => {
     return shop.shop_name.toLowerCase().includes(search.toLowerCase())
   })
   console.log('test', shops)
@@ -70,7 +71,7 @@ const shops = ({ shops }) => {
         </div>
       </div>
       <div>
-        {searchResult.map((shop) => {
+        {searchResult?.map((shop) => {
           return <Shop shop={shop} key={shop.id} />
         })}
       </div>

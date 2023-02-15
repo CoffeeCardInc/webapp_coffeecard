@@ -13,52 +13,53 @@ import {
 } from 'reactstrap'
 // import AppContext from '../components/context'
 import { useUser, useUpdateUser } from '../components/context'
-import { 
-  FacebookLoginButton, 
-  GoogleLoginButton, 
-  AppleLoginButton 
+import {
+  FacebookLoginButton,
+  GoogleLoginButton,
+  AppleLoginButton,
 } from 'react-social-login-buttons'
 import registerStyle from '../styles/Register.module.css'
 import Header from '../components/Header'
 // next-auth modules
 // import { getToken } from "next-auth/jwt"
-import { signIn, getSession, getCsrfToken } from "next-auth/react"
+import { signIn, getSession, getCsrfToken } from 'next-auth/react'
 // getSession() React Hook is the easiest way to check if someone is signed in
 
-export default function Login({provider, csrfToken}) {
-  
+export default function Login({ provider, csrfToken }) {
   const [data, updateData] = useState({ email: '', password: '' }) //identifier is the username or email
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   const router = useRouter()
   const toggleLogIn = useUpdateUser()
 
-
-
-  function onChange(event) { // when input fields are updated
+  function onChange(event) {
+    // when input fields are updated
     updateData({ ...data, [event.target.name]: event.target.value })
   }
 
   const signInWithGoogle = async () => {
-    signIn("google", { callbackUrl: '/profile'}); // redirected to /server-side-example
-    toggleLogIn();
+    signIn('google', { callbackUrl: '/' }) // redirected to /server-side-example
+    toggleLogIn()
   }
 
-  const signInWithFacebook = async() => {
-    signIn("facebook", { callbackUrl: '/'}); // built in with NextAuth
-    toggleLogIn();
+  const signInWithFacebook = async () => {
+    signIn('facebook', { callbackUrl: '/' }) // built in with NextAuth
+    toggleLogIn()
   }
   // TODO: add apple login
-  const signInWithApple = async() => {
-    signIn("apple", { callbackUrl: '/'}); // built in with NextAuth
-    toggleLogIn();
+  const signInWithApple = async () => {
+    signIn('apple', { callbackUrl: '/' }) // built in with NextAuth
+    toggleLogIn()
   }
   // TODO: add email credential login
   const signInWithEmail = async () => {
-    signIn("email", {email: data.email}, { callbackUrl: 'http://localhost:3000/profile'}); // built in with NextAuth
-    toggleLogIn();
+    signIn(
+      'email',
+      { email: data.email },
+      { callbackUrl: 'http://localhost:3000/profile' }
+    ) // built in with NextAuth
+    toggleLogIn()
   }
-
 
   //console.log("loggedIn", loggedIn)
   return (
@@ -90,14 +91,16 @@ export default function Login({provider, csrfToken}) {
                 onClick={signInWithGoogle}
                 className='mb-3'
               ></GoogleLoginButton>
-              <AppleLoginButton
-                onClick={signInWithApple}
-              ></AppleLoginButton>
+              <AppleLoginButton onClick={signInWithApple}></AppleLoginButton>
               <div className={registerStyle.or}>or</div>
-              <Form method="POST" action="api/auth/signin/email">
+              <Form method='POST' action='api/auth/signin/email'>
                 <fieldset disabled={loading}>
                   <FormGroup>
-                    <Input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+                    <Input
+                      name='csrfToken'
+                      type='hidden'
+                      defaultValue={csrfToken}
+                    />
                     <Label>Email Address:</Label>
                     <Input
                       onChange={(event) => onChange(event)}
@@ -171,14 +174,15 @@ export default function Login({provider, csrfToken}) {
     </Container>
   )
 }
-// getInitialProps() enables server-side rendering in a page and allows you to do initial data population, 
+// getInitialProps() enables server-side rendering in a page and allows you to do initial data population,
 // it means sending the page with the data already populated from the server.
 // https://www.youtube.com/watch?v=kB6YNYZ63fw [Create your own next-auth Login Pages]
 Login.getInitialProps = async (context) => {
   const { req, res } = context
   const session = await getSession({ req }) // see if there is a session
   const csrfToken = await getCsrfToken(context) // for email sign in
-  if (session && res && session.sessionToken) { // if there is a session, res, and accessToken, redirect to home page
+  if (session && res && session.sessionToken) {
+    // if there is a session, res, and accessToken, redirect to home page
     res.writeHead(302, {
       Location: '/',
     })

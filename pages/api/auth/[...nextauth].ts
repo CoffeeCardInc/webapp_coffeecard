@@ -1,21 +1,18 @@
-import NextAuth from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
-import FacebookProvider from "next-auth/providers/facebook"
+import NextAuth from 'next-auth'
+import GoogleProvider from 'next-auth/providers/google'
+import FacebookProvider from 'next-auth/providers/facebook'
 // import AppleProvider from "next-auth/providers/apple"
 // import Auth0Provider from "next-auth/providers/auth0"
-import EmailProvider from "next-auth/providers/email";
-
+import EmailProvider from 'next-auth/providers/email'
 // Prisma Adapter
-import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import prisma from "../../../lib/prisma"
-
-
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import prisma from '../../../lib/prisma'
 
 // const YOUR_API_ENDPOINT = process.env.NEXT_PUBLIC_API_ROOT + 'auth/'
 
 // All requests to /api/auth/* (signIn, callback, signOut, etc.) will automatically be handled by NextAuth.js.
 export const authOptions = {
-  // Prisma Adapter - connects the auth of the web app to DB. This will help persist user info in our own db. 
+  // Prisma Adapter - connects the auth of the web app to DB. This will help persist user info in our own db.
   adapter: PrismaAdapter(prisma),
 
   // Configure one or more authentication providers
@@ -35,20 +32,20 @@ export const authOptions = {
         port: process.env.EMAIL_SERVER_PORT,
         auth: {
           user: process.env.EMAIL_SERVER_USER,
-          pass: process.env.EMAIL_SERVER_PASSWORD
-        }
+          pass: process.env.EMAIL_SERVER_PASSWORD,
+        },
       },
       from: process.env.EMAIL_FROM,
-      normalizeIdentifier(identifier): string{
+      normalizeIdentifier(identifier): string {
         // Get the first two elements only,
         // separated by `@` from user input.
-        let [local, domain] = identifier.toLowerCase().trim().split("@")
+        let [local, domain] = identifier.toLowerCase().trim().split('@')
         // The part before "@" can contain a ","
         // but we remove it on the domain part
-        domain = domain.split(",")[0]
+        domain = domain.split(',')[0]
         return `${local}@${domain}`
-      },  
-      }),
+      },
+    }),
     // ...add more providers here
   ],
   session: {
@@ -59,7 +56,7 @@ export const authOptions = {
   //   // Defaults to `session.maxAge`.
   //   maxAge: 60 * 60 * 24, // 24 hours
   // },
-  callbacks: { 
+  callbacks: {
     // we can do side effects such as adjusting context.js
     /* The session callback is called whenever a session is checked. 
     By default, only a subset of the token is returned for increased security. 
@@ -84,15 +81,15 @@ export const authOptions = {
     //   return token;
     // },
     async redirect({ url, baseUrl }) {
-      console.log("REDIRECT CALLED");
+      console.log('REDIRECT CALLED')
       // Allows relative callback URLs
-      if (url.startsWith("/")) return `${baseUrl}${url}`
+      if (url.startsWith('/')) return `${baseUrl}${url}`
       // Allows callback URLs on the same origin
       else if (new URL(url).origin === baseUrl) return url
       return baseUrl
     },
     async signIn({ user, account, profile, email, credentials }) {
-      console.log("SIGNIN CALLED");
+      console.log('SIGNIN CALLED')
       const isAllowedToSignIn = true
       if (isAllowedToSignIn) {
         return true
@@ -102,11 +99,11 @@ export const authOptions = {
         // Or you can return a URL to redirect to:
         // return '/unauthorized'
       }
-    }
+    },
   },
-  // pages: {
-  //   signIn: '/login',
-  // },
+  pages: {
+    signIn: '/login',
+  },
   debug: true,
 }
 
