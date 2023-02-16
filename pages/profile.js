@@ -186,7 +186,12 @@ export default function profile() {
                           // onChange={}
                         />
                       </div>
-                      <p className='copyright mx-auto'>Delete account</p>
+                      <p
+                        className='copyright mx-auto'
+                        onClick={handleDeleteAccount}
+                      >
+                        Delete account
+                      </p>
                     </div>
                   </form>
                 </div>
