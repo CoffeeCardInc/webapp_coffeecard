@@ -1,25 +1,47 @@
 import Shop from '../components/Shop'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { loadShops } from '../lib/load-shops'
+import { useSession, getSession } from 'next-auth/react'
 
 /* fetching the shops data and populating the shops and Tier components */
 
-export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:3000/api/coffeecard/shops')
-  const shops = await res.json()
-  return {
-    props: {
-      shops,
-    },
-  }
-}
-const shops = ({ shops }) => {
+// export async function getStaticProps() {
+//   const res = await fetch('http://localhost:3000/api/coffeecard/shops')
+//   const shops = await res.json()
+//   console.log('staticpropdata', shops)
+//   return {
+//     props: {
+//       shops,
+//     },
+//   }
+// }
+const shops = () => {
+  const [shops, setShops] = useState()
   const [search, setSearch] = useState('')
+
+  const { data: session, status } = useSession()
+
+  const fetchShops = async () => {
+    const res = await fetch('http://localhost:3000/api/coffeecard/shops')
+    const data = await res.json()
+    setShops(data)
+  }
+
+  useEffect(() => {
+    fetchShops()
+  }, [])
+  if (status === 'loading') {
+    return <p>Loading...</p>
+  }
+
+  if (status === 'unauthenticated') {
+    return <p>Access Denied</p>
+  }
+
   /* SEARCH through shop components*/
   const searchResult = shops?.filter((shop) => {
     return shop.shop_name.toLowerCase().includes(search.toLowerCase())
   })
-  console.log('test', shops)
   return (
     <>
       <style jsx>{`

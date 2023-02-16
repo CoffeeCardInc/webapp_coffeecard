@@ -64,14 +64,16 @@ export const authOptions = {
     (like access_token and user.id from above) via the jwt() callback, 
     you have to explicitly forward it here to make it available to the client. */
     // Code from: (Docs)[https://next-auth.js.org/configuration/callbacks#session-callback]
-    // async session ({ session, token, user }) {
-    //   console.log("SESSION CALLED");
+    // async session({ session, token, user }) {
+    //   console.log('SESSION CALLED')
     //   // Send properties to the client, like an access_token and user id from a provider.
-    //     // session.accessToken = token.accessToken
-    //     session.user.id = token.id
-    //     session.user.name = token.name // custom
-    //     session.user.email = token.email // custom
-    //     session.user.image = token.image // custom
+    //   // session.accessToken = token.accessToken
+    //   // session.user.id = token.id
+    //   // session.user.name = token.name // custom
+    //   // session.user.email = token.email // custom
+    //   // session.user.image = token.image // custom
+    //   // session.user.role = user.role
+    //   // session.user.membership = user.membership
     //   return Promise.resolve(session)
     // },
     // async jwt({ token, user, account, profile, isNewUser }) {

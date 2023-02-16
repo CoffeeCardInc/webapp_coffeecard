@@ -6,11 +6,24 @@ import ProfileHeader from './ProfileHeader'
 // import { useContext } from 'react'
 // import { useUser, useUpdateUser } from '../components/context'
 import { useSession, signIn, signOut } from 'next-auth/react'
+import { useState, useEffect } from 'react'
 // session ? login page : landing page
 // useSession Hook is the easiest way to check if someone is signed in.
 // has built in Context through <SessionProvider/> in pages/_app.js
+
 export default function Landing() {
   const session = useSession() // to determine which landing page to show
+  // const [memberships, setMemberships] = useState()
+
+  // const fetchMemberships = async () => {
+  //   const res = await fetch('http://localhost:3000/api/coffeecard/memberships')
+  //   const data = await res.json()
+  //   setMemberships(data)
+  // }
+
+  // useEffect(() => {
+  //   fetchMemberships()
+  // }, [])
 
   const subs = [
     {
@@ -34,7 +47,7 @@ export default function Landing() {
   ]
   // TODO: add logic if Landing component is loading
   // add logic to show different landing page if user is logged in
-  console.log('session', session)
+
   if (session.status === 'authenticated') {
     return (
       <>

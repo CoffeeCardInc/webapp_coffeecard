@@ -8,9 +8,9 @@ import {
 } from 'reactstrap'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 // check if someone is signed in
-import { useSession } from "next-auth/react" 
-import { unstable_getServerSession } from "next-auth/next"
-import { authOptions } from "pages/api/auth/[...nextauth]"
+import { useSession } from 'next-auth/react'
+import { unstable_getServerSession } from 'next-auth/next'
+import { authOptions } from 'pages/api/auth/[...nextauth]'
 
 export default function profile() {
   const { data: session, status } = useSession()
@@ -18,22 +18,22 @@ export default function profile() {
   const toggle = () => setModal(!modal)
   const [modalSecondary, setModalSecondary] = useState(false)
   const toggleSecondary = () => setModalSecondary(!modalSecondary)
+  const [name, setName] = useState('')
 
-  const updateProfileImage = (e) => {
+  const updateProfile = (e) => {
     e.preventDefault()
-    fetch(`/api/coffeecard/customer/3`, {
+    fetch(`/api/coffeecard/users/infoupdate`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(),
+      body: JSON.stringify({ name: name }),
     })
       .then((req) => req.json())
       .then((data) => console.log(data))
   }
-
   const handleDeleteAccount = async () => {
-    await fetch(`/api/coffeecard/customer/3`, {
+    await fetch(`/api/coffeecard/users/infoupdate`, {
       method: 'DELETE',
     })
   }
@@ -71,9 +71,8 @@ export default function profile() {
               <img
                 className='rounded-circle mb-2 mx-auto'
                 width='150px'
-                src={session.user.image}
+                src={session?.user?.image}
               />
-          
 
               <UncontrolledDropdown group color='light'>
                 <DropdownToggle tag='span' className='logo-div'>
@@ -92,7 +91,9 @@ export default function profile() {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              <span className='font-weight-bold mx-auto mb-3'>{session.user.name}</span>
+              <span className='font-weight-bold mx-auto mb-3'>
+                {session?.user?.name}
+              </span>
               <hr />
               <div className='col-12 d-flex justify-content-between p-0'>
                 <div className='d-flex flex-column col-6'>
@@ -111,10 +112,10 @@ export default function profile() {
 
               <hr />
               <div className='mb-3'>
-
-                <i class='fa-regular fa-envelope'></i>
-                <span className='text-black-50 ml-4'>{session.user.email}</span>
-
+                <i className='fa-regular fa-envelope'></i>
+                <span className='text-black-50 ml-4'>
+                  {session?.user?.email}
+                </span>
               </div>
               <div>
                 <i className='fa-solid fa-phone'></i>
@@ -135,7 +136,7 @@ export default function profile() {
             >
               <ModalBody>
                 <div className='col-md-6  col-lg-12'>
-                  <div>
+                  <form>
                     <ModalHeader toggle={toggle} className=' text-center'>
                       <div className='d-flex justify-content-between align-items-center mb-3'>
                         <h4 className='text-right m-0'>Profile settings</h4>
@@ -148,8 +149,8 @@ export default function profile() {
                           type='text'
                           className='form-control'
                           placeholder='name'
-                          // value=''
-                          // onChange={}
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
                         />
                       </div>
                     </div>
@@ -187,7 +188,7 @@ export default function profile() {
                       </div>
                       <p className='copyright mx-auto'>Delete account</p>
                     </div>
-                  </div>
+                  </form>
                 </div>
               </ModalBody>
               <ModalFooter>
@@ -202,7 +203,7 @@ export default function profile() {
                   Cancel
                 </Button>
                 <Button
-                  onClick={toggle}
+                  onClick={updateProfile}
                   className='col-sm-6 col-lg-6 '
                   style={{
                     backgroundColor: '#6a513b',
@@ -264,7 +265,7 @@ export async function getServerSideProps(ctx) {
     props: {
       session: {
         ...(await unstable_getServerSession(ctx.req, ctx.res, authOptions)),
-      }
-    }
+      },
+    },
   }
 }

@@ -1,12 +1,12 @@
-import { unstable_getServerSession } from "next-auth/next"
-import { authOptions } from "./api/auth/[...nextauth]"
-import { useSession } from "next-auth/react"
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from './api/auth/[...nextauth]'
+import { useSession } from 'next-auth/react'
 
 export default function Page() {
-  const { data:session } = useSession();
+  const { data: session } = useSession()
 
   //  if (typeof window === "undefined") return null
-  console.log("ServerSideExamplePage: Data:", session)
+  console.log('ServerSideExamplePage: Data:', session)
   if (session) {
     return (
       <>
@@ -22,8 +22,8 @@ export async function getServerSideProps(ctx) {
   return {
     props: {
       session: {
-        ...(await unstable_getServerSession(ctx.req, ctx.res, authOptions)),
-      }
-    }
+        ...(await getServerSession(ctx.req, ctx.res, authOptions)),
+      },
+    },
   }
 }

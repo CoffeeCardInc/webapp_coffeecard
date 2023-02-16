@@ -87,18 +87,18 @@ model pass {
   pass_additional_pricing   Int?
   pass_other_options        Int?
   pass_currency             String?      @db.VarChar
-  perk_item_1               Int?
-  perk_item_2               Int?
-  perk_item_3               Int?
-  perk_item_4               Int?
-  perk_item_5               Int?
-  perk_item_6               Int?
-  perk_item_7               Int?
-  perk_item_8               Int?
-  perk_item_9               Int?
-  perk_item_10              Int?
-  perk_item_11              Int?
-  perk_item_12              Int?
+  perk_item_1               String?
+  perk_item_2               String?
+  perk_item_3               String?
+  perk_item_4               String?
+  perk_item_5               String?
+  perk_item_6               String?
+  perk_item_7               String?
+  perk_item_8               String?
+  perk_item_9               String?
+  perk_item_10              String?
+  perk_item_11              String?
+  perk_item_12              String?
   custom_perk_item_1        Int?
   custom_perk_item_2        Int?
   custom_perk_item_3        Int?
