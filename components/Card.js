@@ -8,6 +8,17 @@ const Cards = ({ membership }) => {
   const imgPublic = require('../public/cup.png')
   const [modal, setModal] = useState(false)
   const toggle = () => setModal(!modal)
+  const [isActive, setIsActive] = useState(false)
+
+  const startTimer = async () => {
+    const res = await fetch(`/api/membership/1`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ activated: true }),
+    })
+  }
 
   switch (active === 1) {
     case true:

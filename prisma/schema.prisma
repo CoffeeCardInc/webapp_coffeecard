@@ -34,6 +34,8 @@ model membership {
   creation_on           DateTime  @default(now()) @db.Timestamptz(6)
   subscribed_on         DateTime  @db.Timestamp(6)
   active                Int       @default(0) @db.SmallInt
+  activated             Boolean   @default(false)
+  duration              Int
   total_redemptions     Int
   remaining_redemptions Int
   refill_frequency      Int?
