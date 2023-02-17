@@ -8,7 +8,7 @@ import {
 } from 'reactstrap'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 // check if someone is signed in
-import { useSession } from 'next-auth/react'
+import { useSession, signIn, signOut } from 'next-auth/react'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from 'pages/api/auth/[...nextauth]'
 
@@ -36,6 +36,10 @@ export default function profile() {
     await fetch(`/api/coffeecard/users/infoupdate`, {
       method: 'DELETE',
     })
+  }
+
+  const handleSignOut = async () => {
+    signOut({ redirect: false, callbackUrl: '/' })
   }
 
   if (status === 'loading') {
@@ -128,7 +132,7 @@ export default function profile() {
               <div>
                 <i className='fa-solid fa-phone'></i>
                 <span className='text-black-50 ml-4'>
-                  {session.user.mobile}
+                  {session?.user?.mobile}
                 </span>
               </div>
             </div>
@@ -266,6 +270,7 @@ export default function profile() {
         <button
           className='btn col-sm-3 col-lg-6 mx-auto'
           style={{ backgroundColor: '#40312e', color: 'white' }}
+          onClick={handleSignOut}
         >
           Log out
         </button>
@@ -275,12 +280,12 @@ export default function profile() {
   )
 }
 
-export async function getServerSideProps(ctx) {
-  return {
-    props: {
-      session: {
-        ...(await getServerSession(ctx.req, ctx.res, authOptions)),
-      },
-    },
-  }
-}
+// export async function getServerSideProps(ctx) {
+//   return {
+//     props: {
+//       session: {
+//         ...(await getServerSession(ctx.req, ctx.res, authOptions)),
+//       },
+//     },
+//   }
+// }

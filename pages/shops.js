@@ -5,16 +5,6 @@ import { useSession, getSession } from 'next-auth/react'
 
 /* fetching the shops data and populating the shops and Tier components */
 
-// export async function getStaticProps() {
-//   const res = await fetch('http://localhost:3000/api/coffeecard/shops')
-//   const shops = await res.json()
-//   console.log('staticpropdata', shops)
-//   return {
-//     props: {
-//       shops,
-//     },
-//   }
-// }
 const shops = () => {
   const [shops, setShops] = useState()
   const [search, setSearch] = useState('')

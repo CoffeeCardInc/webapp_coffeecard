@@ -22,7 +22,7 @@ export default function Navibar() {
   const [isOpen, setIsOpen] = useState(false)
   const toggle = () => setIsOpen(!isOpen)
   const loggedIn = useUser()
-  const toggleLogIn = useUpdateUser()
+  // const toggleLogIn = useUpdateUser()
 
   const handleSignOut = async () => {
     signOut({ redirect: false, callbackUrl: '/' })

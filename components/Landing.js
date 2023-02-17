@@ -25,27 +25,6 @@ export default function Landing() {
     fetchMemberships()
   }, [])
 
-  const subs = [
-    {
-      type: 'Tier 1',
-      store: 'Froth',
-      bgColor: ' #6a513b',
-      isSubscribed: true,
-    },
-    {
-      type: 'Tier 2',
-      store: 'Bean',
-      bgColor: '#40312e',
-      isSubscribed: true,
-    },
-    {
-      type: 'Tier 3',
-      store: 'Bean',
-      bgColor: '#5e5e5e',
-      isSubscribed: false,
-    },
-  ]
-
   console.log(memberships)
   // TODO: add logic if Landing component is loading
   // add logic to show different landing page if user is logged in
@@ -60,7 +39,7 @@ export default function Landing() {
           Your Subscriptions:
         </h5>
         <div className='col-lg-4 p-0 cards'>
-          {memberships ? (
+          {memberships.length > 0 ? (
             memberships?.map((membership, index) => {
               return <Cards key={index} membership={membership} />
             })
