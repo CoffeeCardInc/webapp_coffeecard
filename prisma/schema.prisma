@@ -184,6 +184,7 @@ model User {
   emailVerified DateTime?
   image         String?
   role          String?
+  mobile        String?
   customer      customer?
   membership    membership[]  
   accounts      Account[]
@@ -197,3 +198,5 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+

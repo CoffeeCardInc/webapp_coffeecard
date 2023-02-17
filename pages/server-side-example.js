@@ -2,8 +2,8 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from './api/auth/[...nextauth]'
 import { useSession } from 'next-auth/react'
 
-export default function Page() {
-  const { data: session } = useSession()
+export default function Page({ session }) {
+  // const { data: session } = useSession()
 
   //  if (typeof window === "undefined") return null
   console.log('ServerSideExamplePage: Data:', session)

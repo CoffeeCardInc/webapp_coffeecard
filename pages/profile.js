@@ -9,7 +9,7 @@ import {
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 // check if someone is signed in
 import { useSession } from 'next-auth/react'
-import { unstable_getServerSession } from 'next-auth/next'
+import { getServerSession } from 'next-auth/next'
 import { authOptions } from 'pages/api/auth/[...nextauth]'
 
 export default function profile() {
@@ -36,6 +36,14 @@ export default function profile() {
     await fetch(`/api/coffeecard/users/infoupdate`, {
       method: 'DELETE',
     })
+  }
+
+  if (status === 'loading') {
+    return <p>Loading...</p>
+  }
+
+  if (status === 'unauthenticated') {
+    return <p>Access Denied</p>
   }
 
   return (
@@ -70,7 +78,7 @@ export default function profile() {
             <div className='d-flex flex-column  p-3 py-5'>
               <img
                 className='rounded-circle mb-2 mx-auto'
-                width='150px'
+                style={{ width: '104px', height: '104px' }}
                 src={session?.user?.image}
               />
 
@@ -269,7 +277,7 @@ export async function getServerSideProps(ctx) {
   return {
     props: {
       session: {
-        ...(await unstable_getServerSession(ctx.req, ctx.res, authOptions)),
+        ...(await getServerSession(ctx.req, ctx.res, authOptions)),
       },
     },
   }

@@ -1,21 +1,22 @@
 import React from 'react'
 import { useSession } from 'next-auth/react'
 
-
 const ProfileHeader = () => {
-  const { data: session, status } = useSession({ //Object {status: "authenticated", user: {…}, expires: "2021-09-01T00:00:00.000Z"}
+  const { data: session, status } = useSession({
+    //Object {status: "authenticated", user: {…}, expires: "2021-09-01T00:00:00.000Z"}
     required: true,
     onUnauthenticated() {
       window.location.href = '/login'
-    }
-  }); //Object {status: "loading" 
+    },
+  }) //Object {status: "loading"
   console.log(session)
 
   if (status === 'loading') {
-    return "Loading or not authenticated..."
+    return 'Loading or not authenticated...'
   }
 
-  return ( // only renders if authenticated
+  return (
+    // only renders if authenticated
     <div>
       <style jsx>{`
         .bg-img {
@@ -43,11 +44,11 @@ const ProfileHeader = () => {
         }
       `}</style>
       <div className='row profile-card justify-content-center align-items-center pb-5'>
-        <div
+        <img
           className='avatar bg-white bg-img'
           src={session.user.image}
           style={{ width: '104px', height: '104px' }}
-        ></div>
+        />
         <div className='px-3'>
           <h5>{session.user.name}</h5>
           <h6>Brooklyn</h6>
@@ -58,7 +59,6 @@ const ProfileHeader = () => {
   )
 }
 
-
 export default ProfileHeader
 
 export async function getServerSideProps(ctx) {
@@ -66,7 +66,7 @@ export async function getServerSideProps(ctx) {
     props: {
       session: {
         ...(await unstable_getServerSession(ctx.req, ctx.res, authOptions)),
-      }
-    }
+      },
+    },
   }
 }
