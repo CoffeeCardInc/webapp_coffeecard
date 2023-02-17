@@ -11,10 +11,10 @@ export default async function handler(req, res) {
   }
   if (req.method == 'PUT') {
     // update a user info.
-    const { email, image, name } = req.body
+    const { email, image, name, mobile } = req.body
     const userInfo = await prisma.User.update({
       where: { email: session.user.email },
-      data: { email, image, name },
+      data: { email, image, name, mobile },
     })
     return res.json(userInfo)
   } else if (req.method == 'DELETE') {

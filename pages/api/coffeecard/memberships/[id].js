@@ -1,21 +1,23 @@
-import prisma from '../../../../lib/prisma'
+import { PrismaClient } from '@prisma/client'
 
-export default async function handle(req, res) {
+export default async function handler(req, res) {
+  const prisma = new PrismaClient()
+  const { id } = req.query
+  const { duration } = req.body
+
   if (req.method == 'PUT') {
-    // update a change membership.
-    const { id } = req.query
-    const post = await prisma.membership.update({
+    const updateTime = await prisma.timer.update({
       where: { id: Number(id) },
-    })
-    return res.json(post)
-  } else if (req.method == 'DELETE') {
-    // delete a membership.
-    const { id } = req.query
-    const post = await prisma.membership.delete({
-      where: {
-        id: Number(id),
+      data: {
+        duration: duration,
       },
     })
-    return res.json(post)
+
+    return res.json(updateTime)
+  } else if (req.method == 'GET') {
+    const currentTime = await prisma.timer.findUnique({
+      where: { id: Number(id) },
+    })
+    return res.json(currentTime)
   }
 }

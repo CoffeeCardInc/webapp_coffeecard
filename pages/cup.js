@@ -1,14 +1,36 @@
+/*After redeem confirmed the confirmation will redirect here so you can see the animation and how much time left till your redemption ends.*/
+
 import React from 'react'
 import ProfileHeader from '../components/ProfileHeader'
 import { useSelectedCoffee } from '../components/context'
 import CustomTip from '../components/CustomTip'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const cup = () => {
   const imageSrc = 'https://coffeecard.nyc/images/froth_logo.jpg'
   const selectedCoffee = useSelectedCoffee()
   const [selectedTip, setSelectedTip] = useState()
   const [collapse, setCollapse] = useState(false)
+
+  const [time, setTime] = useState(0)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get(
+        'http://localhost:3000/api/memberships/countdown'
+      )
+      setTime(result.data.time)
+    }
+
+    fetchData()
+
+    const interval = setInterval(fetchData, 1000)
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
 
   const handleCollapse = () => {
     setCollapse(!collapse)

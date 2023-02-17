@@ -13,17 +13,17 @@ import { useState, useEffect } from 'react'
 
 export default function Landing() {
   const session = useSession() // to determine which landing page to show
-  // const [memberships, setMemberships] = useState()
+  const [memberships, setMemberships] = useState()
 
-  // const fetchMemberships = async () => {
-  //   const res = await fetch('http://localhost:3000/api/coffeecard/memberships')
-  //   const data = await res.json()
-  //   setMemberships(data)
-  // }
+  const fetchMemberships = async () => {
+    const res = await fetch('http://localhost:3000/api/coffeecard/memberships')
+    const data = await res.json()
+    setMemberships(data)
+  }
 
-  // useEffect(() => {
-  //   fetchMemberships()
-  // }, [])
+  useEffect(() => {
+    fetchMemberships()
+  }, [])
 
   const subs = [
     {
@@ -45,6 +45,8 @@ export default function Landing() {
       isSubscribed: false,
     },
   ]
+
+  console.log(memberships)
   // TODO: add logic if Landing component is loading
   // add logic to show different landing page if user is logged in
 
@@ -58,9 +60,9 @@ export default function Landing() {
           Your Subscriptions:
         </h5>
         <div className='col-lg-4 p-0 cards'>
-          {subs[0] ? (
-            subs.map((sub, index) => {
-              return <Cards key={index} sub={sub} />
+          {memberships ? (
+            memberships?.map((membership, index) => {
+              return <Cards key={index} membership={membership} />
             })
           ) : (
             <>

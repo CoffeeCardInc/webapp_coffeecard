@@ -1,11 +1,10 @@
+generator client {
+  provider = "prisma-client-js"
+}
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-}
-
-generator client {
-  provider = "prisma-client-js"
 }
 
 model customer {
@@ -20,13 +19,13 @@ model customer {
   created_on        DateTime  @default(now()) @db.Timestamptz(6)
   last_modifier     DateTime? @db.Timestamptz(6)
   last_login        DateTime? @db.Timestamptz(6)
-  userId            String      @unique
-  User              User?     @relation(fields: [userId], references: [id])
+  userId            String    @unique
+  User              User      @relation(fields: [userId], references: [id])
 }
 
 model member {
-  member_id Int  @id @default(autoincrement())
-  userId   String
+  member_id Int    @id @default(autoincrement())
+  userId    String
   shop_id   Int?
 }
 
@@ -43,7 +42,7 @@ model membership {
   membership_id         Int       @id @default(autoincrement())
   pass_id               Int?
   pass                  pass?     @relation(fields: [pass_id], references: [pass_id])
-  Users                 User?     @relation(fields: [userId], references: [id])
+  Users                 User      @relation(fields: [userId], references: [id])
 }
 
 model menu {
@@ -61,16 +60,16 @@ model menu {
 }
 
 model modifier {
-  modifier_id     Int       @id @default(autoincrement())
-  shop_id         Int?
-  menu_id         Int?
-  name            String?   @db.VarChar
-  type            String?   @db.VarChar
-  class           String?   @db.VarChar
-  description     String?
-  ingredients     String?
-  created_on      DateTime  @default(now()) @db.Timestamptz(6)
-  last_modified   DateTime? @db.Timestamptz(6)
+  modifier_id   Int       @id @default(autoincrement())
+  shop_id       Int?
+  menu_id       Int?
+  name          String?   @db.VarChar
+  type          String?   @db.VarChar
+  class         String?   @db.VarChar
+  description   String?
+  ingredients   String?
+  created_on    DateTime  @default(now()) @db.Timestamptz(6)
+  last_modified DateTime? @db.Timestamptz(6)
 }
 
 model pass {
@@ -151,20 +150,19 @@ model shop {
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -178,17 +176,16 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String       @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?      @unique
   emailVerified DateTime?
   image         String?
   role          String?
-  mobile        String?
-  customer      customer?
-  membership    membership[]  
   accounts      Account[]
   sessions      Session[]
+  customer      customer?
+  membership    membership[]
 }
 
 model VerificationToken {
@@ -198,5 +195,3 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
-
-

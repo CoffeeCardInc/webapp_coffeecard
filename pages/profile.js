@@ -127,7 +127,9 @@ export default function profile() {
               </div>
               <div>
                 <i className='fa-solid fa-phone'></i>
-                <span className='text-black-50 ml-4'>123-456-7890</span>
+                <span className='text-black-50 ml-4'>
+                  {session.user.mobile}
+                </span>
               </div>
             </div>
           </div>
