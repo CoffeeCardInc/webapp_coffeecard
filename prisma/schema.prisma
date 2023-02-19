@@ -31,19 +31,19 @@ model member {
 
 model membership {
   userId                String
-  creation_on           DateTime  @default(now()) @db.Timestamptz(6)
-  subscribed_on         DateTime  @db.Timestamp(6)
-  active                Int       @default(0) @db.SmallInt
-  activated             Boolean   @default(false)
-  duration              Int
-  total_redemptions     Int
-  remaining_redemptions Int
+  creation_on           DateTime? @default(now()) @db.Timestamptz(6)
+  subscribed_on         DateTime? @db.Timestamp(6)
+  active                Int?      @default(0) @db.SmallInt
+  duration              Int?
+  total_redemptions     Int?
+  remaining_redemptions Int?
   refill_frequency      Int?
   last_refill           DateTime? @db.Timestamptz(6)
   last_modifiered       DateTime? @db.Timestamptz(6)
   membership_id         Int       @id @default(autoincrement())
-  pass_id               Int?
-  pass                  pass?     @relation(fields: [pass_id], references: [pass_id])
+  pass_id               Int
+  activated             Boolean?  @default(false)
+  pass                  pass      @relation(fields: [pass_id], references: [pass_id])
   Users                 User      @relation(fields: [userId], references: [id])
 }
 
@@ -184,6 +184,7 @@ model User {
   emailVerified DateTime?
   image         String?
   role          String?
+  mobile        String?
   accounts      Account[]
   sessions      Session[]
   customer      customer?

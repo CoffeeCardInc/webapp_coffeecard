@@ -13,7 +13,7 @@ import { useState, useEffect } from 'react'
 
 export default function Landing() {
   const session = useSession() // to determine which landing page to show
-  const [memberships, setMemberships] = useState()
+  const [memberships, setMemberships] = useState([])
 
   const fetchMemberships = async () => {
     const res = await fetch('http://localhost:3000/api/coffeecard/memberships')

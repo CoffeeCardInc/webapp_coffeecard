@@ -18,19 +18,23 @@ export default async function handler(req, res) {
     res.status(200).json(allUsers)
   } else if (req.method == 'POST') {
     const {
-      user_id,
+      userId,
       active,
       total_redemptions,
       remaining_redemptions,
       pass_id,
+      duration,
+      subscribed_on,
     } = req.body
     const result = await prisma.membership.create({
       data: {
-        user_id,
+        userId,
         active,
         total_redemptions,
         remaining_redemptions,
         pass_id,
+        duration,
+        subscribed_on,
       },
     })
     return res.json(result)

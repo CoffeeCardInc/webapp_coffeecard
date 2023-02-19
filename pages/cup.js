@@ -12,7 +12,7 @@ const cup = () => {
   const selectedCoffee = useSelectedCoffee()
   const [selectedTip, setSelectedTip] = useState()
   const [collapse, setCollapse] = useState(false)
-  const [duration, setDuration] = useState(0)
+  const [duration, setDuration] = useState()
   const [isRunning, setIsRunning] = useState()
   const durationRef = useRef(null)
   const intervalRef = useRef(null)
@@ -21,7 +21,7 @@ const cup = () => {
 
   useEffect(() => {
     const fetchTimer = async () => {
-      const res = await fetch('api/coffeecard/memberships/1')
+      const res = await fetch('api/coffeecard/memberships/9')
       const data = await res.json()
       setDuration(data.duration)
       setIsRunning(data.activated)
@@ -38,7 +38,7 @@ const cup = () => {
         if (newDuration >= 0) {
           setDuration(newDuration)
           durationRef.current = newDuration
-          fetch('api/coffeecard/memberships/1', {
+          fetch('api/coffeecard/memberships/9', {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',

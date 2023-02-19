@@ -13,7 +13,7 @@ import {
 // import AppContext from './context'
 import newLogo from '../public/Logo2.png'
 import Image from 'next/image'
-import { useUser, useUpdateUser } from '../components/context'
+// import { useUser, useUpdateUser } from '../components/context'
 import { signIn, signOut, useSession } from 'next-auth/react'
 
 export default function Navibar() {
@@ -21,7 +21,7 @@ export default function Navibar() {
   // const { user } = useContext(AppContext)
   const [isOpen, setIsOpen] = useState(false)
   const toggle = () => setIsOpen(!isOpen)
-  const loggedIn = useUser()
+  // const loggedIn = useUser()
   // const toggleLogIn = useUpdateUser()
 
   const handleSignOut = async () => {
@@ -42,7 +42,7 @@ export default function Navibar() {
             <Image
               src={newLogo}
               style={{ width: '25px', height: '30px' }}
-              alt='logo-image'
+              alt='CoffeeCardLogo'
             />
           </NavbarBrand>
           <NavbarToggler onClick={toggle} className={navStyle.border} />
@@ -67,8 +67,8 @@ export default function Navibar() {
               <NavItem>
                 <NavLink
                   onClick={() => {
-                    toggleLogIn
                     handleSignOut()
+                    // toggleLogIn
                     // setUser(null)
                   }}
                 >
@@ -85,7 +85,11 @@ export default function Navibar() {
         <Navbar expand='sm' light className={navStyle.zindex}>
           <NavbarBrand href='/'>
             {' '}
-            <Image src={newLogo} style={{ width: '25px', height: '30px' }} />
+            <Image
+              src={newLogo}
+              style={{ width: '25px', height: '30px' }}
+              alt='CoffeeCardLogo'
+            />
           </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar fixed>

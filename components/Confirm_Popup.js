@@ -12,7 +12,7 @@ const Confirm = () => {
   const setSelectedCoffee = useSetSelectedCoffee()
 
   const startTimer = async () => {
-    const res = await fetch(`api/coffeecard/memberships/1`, {
+    const res = await fetch(`api/coffeecard/memberships/9`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

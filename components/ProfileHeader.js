@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSession } from 'next-auth/react'
+import Image from 'next/image'
 
 const ProfileHeader = () => {
   const { data: session, status } = useSession({
@@ -9,7 +10,6 @@ const ProfileHeader = () => {
       window.location.href = '/login'
     },
   }) //Object {status: "loading"
-  console.log(session)
 
   if (status === 'loading') {
     return 'Loading or not authenticated...'

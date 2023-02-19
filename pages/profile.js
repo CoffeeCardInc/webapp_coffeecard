@@ -82,8 +82,9 @@ export default function profile() {
             <div className='d-flex flex-column  p-3 py-5'>
               <img
                 className='rounded-circle mb-2 mx-auto'
-                style={{ width: '104px', height: '104px' }}
                 src={session?.user?.image}
+                alt='profile-image'
+                style={{ width: '104px', height: '104px' }}
               />
 
               <UncontrolledDropdown group color='light'>
@@ -280,12 +281,12 @@ export default function profile() {
   )
 }
 
-// export async function getServerSideProps(ctx) {
-//   return {
-//     props: {
-//       session: {
-//         ...(await getServerSession(ctx.req, ctx.res, authOptions)),
-//       },
-//     },
-//   }
-// }
+export async function getServerSideProps(ctx) {
+  return {
+    props: {
+      session: {
+        ...(await getServerSession(ctx.req, ctx.res, authOptions)),
+      },
+    },
+  }
+}
