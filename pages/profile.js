@@ -39,7 +39,7 @@ export default function profile() {
   }
 
   const handleSignOut = async () => {
-    signOut({ redirect: false, callbackUrl: '/' })
+    signOut({ redirect: true, callbackUrl: '/' })
   }
 
   if (status === 'loading') {
