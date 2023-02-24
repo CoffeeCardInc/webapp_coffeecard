@@ -11,7 +11,15 @@ const Confirm = () => {
   const selectedCoffee = useSelectedCoffee()
   const setSelectedCoffee = useSetSelectedCoffee()
 
-  // const [selectedCoffee, setSelectedCoffee] = useState()
+  const startTimer = async () => {
+    const res = await fetch(`api/coffeecard/memberships/9`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ activated: true, duration: 600 }),
+    })
+  }
 
   return (
     <>
@@ -89,7 +97,10 @@ const Confirm = () => {
             </Link>
             <Link href='/cup' className='col-sm-6 p-1 m-0 col-lg-6 '>
               <Button
-                onClick={toggle}
+                onClick={() => {
+                  startTimer()
+                  toggle()
+                }}
                 className='col-sm-6 col-lg-11 '
                 style={{ backgroundColor: '#6a513b', color: 'white' }}
               >

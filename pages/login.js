@@ -1,5 +1,4 @@
 /* /pages/login.js */
-
 import React, { useState, useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
 import {
@@ -14,57 +13,55 @@ import {
 } from 'reactstrap'
 // import AppContext from '../components/context'
 import { useUser, useUpdateUser } from '../components/context'
-
-import { FacebookLoginButton } from 'react-social-login-buttons'
-import { GoogleLoginButton } from 'react-social-login-buttons'
-import { AppleLoginButton } from 'react-social-login-buttons'
+import {
+  FacebookLoginButton,
+  GoogleLoginButton,
+  AppleLoginButton,
+} from 'react-social-login-buttons'
 import registerStyle from '../styles/Register.module.css'
 import Header from '../components/Header'
-// Firebase
-import { initFirebase } from '../firebase/firebaseApp'
-// Google Provider - Pop Up Object
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-// Firebase React Hooks
-import { useAuthState } from 'react-firebase-hooks/auth';
+// next-auth modules
+// import { getToken } from "next-auth/jwt"
+import { signIn, getSession, getCsrfToken } from 'next-auth/react'
+// getSession() React Hook is the easiest way to check if someone is signed in
 
-function Login(props) {
-  const [data, updateData] = useState({ identifier: '', password: '' }) //identifier is the username or email
-  // const [loading, setLoading] = useState(false)
+export default function Login({ provider, csrfToken }) {
+  const [data, updateData] = useState({ email: '', password: '' }) //identifier is the username or email
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   const router = useRouter()
-  //const appContext = useContext(AppContext)
-  const loggedIn = useUser()
-  const toggleLogIn = useUpdateUser() // This toggles context login to true/false
-
-  useEffect(() => {
-    if (loggedIn) {
-      router.push('/') // redirect if you're already logged in
-    }
-  }, [])
+  const toggleLogIn = useUpdateUser()
 
   function onChange(event) {
+    // when input fields are updated
     updateData({ ...data, [event.target.name]: event.target.value })
   }
 
-  // initialize firebase for auth
-  initFirebase();
-  const provider = new GoogleAuthProvider();
-  const auth = getAuth();
-  const [user, loading] = useAuthState(auth); // user hook to check if user is logged in and therefore rerooute to landing page 
-
-  
-
   const signInWithGoogle = async () => {
-    const result = await signInWithPopup(auth, provider); // (firebase client, google)
-    console.log(result.user);
-    toggleLogIn();
-    // re-route to landing page once logged in.. test
-    router.push('/');
+    signIn('google', { callbackUrl: '/' }) // redirected to /server-side-example
+    toggleLogIn()
   }
 
+  const signInWithFacebook = async () => {
+    signIn('facebook', { callbackUrl: '/' }) // built in with NextAuth
+    toggleLogIn()
+  }
+  // TODO: add apple login
+  const signInWithApple = async () => {
+    signIn('apple', { callbackUrl: '/' }) // built in with NextAuth
+    toggleLogIn()
+  }
+  // TODO: add email credential login
+  const signInWithEmail = async () => {
+    signIn(
+      'email',
+      { email: data.email },
+      { callbackUrl: 'http://localhost:3000/profile' }
+    ) // built in with NextAuth
+    toggleLogIn()
+  }
 
-
-  console.log("loggedIn", loggedIn)
+  //console.log("loggedIn", loggedIn)
   return (
     <Container>
       <Row>
@@ -87,28 +84,31 @@ function Login(props) {
                   )
                 })}
               <FacebookLoginButton
-                onClick={() => alert('Hello')}
+                onClick={signInWithFacebook}
                 className='mb-3'
               ></FacebookLoginButton>
               <GoogleLoginButton
                 onClick={signInWithGoogle}
                 className='mb-3'
               ></GoogleLoginButton>
-              <AppleLoginButton
-                onClick={() => alert('Hello')}
-              ></AppleLoginButton>
+              <AppleLoginButton onClick={signInWithApple}></AppleLoginButton>
               <div className={registerStyle.or}>or</div>
-              <Form>
+              <Form method='POST' action='api/auth/signin/email'>
                 <fieldset disabled={loading}>
                   <FormGroup>
-                    <Label>Email:</Label>
+                    <Input
+                      name='csrfToken'
+                      type='hidden'
+                      defaultValue={csrfToken}
+                    />
+                    <Label>Email Address:</Label>
                     <Input
                       onChange={(event) => onChange(event)}
-                      name='identifier'
+                      name='email'
                       style={{ height: 50, fontSize: '1.2em' }}
                     />
                   </FormGroup>
-                  <FormGroup style={{ marginBottom: 30 }}>
+                  {/* <FormGroup style={{ marginBottom: 30 }}>
                     <Label>Password:</Label>
                     <Input
                       onChange={(event) => onChange(event)}
@@ -116,22 +116,22 @@ function Login(props) {
                       name='password'
                       style={{ height: 50, fontSize: '1.2em' }}
                     />
-                  </FormGroup>
+                  </FormGroup> */}
 
                   <FormGroup>
-                    <span className='row justify-content-center mb-3 '>
+                    {/* <span className='row justify-content-center mb-3 '>
                       <a href=''>
                         <small style={{ color: '#40312e' }}>
                           Forgot Password?
                         </small>
                       </a>
-                    </span>
+                    </span> */}
                     <Button
                       style={{ backgroundColor: '#40312e' }}
                       className='col-sm-12'
-                      onClick={toggleLogIn}
+                      onClick={signInWithEmail}
                     >
-                      {loading ? 'Loading... ' : 'Submit'}
+                      {loading ? 'Loading... ' : 'Sign In With Email'}
                     </Button>
                   </FormGroup>
                 </fieldset>
@@ -174,5 +174,23 @@ function Login(props) {
     </Container>
   )
 }
-
-export default Login
+// getInitialProps() enables server-side rendering in a page and allows you to do initial data population,
+// it means sending the page with the data already populated from the server.
+// https://www.youtube.com/watch?v=kB6YNYZ63fw [Create your own next-auth Login Pages]
+Login.getInitialProps = async (context) => {
+  const { req, res } = context
+  const session = await getSession({ req }) // see if there is a session
+  const csrfToken = await getCsrfToken(context) // for email sign in
+  if (session && res && session.sessionToken) {
+    // if there is a session, res, and accessToken, redirect to home page
+    res.writeHead(302, {
+      Location: '/',
+    })
+    res.end()
+    return
+  }
+  return {
+    session: undefined,
+    csrfToken: await getCsrfToken(context), // for email sign in
+  }
+}

@@ -1,46 +1,40 @@
 import React, { useState, useEffect } from 'react'
-// import Cart from '../components/cart'
-// import {
-//   ApolloProvider,
-//   ApolloClient,
-//   HttpLink,
-//   InMemoryCache,
-// } from '@apollo/client'
-import RestaurantList from '../components/restaurantList'
-import { Alert, InputGroup, InputGroupAddon, Input } from 'reactstrap'
-import Landing from '../components/Landing'
+import Landing from '../components/Landing' // determines which landing page to render
+import { unstable_getServerSession, useSession } from 'next-auth' // to be used for protected pages (i.e. profile.js or admin.js)
+import { authOptions } from 'next-auth'
 
-function Home() {
-  // const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337'
-  // console.log(`URL: ${API_URL}`)
-  const [query, setQuery] = useState('')
-  // const link = new HttpLink({ uri: `${API_URL}/graphql` })
-  // const cache = new InMemoryCache()
-  // const client = new ApolloClient({ link, cache })
-
-  const [data, setData] = useState([])
-
+export default function Home() {
+  // Basically contains the landing component which checks whether there is a session or not
+  // const { data: session, status } = useSession();
   return (
-    // <ApolloProvider client={client}>
     <div>
-      {/* <Alert color='primary'>
-          Hi! This project is currently under construction
-        </Alert>
-      </div>
-      <div className='search'>
-        <h2> Local Cafés</h2>
-        <InputGroup>
-          <InputGroupAddon addonType='append'> Search </InputGroupAddon>
-          <Input
-            onChange={(e) => setQuery(e.target.value.toLocaleLowerCase())}
-            value={query}
-          />
-        </InputGroup> */}
       <Landing />
       <br></br>
     </div>
-
-    // </ApolloProvider>
   )
 }
-export default Home
+// This function is called on every request
+// It checks if there is a session and if there is, it passes it as a prop to the page
+// This authentication is done on the server side
+// This is the only way to get the session on the server side
+// happens in the server before the page is rendered
+// export async function getServerSideProps(ctx) {
+//   const session = await unstable_getServerSession(ctx.req, ctx.res, authOptions)
+//   //console.log("Session: ", session);
+//   if (!session) {
+//     return {
+//       redirect: {
+//         destination: '/',
+//         permanent: false,
+//       },
+//     }
+//   }
+//   return {
+//     props: {
+//       session,
+//     },
+//     redirect: {
+//       destination: '/profile',
+//     }
+//   }
+// }

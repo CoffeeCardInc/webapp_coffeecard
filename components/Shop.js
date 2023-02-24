@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Tier from './Tier'
 
 const Shop = ({ shop }) => {
-  const { type, shop_name, storeImage, pass, shop_address } = shop
+  const { shop_name, pass, shop_address, shop_owner_name } = shop
   return (
     <section className='p-2 p-md-5 text-center text-lg-start shadow-1-strong rounded'>
       <div className='row d-flex justify-content-center'>
@@ -15,9 +15,9 @@ const Shop = ({ shop }) => {
               <div className='row'>
                 <div className='col-lg-4 d-flex justify-content-center align-items-center mb-1 mb-lg-0'>
                   <img
-                    src={storeImage}
+                    src={shop_owner_name}
                     className='img-fluid shadow-1'
-                    alt='coffeeshop avatar'
+                    alt='coffeeshop'
                     width='150'
                     height='150'
                   />

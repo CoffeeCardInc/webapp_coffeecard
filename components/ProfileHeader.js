@@ -1,11 +1,26 @@
 import React from 'react'
+import { useSession } from 'next-auth/react'
+import Image from 'next/image'
 
 const ProfileHeader = () => {
+  const { data: session, status } = useSession({
+    //Object {status: "authenticated", user: {…}, expires: "2021-09-01T00:00:00.000Z"}
+    required: true,
+    onUnauthenticated() {
+      window.location.href = '/login'
+    },
+  }) //Object {status: "loading"
+
+  if (status === 'loading') {
+    return 'Loading or not authenticated...'
+  }
+
   return (
+    // only renders if authenticated
     <div>
       <style jsx>{`
         .bg-img {
-          background-image: url('https://media.istockphoto.com/id/1214428300/vector/default-profile-picture-avatar-photo-placeholder-vector-illustration.jpg?s=612x612&w=0&k=20&c=vftMdLhldDx9houN4V-g3C9k0xl6YeBcoB_Rk6Trce0=');
+          background-image: url(session.user.image);
         }
 
         .copyright {
@@ -29,12 +44,13 @@ const ProfileHeader = () => {
         }
       `}</style>
       <div className='row profile-card justify-content-center align-items-center pb-5'>
-        <div
+        <img
           className='avatar bg-white bg-img'
+          src={session.user.image}
           style={{ width: '104px', height: '104px' }}
-        ></div>
+        />
         <div className='px-3'>
-          <h5>Steve S.</h5>
+          <h5>{session.user.name}</h5>
           <h6>Brooklyn</h6>
           <p className='copyright'>0 points</p>
         </div>
@@ -44,3 +60,13 @@ const ProfileHeader = () => {
 }
 
 export default ProfileHeader
+
+export async function getServerSideProps(ctx) {
+  return {
+    props: {
+      session: {
+        ...(await unstable_getServerSession(ctx.req, ctx.res, authOptions)),
+      },
+    },
+  }
+}

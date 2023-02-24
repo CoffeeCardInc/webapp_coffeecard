@@ -7,30 +7,47 @@ import {
   DropdownItem,
 } from 'reactstrap'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+// check if someone is signed in
+import { useSession, signIn, signOut } from 'next-auth/react'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from 'pages/api/auth/[...nextauth]'
 
-const profile = () => {
+export default function profile() {
+  const { data: session, status } = useSession()
   const [modal, setModal] = useState(false)
   const toggle = () => setModal(!modal)
   const [modalSecondary, setModalSecondary] = useState(false)
   const toggleSecondary = () => setModalSecondary(!modalSecondary)
+  const [name, setName] = useState('')
 
-  const updateProfileImage = (e) => {
+  const updateProfile = (e) => {
     e.preventDefault()
-    fetch(`/api/coffeecard/customer/3`, {
+    fetch(`/api/coffeecard/users/infoupdate`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(),
+      body: JSON.stringify({ name: name }),
     })
       .then((req) => req.json())
       .then((data) => console.log(data))
   }
-
   const handleDeleteAccount = async () => {
-    await fetch(`/api/coffeecard/customer/3`, {
+    await fetch(`/api/coffeecard/users/infoupdate`, {
       method: 'DELETE',
     })
+  }
+
+  const handleSignOut = async () => {
+    signOut({ redirect: true, callbackUrl: '/' })
+  }
+
+  if (status === 'loading') {
+    return <p>Loading...</p>
+  }
+
+  if (status === 'unauthenticated') {
+    return <p>Access Denied</p>
   }
 
   return (
@@ -65,8 +82,9 @@ const profile = () => {
             <div className='d-flex flex-column  p-3 py-5'>
               <img
                 className='rounded-circle mb-2 mx-auto'
-                width='150px'
-                src='https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1214428300?k=20&m=1214428300&s=612x612&w=0&h=MOvSM2M1l_beQ4UzfSU2pfv4sRjm0zkpeBtIV-P71JE='
+                src={session?.user?.image}
+                alt='profile-image'
+                style={{ width: '104px', height: '104px' }}
               />
 
               <UncontrolledDropdown group color='light'>
@@ -86,7 +104,9 @@ const profile = () => {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              <span className='font-weight-bold mx-auto mb-3'>Edogaru</span>
+              <span className='font-weight-bold mx-auto mb-3'>
+                {session?.user?.name}
+              </span>
               <hr />
               <div className='col-12 d-flex justify-content-between p-0'>
                 <div className='d-flex flex-column col-6'>
@@ -106,11 +126,15 @@ const profile = () => {
               <hr />
               <div className='mb-3'>
                 <i className='fa-regular fa-envelope'></i>
-                <span className='text-black-50 ml-4'>edogaru@mail.com.my</span>
+                <span className='text-black-50 ml-4'>
+                  {session?.user?.email}
+                </span>
               </div>
               <div>
                 <i className='fa-solid fa-phone'></i>
-                <span className='text-black-50 ml-4'>123-456-7890</span>
+                <span className='text-black-50 ml-4'>
+                  {session?.user?.mobile}
+                </span>
               </div>
             </div>
           </div>
@@ -127,7 +151,7 @@ const profile = () => {
             >
               <ModalBody>
                 <div className='col-md-6  col-lg-12'>
-                  <div>
+                  <form>
                     <ModalHeader toggle={toggle} className=' text-center'>
                       <div className='d-flex justify-content-between align-items-center mb-3'>
                         <h4 className='text-right m-0'>Profile settings</h4>
@@ -140,8 +164,8 @@ const profile = () => {
                           type='text'
                           className='form-control'
                           placeholder='name'
-                          // value=''
-                          // onChange={}
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
                         />
                       </div>
                     </div>
@@ -177,9 +201,14 @@ const profile = () => {
                           // onChange={}
                         />
                       </div>
-                      <p className='copyright mx-auto'>Delete account</p>
+                      <p
+                        className='copyright mx-auto'
+                        onClick={handleDeleteAccount}
+                      >
+                        Delete account
+                      </p>
                     </div>
-                  </div>
+                  </form>
                 </div>
               </ModalBody>
               <ModalFooter>
@@ -194,7 +223,7 @@ const profile = () => {
                   Cancel
                 </Button>
                 <Button
-                  onClick={toggle}
+                  onClick={updateProfile}
                   className='col-sm-6 col-lg-6 '
                   style={{
                     backgroundColor: '#6a513b',
@@ -242,6 +271,7 @@ const profile = () => {
         <button
           className='btn col-sm-3 col-lg-6 mx-auto'
           style={{ backgroundColor: '#40312e', color: 'white' }}
+          onClick={handleSignOut}
         >
           Log out
         </button>
@@ -251,4 +281,12 @@ const profile = () => {
   )
 }
 
-export default profile
+export async function getServerSideProps(ctx) {
+  return {
+    props: {
+      session: {
+        ...(await getServerSession(ctx.req, ctx.res, authOptions)),
+      },
+    },
+  }
+}

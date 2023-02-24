@@ -10,20 +10,25 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap'
-import AppContext from './context'
+// import AppContext from './context'
 import newLogo from '../public/Logo2.png'
 import Image from 'next/image'
-import { useUser, useUpdateUser } from '../components/context'
+// import { useUser, useUpdateUser } from '../components/context'
+import { signIn, signOut, useSession } from 'next-auth/react'
 
-const Navibar = () => {
+export default function Navibar() {
+  const { data: session, status } = useSession()
   // const { user } = useContext(AppContext)
   const [isOpen, setIsOpen] = useState(false)
   const toggle = () => setIsOpen(!isOpen)
-  const loggedIn = useUser()
-  const toggleLogIn = useUpdateUser()
+  // const loggedIn = useUser()
+  // const toggleLogIn = useUpdateUser()
 
-  switch (true) {
-    case true:
+  const handleSignOut = async () => {
+    signOut({ redirect: false, callbackUrl: '/' })
+  }
+  switch (status) {
+    case 'authenticated':
       return (
         <Navbar expand='sm' light className={navStyle.zindex}>
           <style jsx>
@@ -37,7 +42,7 @@ const Navibar = () => {
             <Image
               src={newLogo}
               style={{ width: '25px', height: '30px' }}
-              alt='logo-image'
+              alt='CoffeeCardLogo'
             />
           </NavbarBrand>
           <NavbarToggler onClick={toggle} className={navStyle.border} />
@@ -61,10 +66,9 @@ const Navibar = () => {
 
               <NavItem>
                 <NavLink
-                  href='/'
                   onClick={() => {
-                    toggleLogIn
-                    // logout()
+                    handleSignOut()
+                    // toggleLogIn
                     // setUser(null)
                   }}
                 >
@@ -81,7 +85,11 @@ const Navibar = () => {
         <Navbar expand='sm' light className={navStyle.zindex}>
           <NavbarBrand href='/'>
             {' '}
-            <Image src={newLogo} style={{ width: '25px', height: '30px' }} />
+            <Image
+              src={newLogo}
+              style={{ width: '25px', height: '30px' }}
+              alt='CoffeeCardLogo'
+            />
           </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar fixed>
@@ -90,7 +98,7 @@ const Navibar = () => {
                 <NavLink href='/'>Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href='/register' className='inactive'>
+                <NavLink href='/register' className='inactive' disabled>
                   Sign up
                 </NavLink>
               </NavItem>
@@ -104,4 +112,12 @@ const Navibar = () => {
   }
 }
 
-export default Navibar
+export async function getServerSideProps(ctx) {
+  return {
+    props: {
+      session: {
+        ...(await unstable_getServerSession(ctx.req, ctx.res, authOptions)),
+      },
+    },
+  }
+}

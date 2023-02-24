@@ -1,14 +1,60 @@
+/*After redeem confirmed the confirmation will redirect here so you can see the animation and how much time left till your redemption ends.*/
+
 import React from 'react'
 import ProfileHeader from '../components/ProfileHeader'
 import { useSelectedCoffee } from '../components/context'
 import CustomTip from '../components/CustomTip'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import axios from 'axios'
 
 const cup = () => {
   const imageSrc = 'https://coffeecard.nyc/images/froth_logo.jpg'
   const selectedCoffee = useSelectedCoffee()
   const [selectedTip, setSelectedTip] = useState()
   const [collapse, setCollapse] = useState(false)
+  const [duration, setDuration] = useState()
+  const [isRunning, setIsRunning] = useState()
+  const durationRef = useRef(null)
+  const intervalRef = useRef(null)
+  let minutes = Math.floor(duration / 60)
+  let seconds = duration % 60
+
+  useEffect(() => {
+    const fetchTimer = async () => {
+      const res = await fetch('api/coffeecard/memberships/9')
+      const data = await res.json()
+      setDuration(data.duration)
+      setIsRunning(data.activated)
+      durationRef.current = data.duration
+    }
+
+    fetchTimer()
+  }, [])
+
+  useEffect(() => {
+    if (isRunning) {
+      const interval = setInterval(() => {
+        const newDuration = durationRef.current - 1
+        if (newDuration >= 0) {
+          setDuration(newDuration)
+          durationRef.current = newDuration
+          fetch('api/coffeecard/memberships/9', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ duration: newDuration }),
+          })
+        } else {
+          handleStop()
+        }
+      }, 1000)
+
+      intervalRef.current = interval
+    }
+
+    return () => clearInterval(intervalRef.current)
+  }, [isRunning])
 
   const handleCollapse = () => {
     setCollapse(!collapse)
@@ -76,7 +122,7 @@ const cup = () => {
                     1 {selectedCoffee} Activated
                   </h4>
                   <div className='row justify-content-between m-0 px-2'>
-                    {/* <p className='m-0 py-3 date'> MM/DD/YY - MM/DD/YY</p> */}
+                    <p className='m-0 py-3 date'>{`${minutes} minutes and ${seconds} seconds`}</p>
                   </div>
                 </div>
               </div>
