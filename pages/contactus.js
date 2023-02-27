@@ -1,3 +1,8 @@
+/* Contact page
+- this page should be vieable eve without logging in
+- functionality is not setup yet
+*/
+
 import { useRef } from 'react'
 import emailjs from '@emailjs/browser'
 

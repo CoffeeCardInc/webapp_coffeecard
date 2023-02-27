@@ -1,13 +1,15 @@
-import { useSession, getSession } from "next-auth/react"
+// this is a sample format for a protected page.
+
+import { useSession, getSession } from 'next-auth/react'
 
 export default function Page() {
   const { data: session, status } = useSession()
 
-  if (status === "loading") {
+  if (status === 'loading') {
     return <p>Loading...</p>
   }
 
-  if (status === "unauthenticated") {
+  if (status === 'unauthenticated') {
     return <p>Access Denied</p>
   }
 

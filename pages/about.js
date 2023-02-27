@@ -1,3 +1,7 @@
+/* About page
+- this page should be viewable even without logging in
+*/
+
 import { useSession, getSession } from 'next-auth/react'
 
 export default function About() {

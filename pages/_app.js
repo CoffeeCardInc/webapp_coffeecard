@@ -1,3 +1,5 @@
+/* Can we use context and Sessionprovider at the same time? to pass props between pages and components*/
+
 import '../styles/globals.css'
 import { SessionProvider } from 'next-auth/react'
 

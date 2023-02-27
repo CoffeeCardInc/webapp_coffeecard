@@ -1,3 +1,12 @@
+/* HOME page
+- this page will be rendered with Landing Component. The component is set to show based on session value (loged in or not)
+- there seems to be a page rendering glitch when you load other pages you can see for a moment the other components.
+- the landing component 
+- The home page also show the card components. The card components are the active / inactive memberships that is being fetched from memberships api (see api/coffeecard/memberships)
+- the cards ui still missing some of the information. 
+- the cards after redeeming clicked are currently not showing the accurate redeemable items that belong to the pass (pass API shows what kind of subscription options the shops have.)
+*/
+
 import React, { useState, useEffect } from 'react'
 import Landing from '../components/Landing' // determines which landing page to render
 import { unstable_getServerSession, useSession } from 'next-auth' // to be used for protected pages (i.e. profile.js or admin.js)

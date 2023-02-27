@@ -1,4 +1,6 @@
-/* /context/AppContext.js */
+/* /context/AppContext.js 
+currently not being used
+*/
 
 import React, { useContext } from 'react'
 import { useState, useEffect } from 'react'

@@ -1,4 +1,7 @@
-/* /pages/login.js */
+/* /pages/login.js
+- login with email, apple, and facebook missing (facebook might be removed completely)
+- after login and most pageload the rendering is slow and you can see other components popping up for a second
+*/
 import React, { useState, useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
 import {

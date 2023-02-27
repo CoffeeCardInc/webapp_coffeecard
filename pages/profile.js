@@ -1,5 +1,16 @@
+/* Profile page. 
+- The accoutn information changes do not reflect on the page immediatelly after changing them, only when page refreshed or after token refresh through next-auth.
+- profile image has limited requests due to google api request limit
+- Loyalty points (will need to be changed or removed as we not going to have at the beginning)
+- The backed api still not accepting all account details
+- profile image upload setup is missing
+- manage subscription will need to redirect to subscription.
+- dowload iOS link doe not work will need to disabled it for the meantime
+- the protected page functionality with the help of sesssion need fine tuning
+*/
+
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   UncontrolledDropdown,
   DropdownToggle,
@@ -49,7 +60,7 @@ export default function profile() {
   if (status === 'unauthenticated') {
     return <p>Access Denied</p>
   }
-
+  console.log(session.user.image)
   return (
     <>
       <style jsx>{`
@@ -82,7 +93,7 @@ export default function profile() {
             <div className='d-flex flex-column  p-3 py-5'>
               <img
                 className='rounded-circle mb-2 mx-auto'
-                src={session?.user?.image}
+                src={session.user?.image}
                 alt='profile-image'
                 style={{ width: '104px', height: '104px' }}
               />
@@ -105,7 +116,7 @@ export default function profile() {
                 </DropdownMenu>
               </UncontrolledDropdown>
               <span className='font-weight-bold mx-auto mb-3'>
-                {session?.user?.name}
+                {session.user?.name}
               </span>
               <hr />
               <div className='col-12 d-flex justify-content-between p-0'>
@@ -127,13 +138,13 @@ export default function profile() {
               <div className='mb-3'>
                 <i className='fa-regular fa-envelope'></i>
                 <span className='text-black-50 ml-4'>
-                  {session?.user?.email}
+                  {session.user?.email}
                 </span>
               </div>
               <div>
                 <i className='fa-solid fa-phone'></i>
                 <span className='text-black-50 ml-4'>
-                  {session?.user?.mobile}
+                  {session.user?.mobile}
                 </span>
               </div>
             </div>

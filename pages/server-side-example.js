@@ -1,3 +1,5 @@
+// this is a sample format for a protected page.
+
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from './api/auth/[...nextauth]'
 import { useSession } from 'next-auth/react'

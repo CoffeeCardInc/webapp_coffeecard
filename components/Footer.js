@@ -1,3 +1,8 @@
+/* FOOTER
+- download iOS is link doesnt work yet 
+- terms of service link doesnt work yet 
+*/
+
 import { FaLinkedin } from 'react-icons/fa'
 import { FaTiktok } from 'react-icons/fa'
 import { FaInstagram } from 'react-icons/fa'

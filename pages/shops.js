@@ -1,3 +1,9 @@
+/* The shops page
+- Subscribe functionality will need to be connected with WHOP API. 
+- After clicking confirm button the popup should collapse
+- the protected page functionality with the help of sesssion need fine tuning
+*/
+
 import Shop from '../components/Shop'
 import { useState, useEffect } from 'react'
 import { loadShops } from '../lib/load-shops'

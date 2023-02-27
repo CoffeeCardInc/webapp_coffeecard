@@ -1,4 +1,8 @@
-/* /pages/register.js */
+/* /pages/register.js 
+The account sign up page is currently disabled ones the authentication is complete will be fixed.
+
+
+*/
 
 import React, { useState, useContext } from 'react'
 import registerStyle from '../styles/Register.module.css'
