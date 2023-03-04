@@ -46,11 +46,11 @@ const ProfileHeader = () => {
       <div className='row profile-card justify-content-center align-items-center pb-5'>
         <img
           className='avatar bg-white bg-img'
-          src={session.user.image}
+          src={session.user?.image}
           style={{ width: '104px', height: '104px' }}
         />
         <div className='px-3'>
-          <h5>{session.user.name}</h5>
+          <h5>{session.user?.name}</h5>
           <h6>Brooklyn</h6>
           <p className='copyright'>0 points</p>
         </div>

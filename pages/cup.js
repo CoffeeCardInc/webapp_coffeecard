@@ -1,4 +1,11 @@
-/*After redeem confirmed the confirmation will redirect here so you can see the animation and how much time left till your redemption ends.*/
+/*After redeem confirmed (on home page cards component) the confirmation will redirect here so you can see the animation and how much time left till your redemption ends.
+- currently the timer is persistent however if you go to an other page it will stop counting until you come bac to *cup page*. 
+- the timer logic should run even though you are not on this page. 
+- the selected coffee option is currently not persistent.
+- tips will need to be connecting with whop
+
+
+*/
 
 import React from 'react'
 import ProfileHeader from '../components/ProfileHeader'

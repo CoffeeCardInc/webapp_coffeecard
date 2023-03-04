@@ -41,7 +41,7 @@ const Cards = ({ membership }) => {
                     <h6 className='pr-1 my-1'> {total_redemptions}</h6>
                   </div>
                   <div className='card-block' style={{ height: '200px' }}>
-                    <Confirm />
+                    <Confirm membership={membership} />
                     <div className='row justify-content-between m-0 px-2'>
                       <p className='m-0 py-3 date'> {creation_on}</p>
                     </div>

@@ -1,18 +1,20 @@
 // Popup if you want to redeem a cup
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import Link from 'next/link'
 import confirmStyles from '../styles/Confirm.module.css'
 import { useSelectedCoffee, useSetSelectedCoffee } from './context'
 
-const Confirm = () => {
+const Confirm = ({ membership }) => {
   const [modal, setModal] = useState(false)
   const toggle = () => setModal(!modal)
   const selectedCoffee = useSelectedCoffee()
   const setSelectedCoffee = useSetSelectedCoffee()
+  const { membership_id, pass_id } = membership
+  const [coffeeOptions, setCoffeeOptions] = useState([])
 
   const startTimer = async () => {
-    const res = await fetch(`api/coffeecard/memberships/9`, {
+    await fetch(`api/coffeecard/memberships/${membership_id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -20,6 +22,18 @@ const Confirm = () => {
       body: JSON.stringify({ activated: true, duration: 600 }),
     })
   }
+
+  const fetchPassPerkItems = async () => {
+    const res = await fetch(`api/coffeecard/pass/${pass_id}`)
+    const req = await res.json()
+    setCoffeeOptions(req)
+  }
+
+  useEffect(() => {
+    fetchPassPerkItems()
+  }, [])
+
+  console.log('pass info', coffeeOptions)
 
   return (
     <>
