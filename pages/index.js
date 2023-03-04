@@ -5,6 +5,7 @@
 - The home page also show the card components. The card components are the active / inactive memberships that is being fetched from memberships api (see api/coffeecard/memberships)
 - the cards ui still missing some of the information. 
 - the cards after redeeming clicked are currently not showing the accurate redeemable items that belong to the pass (pass API shows what kind of subscription options the shops have.)
+- the cards component will need to pass props to (cups page) - propbably with react/context.....
 */
 
 import React, { useState, useEffect } from 'react'
@@ -13,7 +14,7 @@ import { unstable_getServerSession, useSession } from 'next-auth' // to be used 
 import { authOptions } from 'next-auth'
 
 export default function Home() {
-  // Basically contains the landing component which checks whether there is a session or not
+  // Basically contains the landing component which checks whether there is a session or no
   // const { data: session, status } = useSession();
   return (
     <div>
