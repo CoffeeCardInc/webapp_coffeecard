@@ -3,15 +3,22 @@ import React, { useState, useEffect } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import Link from 'next/link'
 import confirmStyles from '../styles/Confirm.module.css'
-import { useSelectedCoffee, useSetSelectedCoffee } from './context'
+import {
+  useSelectedCoffee,
+  useSetSelectedCoffee,
+  useSetSelectedMembership,
+} from './context'
 
 const Confirm = ({ membership }) => {
   const [modal, setModal] = useState(false)
   const toggle = () => setModal(!modal)
   const selectedCoffee = useSelectedCoffee()
   const setSelectedCoffee = useSetSelectedCoffee()
-  const { membership_id, pass_id } = membership
+  const setSelectedMembership = useSetSelectedMembership()
+  const { membership_id, pass_id, remaining_redemptions } = membership
+
   const [coffeeOptions, setCoffeeOptions] = useState([])
+  const { perk_item_1, perk_item_2, perk_item_3, perk_item_4 } = coffeeOptions
 
   const startTimer = async () => {
     await fetch(`api/coffeecard/memberships/${membership_id}`, {
@@ -19,7 +26,11 @@ const Confirm = ({ membership }) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ activated: true, duration: 600 }),
+      body: JSON.stringify({
+        activated: true,
+        duration: 600,
+        remaining_redemptions: remaining_redemptions - 1,
+      }),
     })
   }
 
@@ -33,7 +44,7 @@ const Confirm = ({ membership }) => {
     fetchPassPerkItems()
   }, [])
 
-  console.log('pass info', coffeeOptions)
+  // console.log('pass info', coffeeOptions)
 
   return (
     <>
@@ -63,39 +74,52 @@ const Confirm = ({ membership }) => {
                   id='radio1'
                   name='radio'
                   type='radio'
-                  checked={selectedCoffee === 'Latte'}
-                  value='Latte'
+                  checked={selectedCoffee === perk_item_1}
+                  value={perk_item_1}
                   onChange={(e) => {
                     setSelectedCoffee(e.target.value)
                   }}
                 />
-                <label htmlFor='radio1'>Latte</label>
+                <label htmlFor='radio1'>{perk_item_1}</label>
               </div>
               <div className={confirmStyles.inputGroup}>
                 <input
                   id='radio2'
                   name='radio'
                   type='radio'
-                  checked={selectedCoffee === 'Cappuchino'}
-                  value='Cappuchino'
+                  checked={selectedCoffee === perk_item_2}
+                  value={perk_item_2}
                   onChange={(e) => {
                     setSelectedCoffee(e.target.value)
                   }}
                 />
-                <label htmlFor='radio2'>Cappuchino</label>
+                <label htmlFor='radio2'>{perk_item_2}</label>
               </div>
               <div className={confirmStyles.inputGroup}>
                 <input
                   id='radio3'
                   name='radio'
                   type='radio'
-                  checked={selectedCoffee === 'Espresso'}
-                  value='Espresso'
+                  checked={selectedCoffee === perk_item_3}
+                  value={perk_item_3}
                   onChange={(e) => {
                     setSelectedCoffee(e.target.value)
                   }}
                 />
-                <label htmlFor='radio3'>Espresso</label>
+                <label htmlFor='radio3'>{perk_item_3}</label>
+              </div>
+              <div className={confirmStyles.inputGroup}>
+                <input
+                  id='radio3'
+                  name='radio'
+                  type='radio'
+                  checked={selectedCoffee === perk_item_4}
+                  value={perk_item_4}
+                  onChange={(e) => {
+                    setSelectedCoffee(e.target.value)
+                  }}
+                />
+                <label htmlFor='radio3'>{perk_item_4}</label>
               </div>
             </form>
           </ModalBody>
@@ -113,6 +137,7 @@ const Confirm = ({ membership }) => {
               <Button
                 onClick={() => {
                   startTimer()
+                  setSelectedMembership(membership_id)
                   toggle()
                 }}
                 className='col-sm-6 col-lg-11 '

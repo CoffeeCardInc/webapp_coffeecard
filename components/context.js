@@ -1,5 +1,5 @@
 /* /context/AppContext.js 
-currently not being used
+currently not being used due to switch to next/auth (sessionprovider)
 */
 
 import React, { useContext } from 'react'
@@ -10,6 +10,8 @@ const UserContext = React.createContext()
 const UserContextUpdate = React.createContext()
 const SelectedCoffee = React.createContext()
 const SetSelectedCoffee = React.createContext()
+const SelectedMembership = React.createContext()
+const SetSelectedMembership = React.createContext()
 
 export function useUser() {
   return useContext(UserContext)
@@ -23,11 +25,18 @@ export function useSelectedCoffee() {
 export function useSetSelectedCoffee() {
   return useContext(SetSelectedCoffee)
 }
+export function useSelectedMembership() {
+  return useContext(SelectedMembership)
+}
+export function useSetSelectedMembership() {
+  return useContext(SetSelectedMembership)
+}
 
 export function UserProvider({ children }) {
   const [loggedIn, setLoggedIn] = useState(false)
   const [selectedCoffee, setSelectedCoffee] = useState()
   const [data, setData] = useState([])
+  const [membership, setMembership] = useState([])
 
   const toggleUser = () => {
     setLoggedIn(!loggedIn)
@@ -54,7 +63,11 @@ export function UserProvider({ children }) {
       <UserContextUpdate.Provider value={toggleUser}>
         <SelectedCoffee.Provider value={selectedCoffee}>
           <SetSelectedCoffee.Provider value={setSelectedCoffee}>
-            {children}
+            <SelectedMembership.Provider value={membership}>
+              <SetSelectedMembership.Provider value={setMembership}>
+                {children}
+              </SetSelectedMembership.Provider>
+            </SelectedMembership.Provider>
           </SetSelectedCoffee.Provider>
         </SelectedCoffee.Provider>
       </UserContextUpdate.Provider>

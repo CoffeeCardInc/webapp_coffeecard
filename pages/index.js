@@ -37,7 +37,7 @@ export default function Home() {
     fetchMemberships()
   }, [])
 
-  console.log(memberships)
+  // console.log(memberships)
   // TODO: add logic if Landing component is loading
   // add logic to show different landing page if user is logged in
 

@@ -12,7 +12,7 @@ import ProfileHeader from '../components/ProfileHeader'
 import { useSelectedCoffee } from '../components/context'
 import CustomTip from '../components/CustomTip'
 import { useState, useEffect, useRef } from 'react'
-import axios from 'axios'
+import { useSelectedMembership } from '../components/context'
 
 const cup = () => {
   const imageSrc = 'https://coffeecard.nyc/images/froth_logo.jpg'
@@ -23,12 +23,15 @@ const cup = () => {
   const [isRunning, setIsRunning] = useState()
   const durationRef = useRef(null)
   const intervalRef = useRef(null)
+  const selectedMembership = useSelectedMembership()
   let minutes = Math.floor(duration / 60)
   let seconds = duration % 60
 
   useEffect(() => {
     const fetchTimer = async () => {
-      const res = await fetch('api/coffeecard/memberships/9')
+      const res = await fetch(
+        `api/coffeecard/memberships/${selectedMembership}`
+      )
       const data = await res.json()
       setDuration(data.duration)
       setIsRunning(data.activated)
@@ -45,7 +48,7 @@ const cup = () => {
         if (newDuration >= 0) {
           setDuration(newDuration)
           durationRef.current = newDuration
-          fetch('api/coffeecard/memberships/9', {
+          fetch(`api/coffeecard/memberships/${selectedMembership}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -53,7 +56,7 @@ const cup = () => {
             body: JSON.stringify({ duration: newDuration }),
           })
         } else {
-          handleStop()
+          // handleStop()
         }
       }, 1000)
 
@@ -66,6 +69,7 @@ const cup = () => {
   const handleCollapse = () => {
     setCollapse(!collapse)
   }
+
   return (
     <>
       <section>

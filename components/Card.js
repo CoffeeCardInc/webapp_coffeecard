@@ -3,7 +3,13 @@ import Confirm from './Confirm_Popup'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
 const Cards = ({ membership }) => {
-  const { type, active, total_redemptions, creation_on } = membership
+  const {
+    type,
+    active,
+    total_redemptions,
+    creation_on,
+    remaining_redemptions,
+  } = membership
   const [modal, setModal] = useState(false)
   const toggle = () => setModal(!modal)
 
@@ -38,7 +44,7 @@ const Cards = ({ membership }) => {
                 >
                   <div className='card-header row justify-content-between p-0 m-0 '>
                     <h6 className='pl-1 my-1'> Pass</h6>
-                    <h6 className='pr-1 my-1'> {total_redemptions}</h6>
+                    <h6 className='pr-1 my-1'> {remaining_redemptions}</h6>
                   </div>
                   <div className='card-block' style={{ height: '200px' }}>
                     <Confirm membership={membership} />
