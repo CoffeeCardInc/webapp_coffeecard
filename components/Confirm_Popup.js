@@ -44,7 +44,7 @@ const Confirm = ({ membership }) => {
     fetchPassPerkItems()
   }, [])
 
-  // console.log('pass info', coffeeOptions)
+  // console.log('pass info', )
 
   return (
     <>
@@ -56,6 +56,7 @@ const Confirm = ({ membership }) => {
           onClick={toggle}
           className='btn col-10'
           style={{ backgroundColor: '#fff', color: '#40312e' }}
+          disabled={remaining_redemptions === 0 ? true : false}
         >
           Redeem
         </Button>
