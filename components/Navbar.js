@@ -1,5 +1,3 @@
-/* NAVBAR */
-
 import React, { useContext } from 'react'
 import { useState } from 'react'
 import navStyle from '../styles/Navibar.module.css'
@@ -15,6 +13,7 @@ import {
 // import AppContext from './context'
 import newLogo from '../public/Logo2.png'
 import Image from 'next/image'
+import Link from 'next/link'
 // import { useUser, useUpdateUser } from '../components/context'
 import { signIn, signOut, useSession } from 'next-auth/react'
 
@@ -40,36 +39,47 @@ export default function Navibar() {
               }
             `}
           </style>
-          <NavbarBrand href='/'>
+          <Link href='/'>
             <Image
               src={newLogo}
               style={{ width: '25px', height: '30px' }}
               alt='CoffeeCardLogo'
             />
-          </NavbarBrand>
+          </Link>
           <NavbarToggler onClick={toggle} className={navStyle.border} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className='container-fluid justify-content-end' navbar>
               <NavItem>
-                <NavLink href='/'>Home</NavLink>
+                <Link href='/' className='nav-link'>
+                  Home
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink href='/profile'>Account</NavLink>
+                <Link href='/profile' className='nav-link'>
+                  Account
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink href='/about'>About</NavLink>
+                <Link href='/about' className='nav-link'>
+                  About
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink href='/shops'>Shops</NavLink>
+                <Link href='/shops' className='nav-link'>
+                  Shops
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink href='/contactus'>Contact</NavLink>
+                <Link href='/contactus' className='nav-link'>
+                  Contact
+                </Link>
               </NavItem>
 
               <NavItem>
                 <NavLink
                   onClick={() => {
                     handleSignOut()
+                    toggle()
                     // toggleLogIn
                     // setUser(null)
                   }}
@@ -97,15 +107,19 @@ export default function Navibar() {
           <Collapse isOpen={isOpen} navbar>
             <Nav className='container-fluid justify-content-end' navbar>
               <NavItem>
-                <NavLink href='/'>Home</NavLink>
+                <Link href='/' className='nav-link'>
+                  Home
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink href='/register' className='inactive' disabled>
+                <Link href='/register' className='inactive nav-link' disabled>
                   Sign up
-                </NavLink>
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink href='/login'>Sign In</NavLink>
+                <Link href='/login' className='nav-link'>
+                  Sign In
+                </Link>
               </NavItem>
             </Nav>
           </Collapse>

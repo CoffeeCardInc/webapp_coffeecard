@@ -63,7 +63,8 @@ const Tier = ({ tier }) => {
             Confirm Subscription
           </ModalHeader>
           <ModalBody>
-            This Tier contains Coffee, Latte, Espresso, Cappuchino.
+            This Tier contains {perk_item_1}, {perk_item_2}, {perk_item_3},
+            {perk_item_4}.
           </ModalBody>
           <ModalFooter>
             <Button
