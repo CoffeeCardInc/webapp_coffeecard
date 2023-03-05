@@ -44,7 +44,18 @@ export function UserProvider({ children }) {
   const [loggedIn, setLoggedIn] = useState(false)
   const [selectedCoffee, setSelectedCoffee] = useState()
   const [data, setData] = useState([])
-  const [membership, setMembership] = useState([])
+  // const [membership, setMembership] = useState([])
+  const [memberships, setMemberships] = useState([])
+
+  const fetchMemberships = async () => {
+    const res = await fetch('http://localhost:3000/api/coffeecard/memberships')
+    const data = await res.json()
+    setMemberships(data)
+  }
+
+  useEffect(() => {
+    fetchMemberships()
+  }, [])
 
   const toggleUser = () => {
     setLoggedIn(!loggedIn)
@@ -71,8 +82,8 @@ export function UserProvider({ children }) {
       <UserContextUpdate.Provider value={toggleUser}>
         <SelectedCoffee.Provider value={selectedCoffee}>
           <SetSelectedCoffee.Provider value={setSelectedCoffee}>
-            <SelectedMembership.Provider value={membership}>
-              <SetSelectedMembership.Provider value={setMembership}>
+            <SelectedMembership.Provider value={memberships}>
+              <SetSelectedMembership.Provider value={setMemberships}>
                 <UserData.Provider value={data}>
                   <SetUserData.Provider value={setData}>
                     {children}

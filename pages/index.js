@@ -16,7 +16,10 @@ import Cards from '../components/Card'
 import ProfileHeader from '../components/ProfileHeader'
 // import AppContext from './context'
 // import { useContext } from 'react'
-// import { useUser, useUpdateUser } from '../components/context'
+import {
+  useSelectedMembership,
+  useSetSelectedMembership,
+} from '../components/context'
 // import { signIn, signOut } from 'next-auth/react'
 import { useState, useEffect } from 'react'
 // session ? login page : landing page
@@ -25,17 +28,19 @@ import { useState, useEffect } from 'react'
 
 export default function Home() {
   const session = useSession() // to determine which landing page to show
-  const [memberships, setMemberships] = useState([])
+  const memberships = useSelectedMembership()
 
-  const fetchMemberships = async () => {
-    const res = await fetch('http://localhost:3000/api/coffeecard/memberships')
-    const data = await res.json()
-    setMemberships(data)
-  }
+  // const [memberships, setMemberships] = useState([])
 
-  useEffect(() => {
-    fetchMemberships()
-  }, [])
+  // const fetchMemberships = async () => {
+  //   const res = await fetch('http://localhost:3000/api/coffeecard/memberships')
+  //   const data = await res.json()
+  //   setMemberships(data)
+  // }
+
+  // useEffect(() => {
+  //   fetchMemberships()
+  // }, [])
 
   // console.log(memberships)
   // TODO: add logic if Landing component is loading
