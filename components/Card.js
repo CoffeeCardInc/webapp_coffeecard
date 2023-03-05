@@ -12,16 +12,24 @@ const Cards = ({ membership }) => {
   } = membership
   const [modal, setModal] = useState(false)
   const toggle = () => setModal(!modal)
+  /* Date range syntax everytime the subscription created or renewed the date range willl show the day of subscription and the day of expiry*/
+  const dateObj = new Date(creation_on)
 
-  const date = new Date(creation_on)
+  const year = dateObj.getFullYear()
+  const month = String(dateObj.getMonth() + 1).padStart(2, '0')
+  const day = String(dateObj.getDate()).padStart(2, '0')
 
-  // Get the year, month, and day from the Date object
-  const year = date.getFullYear()
-  const month = String(date.getMonth() + 1).padStart(2, '0') // Month is zero-indexed, so add 1 and pad with leading zeros
-  const day = String(date.getDate()).padStart(2, '0') // Pad with leading zeros if needed
-
-  // Combine the year, month, and day into a string in the format "YYYY-MM-DD"
   const formattedDate = `${year}-${month}-${day}`
+
+  const nextWeek = new Date(year, dateObj.getMonth(), dateObj.getDate() + 7)
+
+  const nextWeekYear = nextWeek.getFullYear()
+  const nextWeekMonth = String(nextWeek.getMonth() + 1).padStart(2, '0')
+  const nextWeekDay = String(nextWeek.getDate()).padStart(2, '0')
+
+  const formattedNextWeek = `${nextWeekYear}-${nextWeekMonth}-${nextWeekDay}`
+
+  const dateRange = `${formattedDate} - ${formattedNextWeek}`
 
   switch (active === 1) {
     case true:
@@ -59,7 +67,7 @@ const Cards = ({ membership }) => {
                   <div className='card-block' style={{ height: '200px' }}>
                     <Confirm membership={membership} />
                     <div className='row justify-content-between m-0 px-2'>
-                      <p className='m-0 py-3 date'> {formattedDate}</p>
+                      <p className='m-0 py-3 date'> {dateRange}</p>
                     </div>
                   </div>
                 </div>
