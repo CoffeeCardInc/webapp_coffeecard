@@ -1,3 +1,5 @@
+/* NAVBAR */
+
 import React, { useContext } from 'react'
 import { useState } from 'react'
 import navStyle from '../styles/Navibar.module.css'

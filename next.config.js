@@ -1,3 +1,3 @@
 module.exports = {
-    /* config options here */
-  }
+  /* config options here */
+}

@@ -154,7 +154,7 @@ const cup = () => {
                       className='btn-check'
                       name='options-outlined'
                       id='success-outlined'
-                      autocomplete='off'
+                      autoComplete='off'
                       checked
                     />
                     <label className='btn success' htmlFor='success-outlined'>
@@ -165,7 +165,7 @@ const cup = () => {
                       className='btn-check'
                       name='options-outlined'
                       id='success-outlined'
-                      autocomplete='off'
+                      autoComplete='off'
                       checked
                     />
                     <label
@@ -179,7 +179,7 @@ const cup = () => {
                       className='btn-check'
                       name='options-outlined'
                       id='success-outlined'
-                      autocomplete='off'
+                      autoComplete='off'
                       checked
                     />
                     <label
@@ -193,7 +193,7 @@ const cup = () => {
                       className='btn-check'
                       name='options-outlined'
                       id='success-outlined'
-                      autocomplete='off'
+                      autoComplete='off'
                       checked
                     />
                     <label
