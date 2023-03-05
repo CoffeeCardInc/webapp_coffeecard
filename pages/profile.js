@@ -1,8 +1,6 @@
 /* Profile page. 
-- The accoutn information changes do not reflect on the page immediatelly after changing them, only when page refreshed or after token refresh through next-auth.
-- profile image has limited requests due to google api request limit
 - Loyalty points (will need to be changed or removed as we not going to have at the beginning)
-- The backed api still not accepting all account details
+- The backend api still not accepting all account details
 - profile image upload setup is missing
 - manage subscription will need to redirect to subscription.
 - dowload iOS link doe not work will need to disabled it for the meantime
@@ -30,24 +28,37 @@ export default function profile() {
   const [modalSecondary, setModalSecondary] = useState(false)
   const toggleSecondary = () => setModalSecondary(!modalSecondary)
   const [name, setName] = useState('')
+  const [userData, setUserData] = useState({})
 
-  const updateProfile = (e) => {
+  const fetchUserData = async () => {
+    const request = await fetch('/api/coffeecard/users')
+    const response = await request.json()
+
+    setUserData(response)
+  }
+
+  const updateProfile = async (e) => {
     e.preventDefault()
-    fetch(`/api/coffeecard/users/infoupdate`, {
+    const req = await fetch(`/api/coffeecard/users/infoupdate`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ name: name }),
     })
-      .then((req) => req.json())
-      .then((data) => console.log(data))
+    const res = await req.json()
+    setUserData(res)
   }
+
   const handleDeleteAccount = async () => {
     await fetch(`/api/coffeecard/users/infoupdate`, {
       method: 'DELETE',
     })
   }
+
+  useEffect(() => {
+    fetchUserData()
+  }, [name])
 
   const handleSignOut = async () => {
     signOut({ redirect: true, callbackUrl: '/' })
@@ -60,7 +71,7 @@ export default function profile() {
   if (status === 'unauthenticated') {
     return <p>Access Denied</p>
   }
-  console.log(session.user.image)
+
   return (
     <>
       <style jsx>{`
@@ -93,7 +104,7 @@ export default function profile() {
             <div className='d-flex flex-column  p-3 py-5'>
               <img
                 className='rounded-circle mb-2 mx-auto'
-                src={session.user?.image}
+                src={userData.image}
                 alt='profile-image'
                 style={{ width: '104px', height: '104px' }}
               />
@@ -116,7 +127,7 @@ export default function profile() {
                 </DropdownMenu>
               </UncontrolledDropdown>
               <span className='font-weight-bold mx-auto mb-3'>
-                {session.user?.name}
+                {userData.name}
               </span>
               <hr />
               <div className='col-12 d-flex justify-content-between p-0'>

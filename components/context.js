@@ -12,6 +12,8 @@ const SelectedCoffee = React.createContext()
 const SetSelectedCoffee = React.createContext()
 const SelectedMembership = React.createContext()
 const SetSelectedMembership = React.createContext()
+const UserData = React.createContext()
+const SetUserData = React.createContext()
 
 export function useUser() {
   return useContext(UserContext)
@@ -30,6 +32,12 @@ export function useSelectedMembership() {
 }
 export function useSetSelectedMembership() {
   return useContext(SetSelectedMembership)
+}
+export function useUserData() {
+  return useContext(UserData)
+}
+export function useSetUserData() {
+  return useContext(SetUserData)
 }
 
 export function UserProvider({ children }) {
@@ -58,6 +66,17 @@ export function UserProvider({ children }) {
   //   fetchUrl()
   // }, [])
 
+  // const fetchUserData = async () => {
+  //   const request = await fetch('https://data.whop.com/api/v2/memberships')
+  //   const response = request.json()
+
+  //   setData(response)
+  // }
+
+  // useEffect(() => {
+  //   fetchUserData()
+  // }, [])
+
   return (
     <UserContext.Provider value={loggedIn}>
       <UserContextUpdate.Provider value={toggleUser}>
@@ -65,7 +84,11 @@ export function UserProvider({ children }) {
           <SetSelectedCoffee.Provider value={setSelectedCoffee}>
             <SelectedMembership.Provider value={membership}>
               <SetSelectedMembership.Provider value={setMembership}>
-                {children}
+                <UserData.Provider value={data}>
+                  <SetUserData.Provider value={setData}>
+                    {children}
+                  </SetUserData.Provider>
+                </UserData.Provider>
               </SetSelectedMembership.Provider>
             </SelectedMembership.Provider>
           </SetSelectedCoffee.Provider>
