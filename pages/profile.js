@@ -20,6 +20,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from 'pages/api/auth/[...nextauth]'
+import Link from 'next/link'
 
 export default function profile() {
   const { data: session, status } = useSession()
@@ -305,7 +306,9 @@ export default function profile() {
         >
           Log out
         </button>
-        <p className='copyright pb-3'> Manage subscriptions</p>
+        <Link href='/'>
+          <p className='copyright pb-3'> Manage subscriptions</p>
+        </Link>
       </div>
     </>
   )

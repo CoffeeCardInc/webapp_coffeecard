@@ -12,7 +12,7 @@ import { useSession, getSession } from 'next-auth/react'
 /* fetching the shops data and populating the shops and Tier components */
 
 const shops = () => {
-  const [shops, setShops] = useState()
+  const [shops, setShops] = useState([])
   const [search, setSearch] = useState('')
 
   const { data: session, status } = useSession()
@@ -90,7 +90,7 @@ const shops = () => {
       </div>
       <div>
         {searchResult?.map((shop) => {
-          return <Shop shop={shop} key={shop.id} />
+          return <Shop shop={shop} key={shop.shop_id} />
         })}
       </div>
     </>
