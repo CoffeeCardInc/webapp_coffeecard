@@ -44,7 +44,11 @@ export default function profile() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name: name }),
+      body: JSON.stringify({
+        name: userData.name,
+        email: userData.email,
+        mobile: userData.mobile,
+      }),
     })
     const res = await req.json()
     setUserData(res)
@@ -62,6 +66,11 @@ export default function profile() {
 
   const handleSignOut = async () => {
     signOut({ redirect: true, callbackUrl: '/' })
+  }
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target
+    setUserData({ ...userData, [name]: value })
   }
 
   if (status === 'loading') {
@@ -148,15 +157,11 @@ export default function profile() {
               <hr />
               <div className='mb-3'>
                 <i className='fa-regular fa-envelope'></i>
-                <span className='text-black-50 ml-4'>
-                  {session.user?.email}
-                </span>
+                <span className='text-black-50 ml-4'>{userData.email}</span>
               </div>
               <div>
                 <i className='fa-solid fa-phone'></i>
-                <span className='text-black-50 ml-4'>
-                  {session.user?.mobile}
-                </span>
+                <span className='text-black-50 ml-4'>{userData.mobile}</span>
               </div>
             </div>
           </div>
@@ -186,8 +191,9 @@ export default function profile() {
                           type='text'
                           className='form-control'
                           placeholder='name'
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
+                          name='name'
+                          value={userData.name}
+                          onChange={handleInputChange}
                         />
                       </div>
                     </div>
@@ -198,8 +204,9 @@ export default function profile() {
                           type='text'
                           className='form-control'
                           placeholder='phone number'
-                          // value=''
-                          // onChange={}
+                          name='mobile'
+                          value={userData.mobile}
+                          onChange={handleInputChange}
                         />
                       </div>
                       <div className='col-md-12'>
@@ -207,9 +214,10 @@ export default function profile() {
                         <input
                           type='email'
                           className='form-control'
+                          name='email'
                           placeholder='email'
-                          // value=''
-                          // onChange={}
+                          value={userData.email}
+                          onChange={handleInputChange}
                         />
                       </div>
 

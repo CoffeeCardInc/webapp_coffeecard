@@ -19,7 +19,6 @@ export default async function handler(req, res) {
     return res.json(userInfo)
   } else if (req.method == 'DELETE') {
     // delete a user.
-
     const post = await prisma.User.delete({
       where: {
         email: session.user.email,

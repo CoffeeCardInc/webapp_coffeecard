@@ -66,17 +66,6 @@ export function UserProvider({ children }) {
   //   fetchUrl()
   // }, [])
 
-  // const fetchUserData = async () => {
-  //   const request = await fetch('https://data.whop.com/api/v2/memberships')
-  //   const response = request.json()
-
-  //   setData(response)
-  // }
-
-  // useEffect(() => {
-  //   fetchUserData()
-  // }, [])
-
   return (
     <UserContext.Provider value={loggedIn}>
       <UserContextUpdate.Provider value={toggleUser}>
