@@ -42,6 +42,7 @@ const Confirm = ({ membership }) => {
 
   useEffect(() => {
     fetchPassPerkItems()
+    localStorage.setItem('myNumber', membership_id)
   }, [])
 
   // console.log('pass info', )

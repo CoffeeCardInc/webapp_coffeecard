@@ -16,10 +16,7 @@ import Cards from '../components/Card'
 import ProfileHeader from '../components/ProfileHeader'
 // import AppContext from './context'
 // import { useContext } from 'react'
-import {
-  useSelectedMembership,
-  useSetSelectedMembership,
-} from '../components/context'
+import { useMemberships, useSetMemberships } from '../components/context'
 // import { signIn, signOut } from 'next-auth/react'
 import { useState, useEffect } from 'react'
 // session ? login page : landing page
@@ -28,23 +25,19 @@ import { useState, useEffect } from 'react'
 
 export default function Home() {
   const session = useSession() // to determine which landing page to show
-  const memberships = useSelectedMembership()
+  // const memberships = useMemberships()
+  const [memberships, setMemberships] = useState([])
 
-  // const [memberships, setMemberships] = useState([])
+  const fetchMemberships = async () => {
+    const res = await fetch('http://localhost:3000/api/coffeecard/memberships')
+    const data = await res.json()
+    setMemberships(data)
+  }
 
-  // const fetchMemberships = async () => {
-  //   const res = await fetch('http://localhost:3000/api/coffeecard/memberships')
-  //   const data = await res.json()
-  //   setMemberships(data)
-  // }
-
-  // useEffect(() => {
-  //   fetchMemberships()
-  // }, [])
-
-  // console.log(memberships)
+  useEffect(() => {
+    fetchMemberships()
+  }, [])
   // TODO: add logic if Landing component is loading
-  // add logic to show different landing page if user is logged in
 
   if (session.status === 'authenticated') {
     return (

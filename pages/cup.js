@@ -27,6 +27,9 @@ const cup = () => {
   let minutes = Math.floor(duration / 60)
   let seconds = duration % 60
 
+  // const myNumber =
+  //   typeof window !== 'undefined' && localStorage.getItem('myNumber')
+  // console.log('testing local storage', myNumber) // Outputs 42
   useEffect(() => {
     const fetchTimer = async () => {
       const res = await fetch(
@@ -119,8 +122,8 @@ const cup = () => {
             <div className='col-md-6 col-lg-4 p-0 mx-0 px-0'>
               <div className='box' style={{ color: '#6a513b' }}>
                 <div className='card-header row justify-content-between p-0 m-0 '>
-                  <h6 className='pl-1 my-1'>Espresso Pass</h6>
-                  <h6 className='pr-1 my-1'> 2 cups</h6>
+                  <h6 className='pl-1 my-1'>Pass</h6>
+                  {/* <h6 className='pr-1 my-1'> 2 cups</h6> */}
                 </div>
                 <div className='card-block box' style={{ height: '200px' }}>
                   <h4

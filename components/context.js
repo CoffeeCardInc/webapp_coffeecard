@@ -14,6 +14,8 @@ const SelectedMembership = React.createContext()
 const SetSelectedMembership = React.createContext()
 const UserData = React.createContext()
 const SetUserData = React.createContext()
+const UserMemberships = React.createContext()
+const UserSetMemberships = React.createContext()
 
 export function useUser() {
   return useContext(UserContext)
@@ -39,12 +41,18 @@ export function useUserData() {
 export function useSetUserData() {
   return useContext(SetUserData)
 }
+export function useMemberships() {
+  return useContext(UserMemberships)
+}
+export function UseSetMemberships() {
+  return useContext(UserSetMemberships)
+}
 
 export function UserProvider({ children }) {
   const [loggedIn, setLoggedIn] = useState(false)
   const [selectedCoffee, setSelectedCoffee] = useState()
   const [data, setData] = useState([])
-  // const [membership, setMembership] = useState([])
+  const [selectedMembershipId, setSelectedMembershipId] = useState([])
   const [memberships, setMemberships] = useState([])
 
   const fetchMemberships = async () => {
@@ -55,6 +63,7 @@ export function UserProvider({ children }) {
 
   useEffect(() => {
     fetchMemberships()
+    localStorage.setItem('myNumber', selectedMembershipId)
   }, [])
 
   const toggleUser = () => {
@@ -82,11 +91,15 @@ export function UserProvider({ children }) {
       <UserContextUpdate.Provider value={toggleUser}>
         <SelectedCoffee.Provider value={selectedCoffee}>
           <SetSelectedCoffee.Provider value={setSelectedCoffee}>
-            <SelectedMembership.Provider value={memberships}>
-              <SetSelectedMembership.Provider value={setMemberships}>
+            <SelectedMembership.Provider value={selectedMembershipId}>
+              <SetSelectedMembership.Provider value={setSelectedMembershipId}>
                 <UserData.Provider value={data}>
                   <SetUserData.Provider value={setData}>
-                    {children}
+                    <UserMemberships.Provider value={memberships}>
+                      <UserSetMemberships.Provider value={setMemberships}>
+                        {children}
+                      </UserSetMemberships.Provider>
+                    </UserMemberships.Provider>
                   </SetUserData.Provider>
                 </UserData.Provider>
               </SetSelectedMembership.Provider>

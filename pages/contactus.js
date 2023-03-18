@@ -1,33 +1,25 @@
-/* Contact page
-- this page should be vieable eve without logging in
-- functionality is not setup yet
-*/
-
-import { useRef } from 'react'
-import emailjs from '@emailjs/browser'
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(
+  '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'
+)
 
 const contactus = () => {
-  const form = useRef()
-
-  const sendEmail = (e) => {
-    e.preventDefault()
-
-    emailjs
-      .sendForm(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
-        form.current,
-        'YOUR_PUBLIC_KEY'
-      )
-      .then(
-        (result) => {
-          console.log(result.text)
-        },
-        (error) => {
-          console.log(error.text)
-        }
-      )
+  const msg = {
+    to: 'latandor@gmail.com', // Change to your recipient
+    from: 'test@example.com', // Change to your verified sender
+    subject: 'Sending with SendGrid is Fun',
+    text: 'and easy to do anywhere, even with Node.js',
+    html: '<strong>and easy to do anywhere, even with Node.js</strong>',
   }
+  sgMail
+    .send(msg)
+    .then(() => {
+      console.log('Email sent')
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+
   return (
     <>
       <section>
@@ -44,8 +36,8 @@ const contactus = () => {
             <form
               id='contact-form'
               name='contact-form'
-              ref={form}
-              onSubmit={sendEmail}
+              // ref={form}
+              // onSubmit={sendEmail}
             >
               <div className='row'>
                 <div className='col-md-6'>

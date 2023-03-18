@@ -40,4 +40,5 @@ next-env.d.ts
 .next/static
 .next
 .env
-.next.config.js
+.next.config.jssendgrid.env
+sendgrid.env

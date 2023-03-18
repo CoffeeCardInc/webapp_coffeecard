@@ -1,4 +1,4 @@
-/* . 
+/* Profile page. 
 - Loyalty points (will need to be changed or removed as we not going to have at the beginning)
 - The backend api still not accepting all account details
 - profile image upload setup is missing
@@ -20,7 +20,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from 'pages/api/auth/[...nextauth]'
-import { useSelectedMembership } from '../components/context'
+import { useMemberships } from '../components/context'
 import Link from 'next/link'
 
 export default function profile() {
@@ -31,7 +31,7 @@ export default function profile() {
   const toggleSecondary = () => setModalSecondary(!modalSecondary)
   const [name, setName] = useState('')
   const [userData, setUserData] = useState({})
-  const memberships = useSelectedMembership()
+  const memberships = useMemberships()
 
   const fetchUserData = async () => {
     const request = await fetch('/api/coffeecard/users')
