@@ -51,7 +51,7 @@ const ProfileHeader = () => {
         />
         <div className='px-3'>
           <h5>{session.user?.name}</h5>
-          <h6>Brooklyn</h6>
+          {/* <h6>Brooklyn</h6> */}
           <p className='copyright'>0 points</p>
         </div>
       </div>

@@ -30,6 +30,7 @@ const Cards = ({ membership }) => {
   const formattedNextWeek = `${nextWeekYear}-${nextWeekMonth}-${nextWeekDay}`
 
   const dateRange = `${formattedDate} - ${formattedNextWeek}`
+  /* Date range syntax end*/
 
   switch (active === 1) {
     case true:

@@ -1,9 +1,4 @@
-/* Contact page
-- this page should be vieable eve without logging in
-- functionality is not setup yet
-*/
-
-import { useRef } from 'react'
+import React, { useRef } from 'react'
 import emailjs from '@emailjs/browser'
 
 const contactus = () => {
@@ -28,6 +23,7 @@ const contactus = () => {
         }
       )
   }
+
   return (
     <>
       <section>
@@ -39,21 +35,16 @@ const contactus = () => {
           Questions? Contact our team directly.
         </p>
 
-        <div className='row'>
+        <form className='row' onSubmit={sendEmail} ref={form}>
           <div className='col-md-12 mb-md-0'>
-            <form
-              id='contact-form'
-              name='contact-form'
-              ref={form}
-              onSubmit={sendEmail}
-            >
+            <div id='contact-form' name='contact-form'>
               <div className='row'>
                 <div className='col-md-6'>
                   <div className='md-form mb-0'>
                     <input
                       type='text'
                       id='name'
-                      name='name'
+                      name='user_name'
                       className='form-control'
                     />
                     <label htmlFor='name' className=''>
@@ -67,7 +58,7 @@ const contactus = () => {
                     <input
                       type='text'
                       id='email'
-                      name='email'
+                      name='user_email'
                       className='form-control'
                     />
                     <label htmlFor='email' className=''>
@@ -107,19 +98,18 @@ const contactus = () => {
                   </div>
                 </div>
               </div>
-            </form>
+            </div>
 
             <div className='text-center text-md-left'>
-              <a
+              <input
                 className='btn col-md-4'
+                type='submit'
                 style={{ backgroundColor: '#40312e', color: 'white' }}
-              >
-                Send
-              </a>
+              />
             </div>
             <div className='status'></div>
           </div>
-        </div>
+        </form>
       </section>
     </>
   )
