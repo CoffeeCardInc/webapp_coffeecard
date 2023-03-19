@@ -1,22 +1,28 @@
-// const sgMail = require('@sendgrid/mail')
-// sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+import React, { useRef } from 'react'
+import emailjs from '@emailjs/browser'
 
 const contactus = () => {
-  // const msg = {
-  //   to: 'latandor@gmail.com', // Change to your recipient
-  //   from: 'test@example.com', // Change to your verified sender
-  //   subject: 'Sending with SendGrid is Fun',
-  //   text: 'and easy to do anywhere, even with Node.js',
-  //   html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-  // }
-  // sgMail
-  //   .send(msg)
-  //   .then(() => {
-  //     console.log('Email sent')
-  //   })
-  //   .catch((error) => {
-  //     console.error(error)
-  //   })
+  const form = useRef()
+
+  const sendEmail = (e) => {
+    e.preventDefault()
+
+    emailjs
+      .sendForm(
+        'YOUR_SERVICE_ID',
+        'YOUR_TEMPLATE_ID',
+        form.current,
+        'YOUR_PUBLIC_KEY'
+      )
+      .then(
+        (result) => {
+          console.log(result.text)
+        },
+        (error) => {
+          console.log(error.text)
+        }
+      )
+  }
 
   return (
     <>
@@ -29,21 +35,16 @@ const contactus = () => {
           Questions? Contact our team directly.
         </p>
 
-        <div className='row'>
+        <form className='row' onSubmit={sendEmail} ref={form}>
           <div className='col-md-12 mb-md-0'>
-            <form
-              id='contact-form'
-              name='contact-form'
-              // ref={form}
-              // onSubmit={sendEmail}
-            >
+            <div id='contact-form' name='contact-form'>
               <div className='row'>
                 <div className='col-md-6'>
                   <div className='md-form mb-0'>
                     <input
                       type='text'
                       id='name'
-                      name='name'
+                      name='user_name'
                       className='form-control'
                     />
                     <label htmlFor='name' className=''>
@@ -57,7 +58,7 @@ const contactus = () => {
                     <input
                       type='text'
                       id='email'
-                      name='email'
+                      name='user_email'
                       className='form-control'
                     />
                     <label htmlFor='email' className=''>
@@ -97,19 +98,18 @@ const contactus = () => {
                   </div>
                 </div>
               </div>
-            </form>
+            </div>
 
             <div className='text-center text-md-left'>
-              <a
+              <input
                 className='btn col-md-4'
+                type='submit'
                 style={{ backgroundColor: '#40312e', color: 'white' }}
-              >
-                Send
-              </a>
+              />
             </div>
             <div className='status'></div>
           </div>
-        </div>
+        </form>
       </section>
     </>
   )
