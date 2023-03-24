@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import FacebookProvider from 'next-auth/providers/facebook'
-// import AppleProvider from "next-auth/providers/apple"
+// import AppleProvider from 'next-auth/providers/apple'
 // import Auth0Provider from "next-auth/providers/auth0"
 import EmailProvider from 'next-auth/providers/email'
 // Prisma Adapter
@@ -25,6 +25,10 @@ export const authOptions = {
       clientId: process.env.FACEBOOK_CLIENT_ID,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
     }),
+    // AppleProvider({
+    //   clientId: process.env.APPLE_ID,
+    //   clientSecret: process.env.APPLE_SECRET,
+    // }),
     // In this auth case, Email Provider will need an adapter for verification tokens
     EmailProvider({
       server: {
@@ -36,15 +40,15 @@ export const authOptions = {
         },
       },
       from: process.env.EMAIL_FROM,
-      normalizeIdentifier(identifier): string {
-        // Get the first two elements only,
-        // separated by `@` from user input.
-        let [local, domain] = identifier.toLowerCase().trim().split('@')
-        // The part before "@" can contain a ","
-        // but we remove it on the domain part
-        domain = domain.split(',')[0]
-        return `${local}@${domain}`
-      },
+      // normalizeIdentifier(identifier): string {
+      //   // Get the first two elements only,
+      //   // separated by `@` from user input.
+      //   let [local, domain] = identifier.toLowerCase().trim().split('@')
+      //   // The part before "@" can contain a ","
+      //   // but we remove it on the domain part
+      //   domain = domain.split(',')[0]
+      //   return `${local}@${domain}`
+      // },
     }),
     // ...add more providers here
   ],

@@ -56,15 +56,11 @@ export default function Login({ provider, csrfToken }) {
   }
   // TODO: add email credential login
   const signInWithEmail = async () => {
-    signIn(
-      'email',
-      { email: data.email },
-      { callbackUrl: 'http://localhost:3000/profile' }
-    ) // built in with NextAuth
+    signIn('email', { email: data.email }, { callbackUrl: '/' }) // built in with NextAuth
     toggleLogIn()
   }
 
-  //console.log("loggedIn", loggedIn)
+  console.log('loggedIn', data.email)
   return (
     <Container>
       <Row>

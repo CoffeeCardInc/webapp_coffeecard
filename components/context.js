@@ -63,7 +63,6 @@ export function UserProvider({ children }) {
 
   useEffect(() => {
     fetchMemberships()
-    localStorage.setItem('myNumber', selectedMembershipId)
   }, [])
 
   const toggleUser = () => {
