@@ -40,15 +40,15 @@ export const authOptions = {
         },
       },
       from: process.env.EMAIL_FROM,
-      // normalizeIdentifier(identifier): string {
-      //   // Get the first two elements only,
-      //   // separated by `@` from user input.
-      //   let [local, domain] = identifier.toLowerCase().trim().split('@')
-      //   // The part before "@" can contain a ","
-      //   // but we remove it on the domain part
-      //   domain = domain.split(',')[0]
-      //   return `${local}@${domain}`
-      // },
+      normalizeIdentifier(identifier): string {
+        // Get the first two elements only,
+        // separated by `@` from user input.
+        let [local, domain] = identifier.toLowerCase().trim().split('@')
+        // The part before "@" can contain a ","
+        // but we remove it on the domain part
+        domain = domain.split(',')[0]
+        return `${local}@${domain}`
+      },
     }),
     // ...add more providers here
   ],

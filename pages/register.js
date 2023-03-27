@@ -18,19 +18,44 @@ export default register
 //   Label,
 //   Input,
 // } from 'reactstrap'
-// import { registerUser } from '../components/auth'
+// // import { registerUser } from '../components/auth'
 // import AppContext from '../components/context'
 // import { FacebookLoginButton } from 'react-social-login-buttons'
 // import { GoogleLoginButton } from 'react-social-login-buttons'
 // import { AppleLoginButton } from 'react-social-login-buttons'
 // import Header from '../components/Header'
-
+// import { signIn, getSession, getCsrfToken } from 'next-auth/react'
 // // register a new user
 // const Register = () => {
 //   const [data, setData] = useState({ email: '', username: '', password: '' }) // takes in these three values
 //   const [loading, setLoading] = useState(false)
 //   const [error, setError] = useState({})
-//   const appContext = useContext(AppContext)
+
+//   function onChange(event) {
+//     // when input fields are updated
+//     updateData({ ...data, [event.target.name]: event.target.value })
+//   }
+
+//   const signInWithGoogle = async () => {
+//     signIn('google', { callbackUrl: '/' }) // redirected to /server-side-example
+//     toggleLogIn()
+//   }
+
+//   const signInWithFacebook = async () => {
+//     signIn('facebook', { callbackUrl: '/' }) // built in with NextAuth
+//     toggleLogIn()
+//   }
+//   // TODO: add apple login
+//   const signInWithApple = async () => {
+//     signIn('apple', { callbackUrl: '/' }) // built in with NextAuth
+//     toggleLogIn()
+//   }
+//   // TODO: add email credential login
+//   const signInWithEmail = async () => {
+//     signIn('email', { email: data.email }, { callbackUrl: '/' }) // built in with NextAuth
+//     toggleLogIn()
+//   }
+
 //   return (
 //     <Container>
 //       <Row>
@@ -153,13 +178,13 @@ export default register
 //       <style jsx>
 //         {`
 //           .paper {
-//             border: 1px solid lightgray;
-//             box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-//               0px 1px 1px 0px rgba(0, 0, 0, 0.14),
-//               0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-//             border-radius: 6px;
-//             margin-top: 70px;
-//           }
+//           //   border: 1px solid lightgray;
+//           //   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+//           //     0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+//           //     0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+//           //   border-radius: 6px;
+//           //   margin-top: 70px;
+//           // }
 //           .notification {
 //             color: #ab003c;
 //           }
