@@ -32,7 +32,7 @@ const Footer = () => {
           </a>
         </div>
         <div className={footerStyles.copyright}>
-          <Link href='#'>
+          <Link href='/privacy-policy'>
             <p>Terms of Services</p>
           </Link>
           <p>CoffeeCard © 2022</p>

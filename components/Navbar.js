@@ -109,18 +109,32 @@ export default function Navibar() {
           <Collapse isOpen={isOpen} navbar>
             <Nav className='container-fluid justify-content-end' navbar>
               <NavItem>
-                <Link href='/' className='nav-link'>
+                <Link href='/' className='nav-link' onClick={toggle}>
                   Home
                 </Link>
               </NavItem>
               <NavItem>
-                <Link href='/register' className='inactive nav-link' disabled>
+                <Link
+                  href='/register'
+                  className='inactive nav-link'
+                  onClick={toggle}
+                >
                   Sign up
                 </Link>
               </NavItem>
               <NavItem>
-                <Link href='/login' className='nav-link'>
+                <Link href='/login' className='nav-link' onClick={toggle}>
                   Sign In
+                </Link>
+              </NavItem>
+              <NavItem>
+                <Link href='/about' className='nav-link' onClick={toggle}>
+                  About
+                </Link>
+              </NavItem>
+              <NavItem>
+                <Link href='/contactus' className='nav-link' onClick={toggle}>
+                  Contact
                 </Link>
               </NavItem>
             </Nav>
