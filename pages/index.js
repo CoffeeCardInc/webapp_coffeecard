@@ -72,7 +72,7 @@ export default function Home() {
   } else {
     return (
       <section>
-        <div>
+        <div className='flex justify-center align-center'>
           <div className='row align-items-center'>
             {/* <div
             className='col-md-12 p-0 bg-img shadow-lg rounded'
@@ -97,19 +97,19 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className='d-sm-flex flex-column align-items-center justify-content-around'>
-            <Link href='/login' className='nav-item nav-link col-lg-12'>
+          <div className='d-flex flex-column align-items-center justify-content-around'>
+            <Link href='/login' className='nav-item nav-link col-lg-4'>
               <button
-                className='btn col-md-12 col-lg-4 mt-4'
+                className='btn col-md-12 col-lg-12 mt-4 '
                 style={{ backgroundColor: '#40312e', color: 'white' }}
                 // onClick={() => signIn()}
               >
                 Log In
               </button>
             </Link>
-            <Link href='/register' className='nav-item nav-link col-lg-12'>
+            <Link href='/register' className='nav-item nav-link col-lg-4'>
               <button
-                className='btn col-md-12 col-lg-4 mt-1'
+                className='btn col-md-12 col-lg-12 mt-1'
                 style={{ backgroundColor: '#40312e', color: 'white' }}
               >
                 Join

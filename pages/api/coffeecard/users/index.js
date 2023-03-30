@@ -21,14 +21,14 @@ export default async function handler(req, res) {
       data: {
         email,
         password,
-        customer: {
-          create: {
-            email,
-            passowrd: password,
-            full_name: '',
-            date_of_birth: '',
-          },
-        },
+        // customer: {
+        //   create: {
+        //     email,
+        //     passowrd: password,
+        //     full_name: '',
+        //     date_of_birth: '',
+        //   },
+        // },
       },
     })
     return res.json(result)
