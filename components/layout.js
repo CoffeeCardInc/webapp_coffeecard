@@ -8,7 +8,7 @@ import { UserProvider } from './context'
 const Layout = (props) => {
   return (
     <UserProvider>
-      <div style={{ height: '100vh' }}>
+      <div /*style={{ height: '100vh' }}*/ className='d-sm-block d-md-none'>
         <Meta />
         <style jsx>
           {`
@@ -22,6 +22,14 @@ const Layout = (props) => {
           <Container>{props.children}</Container>
         </div>
         <Footer></Footer>
+      </div>
+      <div className='d-none d-md-block'>
+        <video loop autoPlay muted src='/videoBg.mp4' className='video'></video>
+        <div className='content'>
+          <h1>Welcome to CoffeeCard</h1>
+          <p>At the moment we are only available on mobile device. </p>
+          <p>Please check us out...</p>
+        </div>
       </div>
     </UserProvider>
   )

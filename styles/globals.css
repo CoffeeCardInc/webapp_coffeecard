@@ -155,6 +155,23 @@ a {
   cursor: pointer;
 }
 
-/* .btn-active:active {
-  background-color: var(--color-secondary);
-} */
+video {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  overflow: hidden;
+  opacity: 1;
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
