@@ -100,9 +100,10 @@ export default function Login({ provider, csrfToken }) {
                       type='hidden'
                       defaultValue={csrfToken}
                     />
-                    <Label>Email Address:</Label>
+                    <Label>Email:</Label>
                     <Input
                       onChange={(event) => onChange(event)}
+                      type='email'
                       name='email'
                       style={{ height: 50, fontSize: '1.2em' }}
                     />

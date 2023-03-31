@@ -8,17 +8,17 @@ import { UserProvider } from './context'
 const Layout = (props) => {
   return (
     <UserProvider>
-      <div /*style={{ height: '100vh' }}*/ className='d-sm-block d-md-none'>
+      <style jsx>
+        {`
+          .bg {
+            background: #ffffff;
+          }
+        `}
+      </style>
+      <div /*style={{ height: '100vh' }}*/ className='d-sm-block d-md-none bg'>
         <Meta />
-        <style jsx>
-          {`
-            .bg {
-              background: #fffdf1;
-            }
-          `}
-        </style>
         <Navibar />
-        <div className='bg' style={{ paddingTop: '60px' }}>
+        <div style={{ paddingTop: '60px' }}>
           <Container>{props.children}</Container>
         </div>
         <Footer></Footer>

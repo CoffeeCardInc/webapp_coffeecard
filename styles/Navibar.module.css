@@ -9,7 +9,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: var(--color-lightbrown);
+  background-color: var(--color-white);
   flex-direction: row-reverse;
 }
 

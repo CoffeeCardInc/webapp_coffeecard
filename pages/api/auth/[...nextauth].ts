@@ -10,7 +10,7 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import prisma from '../../../lib/prisma'
 
 // const YOUR_API_ENDPOINT = process.env.NEXT_PUBLIC_API_ROOT + 'auth/'
-
+1
 // All requests to /api/auth/* (signIn, callback, signOut, etc.) will automatically be handled by NextAuth.js.
 export const authOptions = {
   // Prisma Adapter - connects the auth of the web app to DB. This will help persist user info in our own db.
