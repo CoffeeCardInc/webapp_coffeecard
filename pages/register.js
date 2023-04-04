@@ -1,11 +1,4 @@
-// import React from 'react'
-
-// const register = () => {
-//   return <div>register</div>
-// }
-
-// export default register
-
+import axios from 'axios'
 import React, { useState, useContext } from 'react'
 import registerStyle from '../styles/Register.module.css'
 import {
@@ -18,6 +11,7 @@ import {
   Label,
   Input,
 } from 'reactstrap'
+import { useRouter } from 'next/router'
 // import { registerUser } from '../components/auth'
 import AppContext from '../components/context'
 import { FacebookLoginButton } from 'react-social-login-buttons'
@@ -30,6 +24,8 @@ const Register = () => {
   const [data, updateData] = useState({ email: '', username: '', password: '' }) // takes in these three values
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState({})
+  const router = useRouter()
+  //
 
   function onChange(event) {
     // when input fields are updated
@@ -51,9 +47,32 @@ const Register = () => {
     toggleLogIn()
   }
   // TODO: add email credential login
-  const signInWithEmail = async () => {
-    signIn('email', { email: data.email }, { callbackUrl: '/' }) // built in with NextAuth
-    toggleLogIn()
+  // const signInWithEmail = async () => {
+  //   signIn('email', { email: data.email }, { callbackUrl: '/' }) // built in with NextAuth
+  //   toggleLogIn()
+  // }
+
+  const registerUser = async (event) => {
+    event.preventDefault()
+
+    const inputData = {
+      email: data.email,
+      password: data.password,
+    }
+
+    await axios.post('/api/coffeecard/users/register', inputData)
+    signIn('credentials', {
+      email: inputData.email,
+      password: inputData.password,
+      callbackUrl: `${window.location.origin}/login`,
+      redirect: false,
+    })
+      .then(function (result) {
+        router.push(result.url)
+      })
+      .catch((err) => {
+        alert('Failed to register: ' + err.toString())
+      })
   }
 
   return (
@@ -109,30 +128,28 @@ const Register = () => {
                     <Label>Email:</Label>
                     <Input
                       onChange={(event) => onChange(event)}
-                      value={data.email}
+                      // value={data.email}
                       type='email'
                       name='email'
                       style={{ height: 50, fontSize: '1.2em' }}
                     />
                   </FormGroup>
-                  {/* <FormGroup style={{ marginBottom: 30 }}>
+                  <FormGroup style={{ marginBottom: 30 }}>
                     <Label>Password:</Label>
                     <Input
-                      onChange={
-                        (e) => setData({ ...data, password: e.target.value }) // update password
-                      }
-                      value={data.password}
+                      onChange={(event) => onChange(event)}
+                      // value={data.password}
                       type='password'
                       name='password'
                       style={{ height: 50, fontSize: '1.2em' }}
                     />
-                  </FormGroup> */}
+                  </FormGroup>
                   <FormGroup>
                     <Button
                       style={{
                         backgroundColor: '#40312e',
                       }}
-                      onClick={signInWithEmail}
+                      onClick={registerUser}
                       className='col-sm-12'
                       disabled={false}
                     >

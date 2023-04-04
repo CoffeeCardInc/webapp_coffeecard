@@ -58,12 +58,13 @@ export default function Home() {
               <p className='mt-5'>
                 You currently do not have any subscription.
               </p>
-              <button
+              <Link
+                href='/shops'
                 className='btn col-md-12 col-lg-4 mt-4'
                 style={{ backgroundColor: '#40312e', color: 'white' }}
               >
                 Subscribe
-              </button>
+              </Link>
             </>
           )}
         </div>

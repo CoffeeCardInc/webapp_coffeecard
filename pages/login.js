@@ -34,7 +34,7 @@ export default function Login({ provider, csrfToken }) {
   const [error, setError] = useState(false)
   const router = useRouter()
   const toggleLogIn = useUpdateUser()
-
+  const [loginError, setLoginError] = useState('')
   function onChange(event) {
     // when input fields are updated
     updateData({ ...data, [event.target.name]: event.target.value })
@@ -55,9 +55,33 @@ export default function Login({ provider, csrfToken }) {
     toggleLogIn()
   }
   // TODO: add email credential login
-  const signInWithEmail = async () => {
-    signIn('email', { email: data.email }, { callbackUrl: '/' }) // built in with NextAuth
-    toggleLogIn()
+  // const signInWithEmail = async () => {
+  //   signIn('email', { email: data.email }, { callbackUrl: '/' }) // built in with NextAuth
+  //   toggleLogIn()
+  // }
+
+  const handleLogin = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+
+    signIn('credentials', {
+      email: data.email,
+      password: data.password,
+      callbackUrl: `${window.location.origin}/`,
+      redirect: false,
+    }).then(function (result) {
+      if (result.error !== null) {
+        if (result.status === 401) {
+          setLoginError(
+            'Your username/password combination was incorrect. Please try again'
+          )
+        } else {
+          setLoginError(result.error)
+        }
+      } else {
+        router.push(result.url)
+      }
+    })
   }
 
   console.log('loggedIn', data.email)
@@ -108,7 +132,7 @@ export default function Login({ provider, csrfToken }) {
                       style={{ height: 50, fontSize: '1.2em' }}
                     />
                   </FormGroup>
-                  {/* <FormGroup style={{ marginBottom: 30 }}>
+                  <FormGroup style={{ marginBottom: 30 }}>
                     <Label>Password:</Label>
                     <Input
                       onChange={(event) => onChange(event)}
@@ -116,7 +140,7 @@ export default function Login({ provider, csrfToken }) {
                       name='password'
                       style={{ height: 50, fontSize: '1.2em' }}
                     />
-                  </FormGroup> */}
+                  </FormGroup>
 
                   <FormGroup>
                     {/* <span className='row justify-content-center mb-3 '>
@@ -129,7 +153,7 @@ export default function Login({ provider, csrfToken }) {
                     <Button
                       style={{ backgroundColor: '#40312e' }}
                       className='col-sm-12'
-                      onClick={signInWithEmail}
+                      onClick={handleLogin}
                     >
                       {loading ? 'Loading... ' : 'Sign In With Email'}
                     </Button>

@@ -18,7 +18,11 @@ export default function MyApp({
     // Avoids flickering/session loading on first load.
 
     // When you supply a session prop in _app.js, useSession won't show a 'loading' state, as it'll already have the session available. In this way, you can provide a more seamless user experience.
-    <SessionProvider session={session} refetchInterval={5 * 60}>
+    <SessionProvider
+      session={session}
+      refetchInterval={5 * 60}
+      options={{ clientMaxAge: 0 }}
+    >
       <Layout className='container m-0 p-0'>
         <Component {...pageProps} />
       </Layout>

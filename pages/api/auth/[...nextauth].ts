@@ -2,21 +2,25 @@ import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import FacebookProvider from 'next-auth/providers/facebook'
 // import AppleProvider from 'next-auth/providers/apple'
-// import Auth0Provider from "next-auth/providers/auth0"
 import EmailProvider from 'next-auth/providers/email'
 import CredentialsProvider from 'next-auth/providers/credentials'
 // Prisma Adapter
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import prisma from '../../../lib/prisma'
 
-// const YOUR_API_ENDPOINT = process.env.NEXT_PUBLIC_API_ROOT + 'auth/'
-1
-// All requests to /api/auth/* (signIn, callback, signOut, etc.) will automatically be handled by NextAuth.js.
-export const authOptions = {
-  // Prisma Adapter - connects the auth of the web app to DB. This will help persist user info in our own db.
-  adapter: PrismaAdapter(prisma),
+let userAccount = null
+const bcrypt = require('bcrypt')
 
-  // Configure one or more authentication providers
+const confirmPasswordHash = (plainPassword, hashedPassword) => {
+  return new Promise((resolve) => {
+    bcrypt.compare(plainPassword, hashedPassword, function (err, res) {
+      resolve(res)
+    })
+  })
+}
+
+export const authOptions = {
+  adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
@@ -42,82 +46,93 @@ export const authOptions = {
       },
       from: process.env.EMAIL_FROM,
       normalizeIdentifier(identifier): string {
-        // Get the first two elements only,
-        // separated by `@` from user input.
         let [local, domain] = identifier.toLowerCase().trim().split('@')
-        // The part before "@" can contain a ","
-        // but we remove it on the domain part
         domain = domain.split(',')[0]
         return `${local}@${domain}`
       },
     }),
     CredentialsProvider({
-      // The name to display on the sign in form (e.g. 'Sign in with...')
-      name: 'Credentials',
+      id: 'credentials',
+      name: 'credentials',
+      credentials: {},
+      async authorize(credentials: any) {
+        try {
+          const user = await prisma.user.findUnique({
+            where: {
+              email: credentials.email,
+            },
+          })
 
-      credentials: {
-        username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
-        password: { label: 'Password', type: 'password' },
-      },
-      async authorize(credentials, req) {
-        // You need to provide your own logic here that takes the credentials
-        // submitted and returns either a object representing a user or value
-        // that is false/null if the credentials are invalid.
-        // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
-        // You can also use the `req` object to obtain additional parameters
-        // (i.e., the request IP address)
-        const res = await fetch('/api/coffeecard/users', {
-          method: 'POST',
-          body: JSON.stringify(credentials),
-          headers: { 'Content-Type': 'application/json' },
-        })
-        const user = await res.json()
+          if (user !== null) {
+            //Compare the hash
+            const res = await confirmPasswordHash(
+              credentials.password,
+              user.password
+            )
+            if (res === true) {
+              userAccount = {
+                id: user.id,
+                email: user.email,
+              }
 
-        // If no error and we have user data, return it
-        if (res.ok && user) {
-          return user
+              return userAccount
+            } else {
+              console.log('Hash not matched logging in')
+              return null
+            }
+          } else {
+            return null
+          }
+        } catch (err) {
+          console.log('Authorize error:', err)
         }
-        // Return null if user data could not be retrieved
-        return null
       },
     }),
   ],
+
   session: {
-    strategy: 'database',
-    jwt: true,
-    maxAge: 30 * 24 * 60 * 60,
+    // strategy:"database"
+    strategy: 'jwt', // jwt: true,
+    // maxAge: 30 * 24 * 60 * 60,
   },
-  // jwt: {
-  //   // The maximum age of the NextAuth.js issued JWT in seconds.
-  //   // Defaults to `session.maxAge`.
-  //   maxAge: 60 * 60 * 24, // 24 hours
-  // },
   callbacks: {
-    // we can do side effects such as adjusting context.js
-    /* The session callback is called whenever a session is checked. 
-    By default, only a subset of the token is returned for increased security. 
-    If you want to make something available you added to the token 
-    (like access_token and user.id from above) via the jwt() callback, 
-    you have to explicitly forward it here to make it available to the client. */
-    // Code from: (Docs)[https://next-auth.js.org/configuration/callbacks#session-callback]
+    async jwt({ token, user, account, profile, isNewUser }) {
+      console.log('JWT callback. Got User: ', user)
+      if (typeof user !== typeof undefined) {
+        token.user = user
+        console.log('token', token.user)
+      }
+      return token
+    },
     async session({ session, token, user }) {
       console.log('SESSION CALLED')
-      // Send properties to the client, like an access_token and user id from a provider.
-      // session.accessToken = token.accessToken
-      session.user.id = user.id
-      // session.user.name = token.name // custom
-      // session.user.email = token.email // custom
-      // session.user.image = token.image // custom
-      session.user.role = user.role
-      // session.user.mobile = user.mobile
-      // session.user.membership = user.membership
-      return Promise.resolve(session)
+      if (token) {
+        if (userAccount !== null) {
+          //session.user = userAccount;
+          session.user = {
+            id: userAccount.id,
+            // name: `${userAccount.firstName} ${userAccount.lastName}`,
+            email: userAccount.email,
+          }
+          console.log('session test', userAccount)
+        } else if (
+          typeof token.user !== typeof undefined &&
+          (typeof session.user === typeof undefined ||
+            (typeof session.user !== typeof undefined &&
+              typeof session.user.id === typeof undefined))
+        ) {
+          session.user = token.user
+        } else if (typeof token !== typeof undefined) {
+          session.token = token
+        } else {
+          session.user.id = user.id
+        }
+      }
+
+      return session
     },
-    // async jwt({ token, user, account, profile, isNewUser }) {
-    //   if (account) {
-    //     token.accessToken = account.access_token;
-    //   }
-    //   return token;
+    // cookie: {
+    //   secure: process.env.NODE_ENV && process.env.NODE_ENV === 'production',
     // },
     async redirect({ url, baseUrl }) {
       console.log('REDIRECT CALLED')
@@ -129,14 +144,48 @@ export const authOptions = {
     },
     async signIn({ user, account, profile, email, credentials }) {
       console.log('SIGNIN CALLED')
-      const isAllowedToSignIn = true
-      if (isAllowedToSignIn) {
+      // const isAllowedToSignIn = true
+      // if (isAllowedToSignIn) {
+      //   return true
+      // } else {
+      //   // Return false to display a default error message
+      //   return false
+      //   // Or you can return a URL to redirect to:
+      //   // return '/unauthorized'
+      // }
+      try {
+        // the user object is wrapped in another user object so extract it
+
+        console.log('Sign in callback', user)
+        console.log('User id: ', user.id)
+        if (typeof user.id !== typeof undefined) {
+          if (user.id) {
+            console.log('User is active')
+            return user
+          } else {
+            console.log('User is not active')
+            return false
+          }
+        } else {
+          console.log('User id was undefined')
+          return false
+        }
+      } catch (err) {
+        console.error('Signin callback error:', err)
+      }
+    },
+    async register(email, password) {
+      try {
+        await prisma.user.create({
+          data: {
+            email: email,
+            password: password,
+          },
+        })
         return true
-      } else {
-        // Return false to display a default error message
+      } catch (err) {
+        console.error('Failed to register user. Error', err)
         return false
-        // Or you can return a URL to redirect to:
-        // return '/unauthorized'
       }
     },
   },
